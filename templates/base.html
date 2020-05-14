@@ -1,3 +1,5 @@
+{% load static %}
+
 <!doctype html>
 <html lang="it">
     <head>
@@ -11,6 +13,31 @@
         <title>{% block browser_page_title %}{% endblock %}</title>
     </head>
     <body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light gradient">
+            <!-- logo -->
+            <a class="navbar-brand" href="#">
+            <img src="{% static 'img/logo.png' %}" width="85" height="70" class="d-inline-block align-top" alt="virgilian_code_logo" loading="lazy">
+            Virgilian Code
+            </a>
+            <!-- bottone mobile -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <!-- link -->
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
         {% block content %}
         {% endblock %}
         <!-- Optional JavaScript -->

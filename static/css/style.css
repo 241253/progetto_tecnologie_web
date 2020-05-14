@@ -1,3 +1,9 @@
-body{
-    margin: 0;
+.gradient
+{
+    /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#ffaa00+0,f2c500+50,faaa00+50,448eff+50,448eff+100 */
+    background: rgb(255,170,0); /* Old browsers */
+    background: -moz-linear-gradient(-45deg,  rgb(255,170,0) 0%, rgb(242,197,0) 50%, rgb(250,170,0) 50%, rgb(68,142,255) 50%, rgb(68,142,255) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(-45deg,  rgb(255,170,0) 0%,rgb(242,197,0) 50%,rgb(250,170,0) 50%,rgb(68,142,255) 50%,rgb(68,142,255) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(135deg,  rgb(255,170,0) 0%,rgb(242,197,0) 50%,rgb(250,170,0) 50%,rgb(68,142,255) 50%,rgb(68,142,255) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffaa00', endColorstr='#448eff',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
 }
