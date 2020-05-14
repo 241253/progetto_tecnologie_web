@@ -8,7 +8,24 @@
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffaa00', endColorstr='#448eff',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
 }
 
-.navbar-collapse
+.navbar_title, .navbar_title:hover
 {
-    float: end;
+    color: white;
+    text-decoration: none;
+    font-size: 30px;
+}
+
+.navbar-nav
+{
+    width: 100%;
+}
+
+.nav-link
+{
+    font-size: 20px;
+}
+
+.btn-primary, .btn-primary:hover
+{
+    background-color: rgb(255,170,0);
 }
