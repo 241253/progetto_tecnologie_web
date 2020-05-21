@@ -11,6 +11,7 @@
         <!-- Font Awesome Icons -->
         <script src="https://kit.fontawesome.com/c7451e5792.js" crossorigin="anonymous"></script>
         <!-- Personal CSS -->
+        <link rel="stylesheet" href="{% static 'css/style.css' %}"/>
         {% block personal_css %}{% endblock %}
         <title>{% block browser_page_title %}{% endblock %}</title>
     </head>
@@ -19,7 +20,7 @@
         <nav class="align-middle navbar navbar-expand-lg navbar-light bg-light gradient">
             <!-- logo -->
             <a class="navbar-brand" href="{% url 'home' %}">
-            <img src="{% static 'img/logo.png' %}" width="85px" height="70px" class="d-inline-block align-top" alt="virgilian_code_logo" loading="lazy"/>
+            <img src="{% static 'img/logo.png' %}" width="110px" height="70px" class="d-inline-block align-top" alt="virgilian_code_logo" loading="lazy"/>
             </a>
             <a class="navbar_title" href="{% url 'home' %}">Virgilian Code</a>
             <!-- bottone mobile -->
@@ -42,10 +43,10 @@
                         <a class="nav-link mr-3" style="color: white" href="#">Contatti</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link btn btn-primary mr-3" style="color: white" href="#">accedi</a>
+                        <a class="nav-link btn btn-primary mr-3 px-4" style="color: white" href="#">Accedi</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link btn btn-primary" style="color: white" href="#">Registarti</a>
+                        <a class="nav-link btn btn-primary px-4" style="color: white" href="#">Registrati</a>
                     </li>
                 </ul>
             </div>
