@@ -20,7 +20,6 @@ html, body
 
 .cover-image h1
 {
-	font-weight: bold;
 }
 
 .cover-image h3
@@ -29,8 +28,31 @@ html, body
 }
 
 /*immagini spastiche*/
+.container h1
+{
+	width: 100%;
+	text-align: center;
+	font-weight: bold;
+	color: rgb(68,142,255);
+}
+
 .image-container
 {
 	display: flex;
-	justify-content: space-evenly;
+	justify-content: space-between;
+}
+
+.image-item
+{
+	text-align: center;
+}
+
+.image-item img
+{
+	width: 250px;
+}
+
+.image-item h4
+{
+	color: rgb(255,170,0);
 }
