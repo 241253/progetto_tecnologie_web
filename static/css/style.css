@@ -47,11 +47,8 @@
 /* Footer */
 
 .footer {
-  position: fixed;
-  left: 0;
-  bottom: 0;
+    display: inline-block;
   width: 100%;
-  background-color: red;
   color: white;
   text-align: center;
 }
