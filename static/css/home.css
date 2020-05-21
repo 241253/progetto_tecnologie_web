@@ -27,13 +27,13 @@ html, body
 	font-weight: lighter;
 }
 
-/*immagini spastiche*/
+/*immagini presentazione*/
 .container h1
 {
 	width: 100%;
 	text-align: center;
 	font-weight: bold;
-	color: rgb(68,142,255);
+	color: rgb(255,170,0);
 }
 
 .image-container
@@ -55,4 +55,30 @@ html, body
 .image-item h4
 {
 	color: rgb(255,170,0);
+}
+
+/*paragrafo*/
+.paragraph-container
+{
+	display: flex;
+	margin-top: 125px;
+	margin-bottom: 125px;
+}
+
+.paragraph-container div
+{
+	width: 100%;
+}
+
+.paragraph-container p
+{
+	font-size: 25px;
+}
+
+.paragraph-container img
+{
+	width: auto;
+	height: 400px;
+	box-shadow: 0 0 5px #aaaaaa;
+	border-radius: 20px;
 }
