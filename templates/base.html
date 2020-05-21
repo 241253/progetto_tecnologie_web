@@ -8,6 +8,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+        <!-- Font Awesome Icons -->
+        <script src="https://kit.fontawesome.com/c7451e5792.js" crossorigin="anonymous"></script>
         <!-- Personal CSS -->
         {% block personal_css %}{% endblock %}
         <title>{% block browser_page_title %}{% endblock %}</title>
@@ -52,6 +54,30 @@
         {% block content %}
         {% endblock %}
         <!-- FOOTER -->
+        <div class="footer gradient_inverse">
+            <div class="footer-flex my-3">
+                <div>
+                    <h1 class="footer-titles"> Social </h1>
+                    <span class="fa-stack fa-2x">
+                        <a href="https://www.facebook.com/VirgilianCodeOnline/" class="footer-icons-style">
+                            <i class="fab fa-facebook-square"></i>
+                        </a>
+                        <a href="https://virgiliancode.altervista.org/home/?popb_pID=56&popb_track_url=https%3A%2F%2Fwww.linkedin.com%2Fin%2Frenato-turbati-2039a1b%2F" class="footer-icons-style">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                    </span>
+                </div>
+                <img src="{% static 'img/logo.png' %}" width="275px" height="200px" alt="virgilian_code_logo" loading="lazy" class="ml-5"/>
+                <div>
+                    <h1 class="footer-titles"> Contatti </h1>
+                    <p class="footer-texts"> telefono: 0376-1212122 </p>
+                    <p class="footer-texts"> email: info@virgiliancode.com </p>
+                    <p class="footer-texts"> WhatsApp: 3403030302 </p>
+                </div>
+            </div>
+            <hr class="footer-hr-style" />
+            <p class="footer-texts my-3 footer-copyright"> © 2020 Virgilian code. All Rights Reserved. </p>
+        </div>
         <!-- FINE FOOTER -->
         <!-- Optional JavaScript -->
         {% block personal_js %}{% endblock %}
