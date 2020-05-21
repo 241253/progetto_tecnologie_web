@@ -13,6 +13,7 @@
         <title>{% block browser_page_title %}{% endblock %}</title>
     </head>
     <body>
+        <!-- HEADER -->
         <nav class="align-middle navbar navbar-expand-lg navbar-light bg-light gradient">
             <!-- logo -->
             <a class="navbar-brand" href="{% url 'home' %}">
@@ -47,8 +48,11 @@
                 </ul>
             </div>
         </nav>
+        <!-- FINE HEADER -->
         {% block content %}
         {% endblock %}
+        <!-- FOOTER -->
+        <!-- FINE FOOTER -->
         <!-- Optional JavaScript -->
         {% block personal_js %}{% endblock %}
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
