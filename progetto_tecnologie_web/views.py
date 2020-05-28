@@ -9,3 +9,6 @@ def landingPage(request):
 
 def reservationPage(request):
     return render(request, 'prenotazioni.html')
+
+def pricesPage(request):
+    return render(request, 'tariffe.html')
