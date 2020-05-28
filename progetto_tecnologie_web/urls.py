@@ -19,5 +19,6 @@ from . import views
 
 urlpatterns = [
     path('', views.landingPage, name='home'),
+    path('prenotazioni/', views.reservationPage, name='prenotazioni'),
     path('admin/', admin.site.urls),
 ]
