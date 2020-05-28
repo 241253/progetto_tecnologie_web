@@ -18,3 +18,6 @@ def chi_siamoPage(request):
 
 def prova1():
     return None
+
+def prova2():
+    return None
