@@ -12,3 +12,6 @@ def reservationPage(request):
 
 def pricesPage(request):
     return render(request, 'tariffe.html')
+
+def chi_siamoPage(request):
+    return render(request, 'chi_siamo.html')
