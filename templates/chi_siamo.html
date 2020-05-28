@@ -4,9 +4,100 @@
 {% block browser_page_title %}Chi siamo?{% endblock %}
 
 {% block personal_css %}
-    <link rel="stylesheet" href="{% static 'css/home.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/chi_siamo.css' %}"/>
 {% endblock %}
 
 {% block content %}
-    <h1> Chi siamo? </h1>
+<div class="container-xl">
+    <!-- contenuto iniziale -->
+    <div class="chi_siamo_text">
+
+    </div>
+    <!-- presentazione esperienze -->
+    <div class="chi_siamo_exp my-5">
+        <h2 class="mb-2">LE NOSTRE ESPERIENZE</h2>
+        <div class="chi_siamo_exp_container mt-4">
+            <div>
+                <h4>Più di 1000 ore in aula</h4>
+                <p>
+                    Negli ultimi anni i nostri formatori hanno effettuato oltre 1000 ore di lezioni in vari istituti con classi elementari e medie
+                </p>
+            </div>
+            <div class="mx-4">
+                <h4>Oltre 100 ore di cred estivi</h4>
+                <p>
+                    Abbiamo svolto in diversi campi estivi oltre 100 ore di lezioni riscontrando grande partecipazione e coinvolgimento
+                </p>
+            </div>
+            <div>
+                <h4>20 Coderdojo tra 2014-2015</h4>
+                <p>
+                    tra il 2014 e il 2015 abbiamo sostenuto 20 Coderdojo presso varie manifestazioni in cui abbiamo cominciato ad acquisire esperienza
+                </p>
+            </div>
+        </div>
+    </div>
+    <!-- card formatori -->
+    <div class="chi_siamo_coach my-4">
+        <h2>I NOSTRI FORMATORI</h2>
+        <div class="chi_siamo_coach_container mt-4">
+            <!-- card -->
+            <div class="card mb-3" style="max-width: 540px;">
+                <div class="row no-gutters">
+                    <div class="col-md-4">
+                        <img src="{% static 'img/card_temp_photo.jpg' %}" class="card-img" alt="...">
+                    </div>
+                    <div class="col-md-8 my-auto">
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- card -->
+            <div class="card mb-3" style="max-width: 540px;">
+                <div class="row no-gutters">
+                    <div class="col-md-4">
+                        <img src="{% static 'img/card_temp_photo.jpg' %}" class="card-img" alt="...">
+                    </div>
+                    <div class="col-md-8 my-auto">
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- card -->
+            <div class="card mb-3" style="max-width: 540px;">
+                <div class="row no-gutters">
+                    <div class="col-md-4">
+                        <img src="{% static 'img/card_temp_photo.jpg' %}" class="card-img" alt="...">
+                    </div>
+                    <div class="col-md-8 my-auto">
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- card -->
+            <div class="card mb-3" style="max-width: 540px;">
+                <div class="row no-gutters">
+                    <div class="col-md-4">
+                        <img src="{% static 'img/card_temp_photo.jpg' %}" class="card-img" alt="...">
+                    </div>
+                    <div class="col-md-8 my-auto">
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
