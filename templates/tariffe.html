@@ -8,5 +8,36 @@
 {% endblock %}
 
 {% block content %}
-    <h1> Tariffe </h1>
+    <h1 class="scritta_tariffe"> Tariffe </h1>
+    <table class="table tabella mx-auto">
+      <thead>
+        <tr>
+          <th scope="col">Prodotto</th>
+          <th scope="col">Prezzo</th>
+          <th scope="col">(Sconto)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td scope="row">Videolezione</td>
+          <td> 20 €</td>
+          <td> - </td>
+        </tr>
+        <tr>
+          <td scope="row">Pacchetto di 5 videolezioni</td>
+          <td> 80 €</td>
+          <td> 20 %</td>
+        </tr>
+        <tr>
+          <td scope="row">Percorso (15 videolezioni) </td>
+          <td> 250 €</td>
+          <td> 25 % </td>
+        </tr>
+        <tr>
+          <td scope="row">Videolezione live</td>
+          <td> 20 € / h </td>
+          <td> - </td>
+        </tr>
+      </tbody>
+</table>
 {% endblock %}

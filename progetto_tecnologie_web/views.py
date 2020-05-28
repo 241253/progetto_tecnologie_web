@@ -15,9 +15,3 @@ def pricesPage(request):
 
 def chi_siamoPage(request):
     return render(request, 'chi_siamo.html')
-
-def prova1():
-    return None
-
-def prova2():
-    return None
