@@ -9,3 +9,6 @@ def landingPage(request):
 
 def reservationPage(request):
     return render(request, 'prenotazioni.html')
+
+def chi_siamoPage(request):
+    return render(request, 'prenotazioni.html')
