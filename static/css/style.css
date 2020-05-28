@@ -2,7 +2,7 @@
 {
     /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#ffaa00+0,ffaa00+50,448eff+50 */
     background: rgb(255,170,0); /* Old browsers */
-    background: -moz-linear-gradient(-45deg,  rgba(255,170,0,1) 0%, rgba(255,170,0,1) 50%, rgba(68,142,255,1) 50%); /* FF3.6-15 */
+    background: -moz-linear-gradient(-45deg, rgb(255, 170, 0) 0%, rgba(255,170,0,1) 50%, rgba(68,142,255,1) 50%); /* FF3.6-15 */
     background: -webkit-linear-gradient(-45deg,  rgba(255,170,0,1) 0%,rgba(255,170,0,1) 50%,rgba(68,142,255,1) 50%); /* Chrome10-25,Safari5.1-6 */
     background: linear-gradient(135deg,  rgba(255,170,0,1) 0%,rgba(255,170,0,1) 50%,rgba(68,142,255,1) 50%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffaa00', endColorstr='#448eff',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */

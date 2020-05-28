@@ -57,6 +57,11 @@ html, body
 	color: rgb(255,170,0);
 }
 
+.image-item h5
+{
+	color: rgb(255,170,0);
+}
+
 /*paragrafo*/
 .paragraph-container
 {
