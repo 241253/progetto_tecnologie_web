@@ -93,7 +93,31 @@ html, body
 /* Small devices (landscape phones, 576px and up)*/
 @media (min-width: 576px) and (max-width: 767px)
 {
+	/* COVER */
+	.cover-image h1
+	{
+		font-size: 25px
+	}
 
+	.cover-image h3
+	{
+		font-size: 20px;
+	}
+
+	/* PARAGRAFO */
+	.paragraph-container
+	{
+		flex-direction: column;
+		margin-top: 50px;
+		margin-bottom: 25px;
+	}
+
+	.paragraph-container img
+	{
+		order: 5;
+		width: auto;
+		height: 200px;
+	}
 }
 
 /* Medium devices (tablets, 768px and up)*/
@@ -155,6 +179,17 @@ html, body
 	{
 		/*order: 5;*/
 		height: 275px;
+	}
+
+	/* IMMAGINETTE */
+	.image-container
+	{
+		flex-wrap: wrap;
+	}
+
+	.image-item
+	{
+		width: 50%;
 	}
 
 }
