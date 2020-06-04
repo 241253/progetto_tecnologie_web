@@ -15,3 +15,6 @@ def pricesPage(request):
 
 def chi_siamoPage(request):
     return render(request, 'chi_siamo.html')
+
+def contatti(request):
+    return render(request, 'contatti.html')

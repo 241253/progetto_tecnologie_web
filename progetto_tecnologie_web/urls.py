@@ -22,5 +22,6 @@ urlpatterns = [
     path('prenotazioni/', views.reservationPage, name='prenotazioni'),
     path('chi_siamo/', views.chi_siamoPage, name='chi_siamo'),
     path('tariffe/', views.pricesPage, name='tariffe'),
+    path('contatti/', views.contatti, name="contatti"),
     path('admin/', admin.site.urls),
 ]

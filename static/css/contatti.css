@@ -1,0 +1,58 @@
+.titolo_contatti
+{
+    font-weight: bold;
+    text-align: center;
+    color: rgb(255,170,0);
+}
+
+.container_contatti
+{
+    display: flex;
+}
+
+.container_contatti_foto
+{
+    display: flex;
+    justify-content: center;
+}
+
+.div_contatti
+{
+    display:flex;
+}
+
+.div_contatti_form
+{
+    width: 50%;
+}
+
+.paragraph-container
+{
+	width: 50%;
+}
+
+.foto
+{
+    width: 250px;
+    height: 250px;
+}
+
+.form_label
+{
+    margin-top: 10px;
+}
+
+.contatti_bottone
+{
+    margin-top: 10px;
+}
+
+.contatti_paragrafi
+{
+    font-size: 20px;
+}
+
+.contatti_form_font
+{
+    font-size: 20px;
+}
