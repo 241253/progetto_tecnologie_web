@@ -28,7 +28,7 @@ html, body
 }
 
 /*immagini presentazione*/
-.container h1
+.container-lg h1
 {
 	width: 100%;
 	text-align: center;
@@ -94,12 +94,70 @@ html, body
 /* Medium devices (tablets, 768px and up)*/
 @media (min-width: 768px)
 {
+	/* COVER */
+	.cover-image h1
+	{
+		font-size: 25px
+	}
+
+	.cover-image h3
+	{
+		font-size: 20px;
+	}
+
+	/* IMMAGINETTE */
+	.container-fluid-md h1
+	{
+		font-size: 30px;
+	}
+
+	.image-item h5 /*cosa offre*/
+	{
+		font-size: 15px;
+	}
+
+	.image-item p /*cosa offre*/
+	{
+		font-size: 14px;
+	}
+
+	.image-item img
+	{
+		width: 100px;
+	}
+
+	/* PARAGRAFO */
+	.paragraph-container
+	{
+		/*flex-direction: column;*/
+		margin-top: 50px;
+		margin-bottom: 25px;
+	}
+
+	.paragraph-container h1
+	{
+		font-size: 20px;
+		font-weight: bold;
+	}
+
+	.paragraph-container p
+	{
+		font-size: 20px;
+		text-align: justify;
+	}
+
+	.paragraph-container img
+	{
+		/*order: 5;*/
+		height: 275px;
+	}
 
 }
 
 /* Large devices (desktops, 992px and up)*/
 @media (min-width: 992px)
 {
+	/* COVER */
 	.cover-image h1
 	{
 		font-size: 30px
@@ -110,6 +168,7 @@ html, body
 		font-size: 25px;
 	}
 
+	/* IMMAGINETTE */
 	.image-item h5 /*cosa offre*/
 	{
 		font-size: 15px;
