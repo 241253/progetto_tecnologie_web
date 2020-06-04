@@ -85,14 +85,19 @@ html, body
 }
 
 /** BREAKPOINT **/
+@media (max-width: 575px)
+{
+
+}
+
 /* Small devices (landscape phones, 576px and up)*/
-@media (min-width: 576px)
+@media (min-width: 576px) and (max-width: 767px)
 {
 
 }
 
 /* Medium devices (tablets, 768px and up)*/
-@media (min-width: 768px)
+@media (min-width: 768px) and (max-width: 991px)
 {
 	/* COVER */
 	.cover-image h1
@@ -155,7 +160,7 @@ html, body
 }
 
 /* Large devices (desktops, 992px and up)*/
-@media (min-width: 992px)
+@media (min-width: 992px) and (max-width: 1200px)
 {
 	/* COVER */
 	.cover-image h1
