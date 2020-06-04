@@ -49,13 +49,7 @@ html, body
 
 .image-item img
 {
-	width: 250px;
-}
-
-.image-item h4
-{
-	font-weight: bold;
-	color: rgb(255,170,0);
+	width: 150px;
 }
 
 .image-item h5
@@ -88,4 +82,46 @@ html, body
 	height: 400px;
 	box-shadow: 0 0 5px #aaaaaa;
 	border-radius: 20px;
+}
+
+/** BREAKPOINT **/
+/* Small devices (landscape phones, 576px and up)*/
+@media (min-width: 576px)
+{
+
+}
+
+/* Medium devices (tablets, 768px and up)*/
+@media (min-width: 768px)
+{
+
+}
+
+/* Large devices (desktops, 992px and up)*/
+@media (min-width: 992px)
+{
+	.cover-image h1
+	{
+		font-size: 30px
+	}
+
+	.cover-image h3
+	{
+		font-size: 25px;
+	}
+
+	.image-item h5 /*cosa offre*/
+	{
+		font-size: 15px;
+	}
+
+	.image-item p /*cosa offre*/
+	{
+		font-size: 14px;
+	}
+
+	.image-item img
+	{
+		width: 100px;
+	}
 }

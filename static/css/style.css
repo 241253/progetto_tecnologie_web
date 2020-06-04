@@ -44,13 +44,18 @@
     background-color: rgb(255,170,0);
 }
 
-/* Footer */
-
+/* FOOTER */
 .footer {
     display: inline-block;
   width: 100%;
   color: white;
   text-align: center;
+}
+
+.footer img
+{
+    width: 275px;
+    height: 200px;
 }
 
 .footer-flex {
@@ -87,4 +92,64 @@
 .footer-copyright {
     float: right;
     margin-right: 2.5%;
+}
+
+/** BREAKPOINT **/
+/* Small devices (landscape phones, 576px and up)*/
+@media (min-width: 576px)
+{
+
+}
+
+/* Medium devices (tablets, 768px and up)*/
+@media (min-width: 768px)
+{
+    /* HEADER */
+    .nav-link.btn
+    {
+        width: 100px;
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    .nav-link
+    {
+        text-align: center;
+        font-size: 20px;
+    }
+
+    /* FOOTER */
+    .footer img
+    {
+        width: 200px;
+        height: 125px;
+    }
+
+    .footer-titles
+    {
+        font-size: 20px;
+    }
+
+    .footer-texts {
+        font-size: 15px;
+    }
+
+    .footer-icons-style
+    {
+        font-size: 45px;
+    }
+}
+
+/* Large devices (desktops, 992px and up)*/
+@media (min-width: 992px)
+{
+    .navbar_title
+    {
+        font-size: 20px;
+    }
+
+    .nav-link
+    {
+        font-size: 18px;
+    }
 }
