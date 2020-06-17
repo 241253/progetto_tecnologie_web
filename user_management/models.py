@@ -39,6 +39,7 @@ class User(AbstractBaseUser):
     nome = models.CharField(max_length=30)
     cognome = models.CharField(max_length=30)
     foto = models.FileField()
+    last_login = models.DateField(verbose_name="Ultimo login", auto_now = True)
     is_admin = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
