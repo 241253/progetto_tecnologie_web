@@ -59,3 +59,8 @@
 {
     box-shadow: 5px 5px 2.5px 0px rgba(128,128,128,0.52);
 }
+
+.col-md-4 img
+{
+    height: 350px;
+}
