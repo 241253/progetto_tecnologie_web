@@ -14,4 +14,7 @@ class MyUserAdmin(UserAdmin):
     list_filter = ()
     fieldsets = ()
 
-admin.site.register(User, MyUserAdmin)  # Commento a caso
+
+    ordering = ('email',)  # In questo modo l'ordering è su email e non su username come di default
+
+admin.site.register(User, MyUserAdmin)
