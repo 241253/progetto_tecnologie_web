@@ -71,6 +71,8 @@ TEMPLATES = [
     },
 ]
 
+AUTH_USER_MODEL = 'user_management.User'
+
 WSGI_APPLICATION = 'progetto_tecnologie_web.wsgi.application'
 
 
