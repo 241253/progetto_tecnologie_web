@@ -7,7 +7,7 @@ class MyAccountManager(BaseUserManager):
         if not email:
             raise ValueError("L'utente deve avere un indirizzo email.")
         if not username:
-            raise ValueError("L'utente deve avere username.")
+            raise ValueError("L'utente deve avere uno username.")
         if not nome:
             raise ValueError("L'utente deve avere un nome")
         if not cognome:
