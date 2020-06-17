@@ -4,7 +4,7 @@
     width: 50%;
     height: 30%;
     margin-top: 30px;
-	margin-bottom: 115px;
+	margin-bottom: 50px;
 }
 
 .tabella thead
@@ -32,4 +32,34 @@
     margin-top: 100px;
     text-align: center;
     color: rgb(255,170,0);
+}
+
+/* paragrafi */
+.container_paragrafi_tariffe
+{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.paragraph-container
+{
+    width: 50%;
+}
+
+.paragraph-container img
+{
+    width: 30%;
+    margin: 0 35% 0 35%;
+}
+
+.paragraph-container h1
+{
+    text-align: center;
+    color: rgb(255,170,0);
+    font-weight: bold;
+}
+
+.paragraph-container p
+{
+    text-align: justify;
 }

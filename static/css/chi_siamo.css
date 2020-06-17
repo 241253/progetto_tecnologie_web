@@ -1,9 +1,17 @@
 /** CAROSELLO **/
-.carousel-item{
+.carousel-item
+{
     height: 650px;
 }
-.carousel-item img{
+
+.carousel-item img
+{
     height: 650px;
+}
+
+.carousel-item p
+{
+    font-size: 20px;
 }
 
 /** ESPERIENZE **/
