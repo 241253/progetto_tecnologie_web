@@ -14,4 +14,4 @@ class MyUserAdmin(UserAdmin):
     list_filter = ()
     fieldsets = ()
 
-admin.site.register(User, MyUserAdmin)
+admin.site.register(User, MyUserAdmin)  # Commento a caso
