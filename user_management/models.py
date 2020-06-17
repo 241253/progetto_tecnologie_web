@@ -3,9 +3,11 @@ from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 
 
 class MyAccountManager(BaseUserManager):
-    def create_user(self, email, nome, cognome, password=None):
+    def create_user(self, email, username, nome, cognome, password=None):
         if not email:
             raise ValueError("L'utente deve avere un indirizzo email.")
+        if not username:
+            raise ValueError("L'utente deve avere username.")
         if not nome:
             raise ValueError("L'utente deve avere un nome")
         if not cognome:
@@ -13,6 +15,7 @@ class MyAccountManager(BaseUserManager):
 
         user = self.model(
             email = self.normalize_email(email),
+            username = username,
             nome = nome,
             cognome = cognome
         )
@@ -21,9 +24,10 @@ class MyAccountManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, email, nome, cognome, password):
+    def create_superuser(self, email, username, nome, cognome, password):
         user = self.create_user(
             email = self.normalize_email(email),
+            username = username,
             nome = nome,
             cognome = cognome,
             password = password
@@ -36,6 +40,7 @@ class MyAccountManager(BaseUserManager):
 
 class User(AbstractBaseUser):
     email = models.EmailField(verbose_name="email", max_length=60, unique=True)
+    username = models.CharField(max_length=30, unique=True)
     nome = models.CharField(max_length=30)
     cognome = models.CharField(max_length=30)
     foto = models.FileField()
@@ -46,12 +51,12 @@ class User(AbstractBaseUser):
     is_superuser = models.BooleanField(default=False)
 
     USERNAME_FIELD = "email"
-    REQUIRED_FIELDS = ["nome", "cognome"]
+    REQUIRED_FIELDS = ["username", "nome", "cognome"]
 
     objects = MyAccountManager()
 
     def __str__(self):
-        return self.email + " " + self.nome + " " + self.cognome
+        return self.email + " " + self.username + " " + self.nome + " " + self.cognome
 
     def has_perm(self, perm, obj=None):
         return self.is_admin
