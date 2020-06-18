@@ -10,6 +10,9 @@
 {% block content %}
     <div class="container">
         <p>Login</p>
-        {% crispy form %}
+        <form class="my-5" method="POST">{% csrf_token %}
+            {{ form|crispy }}
+            <input class="btn btn-primary" type="submit" value="Login">
+        </form>
     </div>
 {% endblock %}

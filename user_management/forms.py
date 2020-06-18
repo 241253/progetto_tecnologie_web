@@ -3,13 +3,13 @@ from crispy_forms.layout import Submit
 from django import forms
 from user_management.models import User
 
-class UserCrispyForm(forms.ModelForm):
+class UserCreationForm(forms.ModelForm):
 
     helper = FormHelper()
     helper.form_id = 'user-crispy-form'
     helper.form_method = 'POST'
-    helper.add_input(Submit('submit', 'Login'))
+    helper.add_input(Submit('submit', 'Registrati'))
 
     class Meta:
         model = User
-        fields = ('email', 'password')
+        fields = ('email', 'username', 'nome', 'cognome', 'password')
