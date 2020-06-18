@@ -1,4 +1,3 @@
-from django.contrib.auth import password_validation
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 
@@ -22,7 +21,7 @@ class MyAccountManager(BaseUserManager):
 
         )
 
-        password_validation.password_changed(self._password, self)
+        user.set_password(password)
         user.save(using=self._db)
         return user
 
