@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block browser_page_title %}Virgilian Code{% endblock %}
+
+{% block personal_css %}
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <p>Registrazione</p>
+        {% crispy form %}
+    </div>
+{% endblock %}
