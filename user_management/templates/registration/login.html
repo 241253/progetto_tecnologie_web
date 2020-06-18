@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load crispy_forms_tags %}
 
 {% block browser_page_title %}Virgilian Code{% endblock %}
 
@@ -7,5 +8,8 @@
 {% endblock %}
 
 {% block content %}
-    <p>Login</p>
+    <div class="container">
+        <p>Login</p>
+        {% crispy form %}
+    </div>
 {% endblock %}
