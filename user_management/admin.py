@@ -6,8 +6,8 @@ from user_management.models import User
 from django.contrib.auth.admin import UserAdmin
 
 class MyUserAdmin(UserAdmin):
-    list_display = ("email", "username", "nome", "cognome", "last_login", "is_admin", "is_staff", "is_active")
-    search_fields = ("email", "username", "nome", "cognome")
+    list_display = ("email", "nome", "cognome", "last_login", "is_admin", "is_staff", "is_active")
+    search_fields = ("email", "nome", "cognome")
     readonly_fields = ("last_login",)
     add_fieldsets = ((None, {"classes": ("wide", ), "fields": ("email", "nome", "cognome", "password1", "password2"), }), )
 
