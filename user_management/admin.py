@@ -15,7 +15,6 @@ class MyUserAdmin(UserAdmin):
     list_filter = ()
     fieldsets = ()
 
-
     ordering = ('email',)  # In questo modo l'ordering è su email e non su username come di default
 
 admin.site.register(User, MyUserAdmin)
