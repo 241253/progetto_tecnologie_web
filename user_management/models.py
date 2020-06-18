@@ -21,7 +21,7 @@ class MyAccountManager(BaseUserManager):
 
         )
 
-        user.set_password(password)
+        user.set_password(validated_data(password))
         user.save(using=self._db)
         return user
 
