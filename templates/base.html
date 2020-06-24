@@ -30,6 +30,11 @@
             <!-- link -->
             <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
                 <ul class="navbar-nav justify-content-end mt-2 mt-lg-0">
+                    {% if user.is_authenticated %}
+                    <li class="nav-item active">
+                        <a class="nav-link" style="color: white" href="">{{ user.username }}<span class="sr-only">(current)</span></a>
+                    </li>
+                    {% endif %}
                     <li class="nav-item active">
                         <a class="nav-link" style="color: white" href="{%  url 'prenotazioni' %}">Prenotazioni <span class="sr-only">(current)</span></a>
                     </li>

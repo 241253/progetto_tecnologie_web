@@ -1,30 +1,33 @@
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
 from django import forms
+from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.core.files.images import get_image_dimensions
+from django.forms import models
 
 from user_management.models import Profile
 
 
-class UserCreationForm(forms.ModelForm):
+class UserForm(UserCreationForm):
+
     class Meta:
         model = User
-        fields = ('first_name', 'last_name', 'email')
+        fields = ('username', 'email', 'first_name', 'last_name')
 
 class ProfileCreationForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ('foto',)
 
-    def clean_avatar(self):
+    def clean_foto(self):
         foto = self.cleaned_data['foto']
 
         try:
             w, h = get_image_dimensions(foto)
 
             #validate dimensions
-            max_width = max_height = 1000
+            max_width = max_height = 1500
             if w > max_width or h > max_height:
                 raise forms.ValidationError(
                     u'Please use an image that is '
