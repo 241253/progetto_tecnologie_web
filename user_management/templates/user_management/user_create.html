@@ -12,7 +12,7 @@
         <p>Registrazione</p>
         <form method="POST">{% csrf_token %}
             {{ user_form | crispy }}
-            {{ profile_form | crispy }}
+            {{ profile_form }}
             <input type="submit" value="Registrati" class="btn btn-primary">
         </form>
     </div>
