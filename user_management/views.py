@@ -1,6 +1,7 @@
 from django.contrib import messages
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import UserCreationForm
 from django.db import transaction
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
@@ -19,10 +20,10 @@ def create_user(request):
             profile.user = user
             profile_form.save()
 
-            # username = user_form.cleaned_data.get('username')
-            # password = user_form.cleaned_data.get('password')
-            # user = authenticate(username=username, password=password)
-            # login(request, user)
+            username = user_form.cleaned_data.get('username')
+            password = user_form.cleaned_data.get('password')
+            user = authenticate(username=username, password=password)
+            login(request, user)
             
             return redirect('home')
     else:
