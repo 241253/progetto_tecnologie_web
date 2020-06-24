@@ -8,7 +8,7 @@ from django.urls import reverse_lazy
 from django.views.generic import CreateView
 from user_management.forms import ProfileCreationForm, UserForm
 
-
+#USER CREATION VIEW
 def create_user(request):
     if request.method == 'POST':
         user_form = UserForm(request.POST)
@@ -22,7 +22,6 @@ def create_user(request):
 
             username = user_form.cleaned_data.get('username')
             password = user_form.cleaned_data.get('password')
-            # user = authenticate(username=username, password=password)
             login(request, user, backend='django.contrib.auth.backends.ModelBackend')
             
             return redirect('home')

@@ -134,8 +134,20 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
+#LOGIN
 LOGIN_REDIRECT_URL = 'home'
 
 LOGIN_URL = "login"
 
+#PROBLEMA CSRF
 CSRF_COOKIE_DOMAIN = None
+
+#RESET PASSWORD
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'fantoccioalfa@gmail.com'
+EMAIL_HOST_PASSWORD = 'stampante123'
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = 'fantoccioalfa@gmail.com' #problema con la conferma della nuova password
