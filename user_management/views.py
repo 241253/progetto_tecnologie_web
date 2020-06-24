@@ -22,8 +22,8 @@ def create_user(request):
 
             username = user_form.cleaned_data.get('username')
             password = user_form.cleaned_data.get('password')
-            user = authenticate(username=username, password=password)
-            login(request, user)
+            # user = authenticate(username=username, password=password)
+            login(request, user, backend='django.contrib.auth.backends.ModelBackend')
             
             return redirect('home')
     else:
