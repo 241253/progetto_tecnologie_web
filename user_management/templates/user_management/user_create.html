@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-{% load crispy_forms_tags %}
+{% load crispy_forms_filters %}
 
 {% block browser_page_title %}Virgilian Code{% endblock %}
 
@@ -10,6 +10,10 @@
 {% block content %}
     <div class="container">
         <p>Registrazione</p>
-        {% crispy form %}
+        <form method="POST">{% csrf_token %}
+            {{ user_form | crispy }}
+            {{ profile_form | crispy }}
+            <input type="submit" value="Registrati" class="btn btn-primary">
+        </form>
     </div>
 {% endblock %}
