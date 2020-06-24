@@ -19,10 +19,10 @@ def create_user(request):
             profile.user = request.user
             profile_form.save()
 
-            username = user_form.cleaned_data.get('username')
-            password = user_form.cleaned_data.get('password')
-            user = authenticate(username=username, password=password)
-            login(request, user)
+            # username = user_form.cleaned_data.get('username')
+            # password = user_form.cleaned_data.get('password')
+            # user = authenticate(username=username, password=password)
+            # login(request, user)
             
             return redirect('home')
     else:
@@ -31,24 +31,3 @@ def create_user(request):
     
     context = {'user_form':user_form, 'profile_form':profile_form}
     return render(request, 'user_management/user_create.html', context)
-
-@login_required
-@transaction.atomic
-def update_profile(request):
-    if request.method == 'POST':
-        user_form = UserCreationForm(request.POST, instance=request.user)
-        profile_form = ProfileCreationForm(request.POST, instance=request.user.profile)
-        if user_form.is_valid() and profile_form.is_valid():
-            user_form.save()
-            profile_form.save()
-            messages.success(request, ('Your profile was successfully updated!'))
-            return redirect('settings:profile')
-        else:
-            messages.error(request, ('Please correct the error below.'))
-    else:
-        user_form = UserCreationForm(instance=request.user)
-        profile_form = ProfileCreationForm(instance=request.user.profile)
-    return render(request, 'profiles/profile.html', {
-        'user_form': user_form,
-        'profile_form': profile_form
-    })
