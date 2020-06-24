@@ -16,7 +16,7 @@ def create_user(request):
             user = user_form.save()
 
             profile = profile_form.save(commit=False)
-            profile.user = request.user
+            profile.user = user
             profile_form.save()
 
             # username = user_form.cleaned_data.get('username')
