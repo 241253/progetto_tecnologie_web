@@ -150,4 +150,4 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = 'fantoccioalfa@gmail.com'
 EMAIL_HOST_PASSWORD = 'stampante123'
 EMAIL_USE_TLS = True
-DEFAULT_FROM_EMAIL = 'fantoccioalfa@gmail.com' #problema con la conferma della nuova password
+DEFAULT_FROM_EMAIL = 'fantoccioalfa@gmail.com'
