@@ -9,15 +9,39 @@ from django.forms import models
 from user_management.models import Profile
 
 class UserForm(UserCreationForm):
-
     class Meta:
         model = User
         fields = ('username', 'email', 'first_name', 'last_name')
+
+    def __init__(self, *args, **kwargs):
+        super(UserCreationForm, self).__init__(*args, **kwargs)
+        self.fields['username'].help_text = "Richiesti 150 caratteri o meno. Sono ammessi solo lettere, cifre e @/./+/-/_."
+        self.fields['password1'].help_text = "<ul> <li> La tua password non può essere troppo simile alle tue informazioni personali.</li>" \
+                                             "<li> La tua password deve contenere almeno 8 aratteri. </li>" \
+                                             "<li> La tua password non può essere una password usata troppo comunemente. </li>" \
+                                             "<li> La tua password non può essere solamente numerica. </li>" \
+                                             "</ul>"
+        self.fields['email'].label = "Indirizzo email"
+        self.fields['email'].required = True
+        self.fields['username'].label = "Username"
+        self.fields['first_name'].label = "Nome"
+        self.fields['first_name'].required = True
+        self.fields['last_name'].label = "Cognome"
+        self.fields['last_name'].required = True
+        self.fields['password1'].label = "Password"
+        self.fields['password2'].label = "Ripeti password"
+        self.error_messages['password_mismatch'] = "Le due password non combaciano."
+        self.fields['password2'].help_text = "Ripeti la password, per motivi di sicurezza."
 
 class ProfileCreationForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ('foto',)
+
+    def __init__(self, *args, **kwargs):
+        super(ProfileCreationForm, self).__init__(*args, **kwargs)
+        self.fields['foto'].label = "Foto"
+        self.fields['foto'].required = False
 
     def clean_foto(self):
         foto = self.cleaned_data['foto']
