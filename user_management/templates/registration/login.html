@@ -1,19 +1,25 @@
-{% extends 'base.html' %}
+{% extends 'struttura.html' %}
 {% load static %}
 {% load crispy_forms_filters %}
 
-{% block browser_page_title %}Virgilian Code{% endblock %}
-
-{% block personal_css %}
-{% endblock %}
+{% block personal_css %}{% endblock %}
 
 {% block content %}
-    <div class="container">
-        <p>Login</p>
+    <!-- Image and text -->
+    <nav class="align-middle navbar navbar-expand-lg navbar-light bg-light">
+        <!-- logo -->
+        <a class="navbar-brand" href="{% url 'home' %}">
+        <img src="{% static 'img/logo.png' %}" width="110px" height="70px" class="d-inline-block align-top" alt="virgilian_code_logo" loading="lazy"/>
+        </a>
+        <a class="navbar_title" style="color: black" href="{% url 'home' %}">Virgilian Code</a>
+    </nav>
+    <div class="container" style="margin-top: 30px;">
+        <h1>Accedi con il tuo username</h1>
+        <h2>Se non hai un account, <a href="{% url 'registration' %}">registrati</a></h2>
         <form class="my-5" method="POST">{% csrf_token %}
-            {{ form|crispy }}
-            <input class="btn btn-primary" type="submit" value="Login">
+            {{ form | crispy }}
+            <a href="{% url 'password_reset' %}" style="text-align: right; width: 100%">Hai dimenticato la password?</a>
         </form>
-    <a href="{% url 'password_reset' %}">Resetta password</a>
+        <input class="btn btn-primary" type="submit" style="float: right; background-color: rgb(255,170,0); border: 0" value="Accedi">
     </div>
 {% endblock %}
