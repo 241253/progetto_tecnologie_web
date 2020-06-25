@@ -2,9 +2,11 @@ from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
+from django.urls import reverse_lazy, reverse
 from django.utils.decorators import method_decorator
-from django.views.generic import DetailView
-from user_management.forms import ProfileCreationForm, UserForm
+from django.views.generic import DetailView, UpdateView
+from user_management.forms import ProfileCreationForm, UserForm, UserUpdateForm
+
 
 #USER CREATION VIEW
 def create_user(request):
@@ -38,8 +40,14 @@ class UserPage(DetailView):
     template_name = 'user_management/user_page.html'
 
 @method_decorator(login_required, name='dispatch')
-class UserDetail(DetailView):
-    context_object_name = 'user'
-    queryset = User.objects.all()
-    extra_context = {'profile': queryset[0].profile}
-    template_name = 'user_management/user_detail.html'
+class UserUpdate(UpdateView):
+    form_class = UserUpdateForm
+    model = User
+    template_name = 'user_management/user_update.html'
+    success_url = reverse_lazy('user_update_complete')
+
+    # def get_success_url(self):
+    #     return reverse('user_page', kwargs={'pk': self.object.id})
+
+def UserUpdateComplete(request):
+    return render(request, 'user_management/user_update_complete.html')
