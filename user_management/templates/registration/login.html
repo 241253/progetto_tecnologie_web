@@ -18,8 +18,10 @@
         <h2>Se non hai un account, <a href="{% url 'registration' %}">registrati</a></h2>
         <form class="my-5" method="POST">{% csrf_token %}
             {{ form | crispy }}
-            <a href="{% url 'password_reset' %}" style="text-align: right; width: 100%">Hai dimenticato la password?</a>
+            <p style="text-align: right; width: 100%">
+                <a href="{% url 'password_reset' %}">Hai dimenticato la password?</a>
+            </p>
+            <input class="btn btn-primary" type="submit" style="float: right; background-color: rgb(255,170,0); border: 0" value="Accedi">
         </form>
-        <input class="btn btn-primary" type="submit" style="float: right; background-color: rgb(255,170,0); border: 0" value="Accedi">
     </div>
 {% endblock %}
