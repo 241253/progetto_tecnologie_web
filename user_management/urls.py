@@ -1,7 +1,5 @@
-from django.conf.urls import url
-from django.contrib import admin
 from django.contrib.auth import views as auth_views
-from django.urls import path, include
+from django.urls import path
 from . import views
 
 urlpatterns = [
@@ -11,5 +9,5 @@ urlpatterns = [
     #REGISTARTION URL
     path('registration/', views.create_user, name='registration'),
     #USER URL
-    path('user_profile/', views.create_user, name='user_profile'),
+    path('user/<int:pk>/', views.UserDetail.as_view(), name='user_detail'),
 ]

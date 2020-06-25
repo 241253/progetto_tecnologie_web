@@ -1,11 +1,9 @@
-from django.contrib import messages
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.forms import UserCreationForm
-from django.db import transaction
+from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
-from django.urls import reverse_lazy
-from django.views.generic import CreateView
+from django.utils.decorators import method_decorator
+from django.views.generic import DetailView
 from user_management.forms import ProfileCreationForm, UserForm
 
 #USER CREATION VIEW
@@ -31,3 +29,10 @@ def create_user(request):
     
     context = {'user_form':user_form, 'profile_form':profile_form}
     return render(request, 'user_management/user_create.html', context)
+
+@method_decorator(login_required, name='dispatch')
+class UserDetail(DetailView):
+    context_object_name = 'user'
+    queryset = User.objects.all()
+    extra_context = {'profile':queryset[0].profile}
+    template_name = 'user_management/user_detail.html'
