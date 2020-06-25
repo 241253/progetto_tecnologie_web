@@ -12,6 +12,4 @@ urlpatterns = [
     path('registration/', views.create_user, name='registration'),
     #USER URL
     path('user_profile/', views.create_user, name='user_profile'),
-    #PASSWORD RESET URL
-    url('^', include('django.contrib.auth.urls')),
 ]
