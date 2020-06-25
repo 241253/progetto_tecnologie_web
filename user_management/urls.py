@@ -9,5 +9,6 @@ urlpatterns = [
     #REGISTARTION URL
     path('registration/', views.create_user, name='registration'),
     #USER URL
-    path('user/<int:pk>/', views.UserDetail.as_view(), name='user_detail'),
+    path('user/<int:pk>/', views.UserPage.as_view(), name='user_page'),
+    path('user/detail/<int:pk>/', views.UserDetail.as_view(), name='user_detail'),
 ]

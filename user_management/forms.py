@@ -8,7 +8,6 @@ from django.forms import models
 
 from user_management.models import Profile
 
-
 class UserForm(UserCreationForm):
 
     class Meta:
