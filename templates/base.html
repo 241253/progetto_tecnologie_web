@@ -46,7 +46,7 @@
                     </li>
                     {% if not user.is_authenticated %}
                     <li class="nav-item my-3 my-lg-0">
-                        <a class="nav-link btn btn-primary mr-lg-3 px-xl-4" style="color: white" href="{% url 'login' %}">Accedi</a>
+                        <a class="nav-link btn btn-primary mr-lg-3 px-xl-4" style="color: white" href="{% url 'user_login' %}">Accedi</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link btn btn-primary px-xl-4" style="color: white" href="{% url 'registration' %}">Registrati</a>
@@ -54,7 +54,7 @@
                     {% endif %}
                     {% if user.is_authenticated %}
                     <li class="nav-item my-3 my-lg-0">
-                        <a class="nav-link mr-lg-3 px-xl-4" style="color: white" href="{% url 'user_page' user.pk%}">{{ user.username }}</a>
+                        <a class="nav-link mr-lg-3 px-xl-4" style="color: white" href="{% url 'user_page' user.pk%}">{{ user.username }}{{ user.is_staff }}</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link btn btn-primary px-xl-4" style="color: white" href="{% url 'logout' %}">Logout</a>

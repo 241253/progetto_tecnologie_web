@@ -28,7 +28,7 @@ urlpatterns = [
     path('prenotazioni/', views.reservationPage, name='prenotazioni'),
     path('chi_siamo/', views.chi_siamoPage, name='chi_siamo'),
     path('tariffe/', views.pricesPage, name='tariffe'),
-    path('contatti/', views.contatti, name="contatti"),
+    path('contatti/', views.contacts, name="contatti"),
     #USER_MANAGEMENT
     path('user_management/', include(um_urls)),
     # PASSWORD RESET URL

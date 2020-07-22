@@ -1,11 +1,7 @@
-from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Submit
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth.models import User
 from django.core.files.images import get_image_dimensions
-from django.forms import models
-
 from user_management.models import Profile
 
 class UserForm(UserCreationForm):
@@ -34,7 +30,6 @@ class UserForm(UserCreationForm):
         self.fields['password2'].help_text = "Ripeti la password, per motivi di sicurezza."
 
 class UserUpdateForm(UserCreationForm):
-
     class Meta:
         model = User
         fields = ('email', 'first_name', 'last_name')

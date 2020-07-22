@@ -1,4 +1,3 @@
-from django.http import HttpResponse
 from django.shortcuts import render
 from django.views.decorators.cache import never_cache
 
@@ -16,5 +15,6 @@ def pricesPage(request):
 def chi_siamoPage(request):
     return render(request, 'chi_siamo.html')
 
-def contatti(request):
+def contacts(request):
     return render(request, 'contatti.html')
+

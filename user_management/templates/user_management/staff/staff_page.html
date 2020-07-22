@@ -1,0 +1,19 @@
+{% extends 'struttura_staff.html' %}
+{% load static %}
+
+{% block browser_page_title %}Virgilian Code - pagina dello staff{% endblock %}
+
+{% block personal_css %}
+    <link rel="stylesheet" href="{% static 'css/userPage.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="container my-5">
+    <a class="btn btn-primary">Gestione profilo</a>
+    {% if user.is_superuser %}
+        <a class="btn btn-primary">Gestione staff</a>
+    {% endif %}
+    <a class="btn btn-primary">Gestione lezioni</a>
+    <a class="btn btn-primary">Conferma prenotazioni</a>
+    </div>
+{% endblock %}

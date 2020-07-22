@@ -1,0 +1,36 @@
+{% load static %}
+
+<!doctype html>
+<html lang="it">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+        <!-- Font Awesome Icons -->
+        <script src="https://kit.fontawesome.com/c7451e5792.js" crossorigin="anonymous"></script>
+        <!-- Personal CSS -->
+        <link rel="stylesheet" href="{% static 'css/style.css' %}"/>
+        {% block personal_css %}{% endblock %}
+        <title>{% block browser_page_title %}{% endblock %}</title>
+    </head>
+    <body>
+    <!-- Image and text -->
+        <nav class="align-middle navbar navbar-expand-lg navbar-light bg-light">
+            <!-- logo -->
+            <a class="navbar-brand" href="{% url 'home' %}">
+            <img src="{% static 'img/logo.png' %}" width="110px" height="70px" class="d-inline-block align-top" alt="virgilian_code_logo" loading="lazy"/>
+            </a>
+            <a class="navbar_title" style="color: black" href="{% url 'home' %}">Virgilian Code - pagina dello staff</a>
+        </nav>
+    {% block content %}
+    {% endblock %}
+    <!-- Optional JavaScript -->
+        {% block personal_js %}{% endblock %}
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    </body>
+</html>
