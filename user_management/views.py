@@ -1,8 +1,10 @@
+from sqlite3 import OperationalError
+
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
-from django.urls import reverse_lazy, reverse
+from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views.generic import DetailView, UpdateView
 from user_management.forms import ProfileCreationForm, UserForm, UserUpdateForm
@@ -11,7 +13,7 @@ def login_redirect(request):
     if request.user.is_staff:
         return render(request, 'user_management/staff/staff_page.html')
     else:
-        return render(request, 'home.html')
+        return redirect('home.html')
 
 #USER VIEW
 def create_user(request):
@@ -28,12 +30,12 @@ def create_user(request):
             username = user_form.cleaned_data.get('username')
             password = user_form.cleaned_data.get('password')
             login(request, user, backend='django.contrib.auth.backends.ModelBackend')
-            
+
             return redirect('home')
     else:
         user_form = UserForm()
         profile_form = ProfileCreationForm()
-    
+
     context = {'user_form':user_form, 'profile_form':profile_form}
     return render(request, 'user_management/user/user_create.html', context)
 
@@ -53,6 +55,7 @@ class UserUpdate(UpdateView):
 
 def UserUpdateComplete(request):
     return render(request, 'user_management/user/user_update_complete.html')
+
 
 #STAFF VIEW
 @method_decorator(login_required, name='dispatch')

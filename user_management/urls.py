@@ -13,6 +13,6 @@ urlpatterns = [
     path('user/update/<int:pk>/', views.UserUpdate.as_view(), name='user_update'),
     path('user/update/complete/', views.UserUpdateComplete, name='user_update_complete'),
     #STAFF URL
-    path('/redirect/', views.login_redirect, name='login_redirect_url'),
-    path('/staff/home/', views.StaffPage.as_view(), name='staff_page'),
+    path('redirect/', views.login_redirect, name='login_redirect_url'),
+    path('staff/home/', views.StaffPage.as_view(), name='staff_page'),
 ]

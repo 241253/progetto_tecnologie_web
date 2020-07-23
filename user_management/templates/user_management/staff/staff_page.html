@@ -13,7 +13,7 @@
     {% if user.is_superuser %}
         <a class="btn btn-primary">Gestione staff</a>
     {% endif %}
-    <a class="btn btn-primary">Gestione lezioni</a>
+    <a class="btn btn-primary" href="{% url 'lessons_list' %}">Gestione lezioni</a>
     <a class="btn btn-primary">Conferma prenotazioni</a>
     </div>
 {% endblock %}

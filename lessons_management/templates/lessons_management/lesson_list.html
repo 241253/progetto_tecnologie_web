@@ -1,0 +1,56 @@
+{% extends 'struttura_staff.html' %}
+{% load static %}
+
+{% block browser_page_title %}Virgilian Code - pagina dello staff{% endblock %}
+
+{% block personal_css %}
+    <link rel="stylesheet" href="{% static 'css/lesson_list.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="container my-5">
+        <table class="table tabella mx-auto">
+            <thead>
+                <tr>
+                <th scope="col">Titolo</th>
+                <th scope="col">Descrizione</th>
+                <th scope="col">Difficoltà</th>
+                <th scope="col">Genere</th>
+                <th scope="col">Azioni</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if user.is_superuser %}
+                    {% for lesson in lesson_list %}
+                        <tr>
+                            <td scope="row">{{ lesson.title }}</td>
+                            <td>{{ lesson.description }}</td>
+                            <td>{{ lesson.difficulty }}</td>
+                            <td>{{ lesson.genre }}</td>
+                            <td>
+                                <a class="btn btn-primary my-2">modifica</a>
+                                <a class="btn btn-primary">elimina</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                {% else %}
+                    {% for lesson in lesson_list %}
+                        {% if lesson.user.username == user.username %}
+                            <tr>
+                                <td scope="row">{{ lesson.title }}</td>
+                                <td>{{ lesson.description }}</td>
+                                <td>{{ lesson.difficulty }}</td>
+                                <td>{{ lesson.genre }}</td>
+                                <td>
+                                    <a class="btn btn-primary">modifica</a>
+                                    <a class="btn btn-primary">elimina</a>
+                                </td>
+                            </tr>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+            </tbody>
+        </table>
+        <a class="btn btn-primary" href="{% url 'create_lesson' %}">Inserisci lezione</a>
+    </div>
+{% endblock %}

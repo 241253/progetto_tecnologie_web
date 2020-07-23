@@ -17,13 +17,13 @@
     </head>
     <body>
     <!-- Image and text -->
-        <nav class="align-middle navbar navbar-expand-lg navbar-light bg-light">
-            <!-- logo -->
-            <a class="navbar-brand" href="{% url 'home' %}">
-            <img src="{% static 'img/logo.png' %}" width="110px" height="70px" class="d-inline-block align-top" alt="virgilian_code_logo" loading="lazy"/>
-            </a>
-            <a class="navbar_title" style="color: black" href="{% url 'home' %}">Virgilian Code - pagina dello staff</a>
-        </nav>
+    <nav class="align-middle navbar navbar-expand-lg navbar-light bg-light">
+        <!-- logo -->
+        <a class="navbar-brand" href="{% url 'home' %}">
+        <img src="{% static 'img/logo.png' %}" width="110px" height="70px" class="d-inline-block align-top" alt="virgilian_code_logo" loading="lazy"/>
+        </a>
+        <a class="navbar_title" style="color: black" href="{% url 'home' %}">Virgilian Code - pagina dello staff</a>
+    </nav>
     {% block content %}
     {% endblock %}
     <!-- Optional JavaScript -->
