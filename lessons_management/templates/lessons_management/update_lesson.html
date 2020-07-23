@@ -1,0 +1,20 @@
+{% extends 'struttura.html' %}
+{% load static %}
+{% load crispy_forms_filters %}
+
+{% block browser_page_title %}Virgilian Code{% endblock %}
+
+{% block personal_css %}
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1 style="margin-top: 30px; margin-bottom: 30px">Modifica i dati della videolezione</h1>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form | crispy }}
+            <input type="submit" value="Modifica" class="btn btn-primary" style="float: right; margin-bottom: 30px">
+        </form>
+        <a class="btn btn-primary" href="{% url 'lessons_list' %}">Annulla</a>
+    </div>
+{% endblock %}

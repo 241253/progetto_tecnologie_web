@@ -18,11 +18,5 @@ class Lesson(models.Model):
     price = models.FloatField(default=20.0)
     video = models.FileField(upload_to='gallery', default='uploaded_files/media/user_db/user_photo/None/none_picture.png') #videolezione
 
-    # @receiver(post_save, sender=User)
-    # def create_user_lesson(sender, instance, created, **kwargs):
-    #     if created:
-    #         Lesson.objects.create(user=instance)
-    #
-    # @receiver(post_save, sender=User)
-    # def save_user_lesson(sender, instance, **kwargs):
-    #     instance.profile.save()
+    def __str__(self):
+        return f'{self.title}'

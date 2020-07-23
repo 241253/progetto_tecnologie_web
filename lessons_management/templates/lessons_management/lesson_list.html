@@ -28,8 +28,8 @@
                             <td>{{ lesson.difficulty }}</td>
                             <td>{{ lesson.genre }}</td>
                             <td>
-                                <a class="btn btn-primary my-2">modifica</a>
-                                <a class="btn btn-primary">elimina</a>
+                                <a class="btn btn-primary my-2" href="{% url 'update_lesson' lesson.id %}">modifica</a>
+                                <a class="btn btn-primary" href="{% url 'delete_lesson' lesson.id %}">elimina</a>
                             </td>
                         </tr>
                     {% endfor %}
@@ -42,8 +42,8 @@
                                 <td>{{ lesson.difficulty }}</td>
                                 <td>{{ lesson.genre }}</td>
                                 <td>
-                                    <a class="btn btn-primary">modifica</a>
-                                    <a class="btn btn-primary">elimina</a>
+                                    <a class="btn btn-primary my-2" href="{% url 'update_lesson' lesson.id %}">modifica</a>
+                                    <a class="btn btn-primary" href="{% url 'delete_lesson' lesson.id %}">elimina</a>
                                 </td>
                             </tr>
                         {% endif %}
@@ -52,5 +52,6 @@
             </tbody>
         </table>
         <a class="btn btn-primary" href="{% url 'create_lesson' %}">Inserisci lezione</a>
+        <a class="btn btn-primary" href="{% url 'staff_page' %}">Torna alla homepage dello staff</a>
     </div>
 {% endblock %}
