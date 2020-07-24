@@ -4,8 +4,9 @@ from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views.generic import ListView, CreateView, DeleteView, UpdateView
 
-from lessons_management.forms import LessonsCreationForm, LessonsUpdateForm, PacketCreationForm, PacketUpdateForm
-from lessons_management.models import Lesson, Packet
+from lessons_management.forms import LessonsCreationForm, LessonsUpdateForm, PacketCreationForm, PacketUpdateForm, \
+    CourseUpdateForm, CourseCreationForm
+from lessons_management.models import Lesson, Packet, Course
 
 
 @method_decorator(login_required, name='dispatch')
@@ -18,11 +19,11 @@ class UserHubList(ListView):
         context.update({
             'lesson_list': Lesson.objects.order_by('title'),
             'packet_list': Packet.objects.all(),
+            'course_list': Course.objects.all(),
         })
         return context
 
 # LESSONS
-
 @method_decorator(login_required, name='dispatch')
 class CreateLesson(CreateView):
     model = Lesson
@@ -48,7 +49,6 @@ class UpdateLesson(UpdateView):
 
 
 # PACKETS
-
 @method_decorator(login_required, name='dispatch')
 class CreatePacket(CreateView):
     model = Packet
@@ -61,14 +61,43 @@ class CreatePacket(CreateView):
         kwargs.update({'user': self.request.user})
         return kwargs
 
+
 @method_decorator(login_required, name='dispatch')
 class DeletePacket(DeleteView):
     model = Packet
     template_name = 'lessons_management/packets/delete_packet.html'
     success_url = reverse_lazy('list_hub')
+
+
 @method_decorator(login_required, name='dispatch')
 class UpdatePacket(UpdateView):
     model = Packet
     form_class = PacketUpdateForm
     template_name = 'lessons_management/packets/update_packet.html'
+    success_url = reverse_lazy('list_hub')
+
+# COURSES
+@method_decorator(login_required, name='dispatch')
+class CreateCourse(CreateView):
+    model = Packet
+    form_class = CourseCreationForm
+    template_name = 'lessons_management/course/create_course.html'
+    success_url = reverse_lazy('list_hub')
+
+    def get_form_kwargs(self):
+        kwargs = super(CreateCourse, self).get_form_kwargs()
+        kwargs.update({'user': self.request.user})
+        return kwargs
+
+@method_decorator(login_required, name='dispatch')
+class DeleteCourse(DeleteView):
+    model = Course
+    template_name = 'lessons_management/course/delete_course.html'
+    success_url = reverse_lazy('list_hub')
+
+@method_decorator(login_required, name='dispatch')
+class UpdateCourse(UpdateView):
+    model = Course
+    form_class = CourseUpdateForm
+    template_name = 'lessons_management/course/update_course.html'
     success_url = reverse_lazy('list_hub')
