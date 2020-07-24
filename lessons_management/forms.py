@@ -36,6 +36,7 @@ def getLessonsChoices():
     choices = list()
     for lesson in Lesson.objects.all():
         choices.append((lesson.id, f'Lezione: {lesson.title}'))
+        print(lesson)
     return choices
 
 class PacketCreationForm(forms.ModelForm):

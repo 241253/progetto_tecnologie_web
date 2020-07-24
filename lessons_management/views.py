@@ -40,6 +40,7 @@ class DeleteLesson(DeleteView):
     model = Lesson
     template_name = 'lessons_management/lessons/delete_lesson.html'
     success_url = reverse_lazy('list_hub')
+
 @method_decorator(login_required, name='dispatch')
 class UpdateLesson(UpdateView):
     model = Lesson

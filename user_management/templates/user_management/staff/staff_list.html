@@ -1,0 +1,47 @@
+{% extends 'struttura_staff.html' %}
+{% load static %}
+
+{% block browser_page_title %}Virgilian Code - pagina dello staff{% endblock %}
+
+{% block personal_css %}
+    <link rel="stylesheet" href="{% static 'css/lesson_list.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="container my-5">
+        <h1> STAFF </h1>
+        <table class="table tabella mx-auto">
+            <thead>
+                <tr>
+                    <th scope="col">Username</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Cognome</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Data ultimo login</th>
+                    <th scope="col">Azioni</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in user_list %}
+                    {% if user.is_staff %}
+                        <tr>
+                            <td>{{ user.username }}</td>
+                            <td>{{ user.first_name }}</td>
+                            <td>{{ user.last_name }}</td>
+                            <td>{{ user.email }}</td>
+                            <td>{{ user.last_login }}</td>
+                            <td>
+                                {% if  not user.is_superuser and user.username != 'staff_virgiliancode' %}
+                                    <a class="btn btn-primary my-2" href="{% url 'update_staff' user.id %}">modifica</a>
+                                    <a class="btn btn-primary" href="{% url 'delete_staff' user.id %}">elimina</a>
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+            </tbody>
+        </table>
+        <a class="btn btn-primary" href="{% url 'create_staff' %}">Inserisci nuovo membro dello staff</a>
+        <a class="btn btn-primary" href="{% url 'login_redirect_url' %}">Torna alla homepage dello staff</a>
+    </div>
+{% endblock %}

@@ -15,4 +15,8 @@ urlpatterns = [
     #STAFF URL
     path('redirect/', views.login_redirect, name='login_redirect_url'),
     path('staff/home/', views.StaffPage.as_view(), name='staff_page'),
+    path('staff/list/', views.StaffList.as_view(), name='staff_list'),
+    path('staff/add/', views.create_staff, name='create_staff'),
+    path('staff/remove/<int:pk>', views.DeleteStaff.as_view(), name='delete_staff'),
+    path('staff/edit/<int:pk>', views.UpdateStaff.as_view(), name='update_staff'),
 ]
