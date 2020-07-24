@@ -13,7 +13,7 @@ def login_redirect(request):
     if request.user.is_staff:
         return render(request, 'user_management/staff/staff_page.html')
     else:
-        return redirect('home.html')
+        return render(request, 'home.html')
 
 #USER VIEW
 def create_user(request):

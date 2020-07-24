@@ -9,11 +9,11 @@
 
 {% block content %}
     <div class="container">
-        <h1 style="margin-top: 30px; margin-bottom: 30px">Vuoi davvero cancellare la lezione {{ object.title }}</h1>
+        <h1 style="margin-top: 30px; margin-bottom: 30px">Vuoi davvero cancellare la lezione {{ object.title }} ?</h1>
         <form method="POST">
             {% csrf_token %}
             <input type="submit" value="Elimina" class="btn btn-primary" style="float: right; margin-bottom: 30px">
         </form>
-        <a class="btn btn-primary" href="{% url 'lessons_list' %}">Annulla</a>
+        <a class="btn btn-primary" href="{% url 'list_hub' %}">Annulla</a>
     </div>
 {% endblock %}

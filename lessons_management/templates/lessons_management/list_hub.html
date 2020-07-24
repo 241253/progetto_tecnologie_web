@@ -9,6 +9,7 @@
 
 {% block content %}
     <div class="container my-5">
+        <h1> Lezioni </h1>
         <table class="table tabella mx-auto">
             <thead>
                 <tr>
@@ -51,7 +52,52 @@
                 {% endif %}
             </tbody>
         </table>
+        <h1> Pacchetti </h1>
+        <table class="table tabella mx-auto">
+            <thead>
+                <tr>
+                <th scope="col">Titolo</th>
+                <th scope="col">Descrizione</th>
+                <th scope="col">Difficoltà</th>
+                <th scope="col">Prezzo</th>
+                <th scope="col">Azioni</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if user.is_superuser %}
+                    {% for packet in packet_list %}
+                        <tr>
+                            <td scope="row">{{ packet.title }}</td>
+                            <td>{{ packet.description }}</td>
+                            <td>{{ packet.difficulty }}</td>
+                            <td>{{ packet.price }}</td>
+                            <td>
+                                <a class="btn btn-primary my-2" href="{% url 'update_packet' packet.id %}">modifica</a>
+                                <a class="btn btn-primary" href="{% url 'delete_packet' packet.id %}">elimina</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                {% else %}
+                    {% for packet in packet_list %}
+                        {% if packet.user.username == user.username %}
+                            <tr>
+                                <td scope="row">{{ packet.title }}</td>
+                                <td>{{ packet.description }}</td>
+                                <td>{{ packet.difficulty }}</td>
+                                <td>{{ packet.price }}</td>
+                                <td>
+                                    <a class="btn btn-primary my-2" href="{% url 'update_packet' packet.id %}">modifica</a>
+                                    <a class="btn btn-primary" href="{% url 'delete_packet' packet.id %}">elimina</a>
+                                </td>
+                            </tr>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+            </tbody>
+        </table>
         <a class="btn btn-primary" href="{% url 'create_lesson' %}">Inserisci lezione</a>
-        <a class="btn btn-primary" href="{% url 'staff_page' %}">Torna alla homepage dello staff</a>
+        <a class="btn btn-primary" href="{% url 'create_packet' %}">Inserisci pacchetto</a>
+{#        <a class="btn btn-primary" href="{% url 'create_course' %}">Inserisci percorso</a>#}
+        <a class="btn btn-primary" href="{% url 'login_redirect_url' %}">Torna alla homepage dello staff</a>
     </div>
 {% endblock %}

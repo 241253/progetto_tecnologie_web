@@ -1,6 +1,8 @@
 from django import forms
-from lessons_management.models import Lesson
+from lessons_management.models import Lesson, Packet
 
+
+# LESSONS
 
 class LessonsCreationForm(forms.ModelForm):
     class Meta:
@@ -28,3 +30,31 @@ class LessonsUpdateForm(forms.ModelForm):
         fields = ('title', 'description', 'difficulty', 'genre', 'price', 'video')
 
     # def clean_video(self): da implementare prima o poi
+
+# PACKETS
+
+class PacketCreationForm(forms.ModelForm):
+    class Meta:
+        model = Packet
+        fields = ('title', 'description')
+        # fields = ('title', 'description', 'lessons')
+
+    def __init__(self, *args, **kwargs):
+        self.current_user = kwargs.pop('user')
+        super(PacketCreationForm, self).__init__(*args, **kwargs)
+
+    def save(self, commit=True):
+        packet = super(PacketCreationForm, self).save(commit=False)
+        packet.user_id = self.current_user.id
+        packet.difficulty = '1.0'
+        packet.price = 100
+        if commit:
+            packet.save()
+        return packet
+
+class PacketUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Lesson
+        fields = ('title', 'description')
+        # fields = ('title', 'description', 'lessons')
+

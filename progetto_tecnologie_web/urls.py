@@ -18,7 +18,7 @@ urlpatterns = [
     #USER_MANAGEMENT
     path('user_management/', include(um_urls)),
     #LESSONS_MANAGEMENT
-    path('lessons/', include(lm_urls)),
+    path('lessons_management/', include(lm_urls)),
     # PASSWORD RESET URL
     url('^', include('django.contrib.auth.urls')),
 ]
