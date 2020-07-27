@@ -10,7 +10,9 @@ from django.contrib.staticfiles.urls import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     #BASE SITE
-    path('', views.landingPage, name='home'),
+    path('', views.landingPage, name='landingPage'),
+    #HOME PAGE
+    path('home/', views.HomePage.as_view(), name='homePage'),
     path('prenotazioni/', views.reservationPage, name='prenotazioni'),
     path('chi_siamo/', views.chi_siamoPage, name='chi_siamo'),
     path('tariffe/', views.pricesPage, name='tariffe'),

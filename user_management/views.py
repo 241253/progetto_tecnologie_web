@@ -14,7 +14,7 @@ def login_redirect(request):
     if request.user.is_staff:
         return render(request, 'user_management/staff/staff_page.html')
     else:
-        return render(request, 'home.html')
+        return render(request, 'landingPage.html')
 
 #USER VIEW
 def create_user(request):
@@ -32,7 +32,7 @@ def create_user(request):
             password = user_form.cleaned_data.get('password')
             login(request, user, backend='django.contrib.auth.backends.ModelBackend')
 
-            return redirect('home')
+            return redirect('landingPage')
     else:
         user_form = UserForm()
         profile_form = ProfileCreationForm()

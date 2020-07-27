@@ -1,6 +1,6 @@
 import os
 from django.urls import reverse_lazy
-from . import views
+# from . import views
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 

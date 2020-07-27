@@ -1,0 +1,372 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block browser_page_title %}Virgilian Code{% endblock %}
+
+{% block personal_css %}
+    <link rel="stylesheet" href="{% static 'css/home.css' %}"/>
+{% endblock %}
+{% block content %}
+    <div class="container py-3">
+        <!-- LEZIONI -->
+        <h1 class="text-center"> DIFFICOLTA' FACILE </h1>
+        <div class="accordion my-4" id="accordionExample">
+            <!-- LEZIONE FACILE BASE (1.0) -->
+            {% for lesson in lesson_list_1 %}
+              <div class="card">
+                <div class="card-header" id="headingOne" style="background-color: #18d624">
+                  <h2 class="mb-0">
+                    <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseL{{ lesson.id }}" aria-expanded="true" aria-controls="collapseL{{ lesson.id }}">
+                        Lezione: {{ lesson.title }}
+                    </button>
+                  </h2>
+                </div>
+
+                <div id="collapseL{{ lesson.id }}" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                  <div class="card-body">
+                    {{ lesson.description }}
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+            <!-- LEZIONE FACILE AVANZATO (2.0) -->
+            {% for lesson in lesson_list_2 %}
+              <div class="card">
+                <div class="card-header" id="headingOne" style="background-color: #11ab1b">
+                  <h2 class="mb-0">
+                    <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseL{{ lesson.id }}" aria-expanded="true" aria-controls="collapseL{{ lesson.id }}">
+                        Lezione: {{ lesson.title }}
+                    </button>
+                  </h2>
+                </div>
+
+                <div id="collapseL{{ lesson.id }}" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                  <div class="card-body">
+                    {{ lesson.description }}
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+        </div>
+            <!-- LEZIONE MEDIO BASE (3.0) -->
+        <h1 class="text-center"> DIFFICOLTA' MEDIA </h1>
+        <div class="accordion my-4" id="accordionExample">
+            {% for lesson in lesson_list_3 %}
+              <div class="card">
+                <div class="card-header" id="headingOne" style="background-color: #f2a81d">
+                  <h2 class="mb-0">
+                    <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseL{{ lesson.id }}" aria-expanded="true" aria-controls="collapseL{{ lesson.id }}">
+                        Lezione: {{ lesson.title }}
+                    </button>
+                  </h2>
+                </div>
+
+                <div id="collapseL{{ lesson.id }}" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                  <div class="card-body">
+                    {{ lesson.description }}
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+            <!-- LEZIONE MEDIO AVANZATO (4.0) -->
+            {% for lesson in lesson_list_4 %}
+              <div class="card">
+                <div class="card-header" id="headingOne" style="background-color: #f2791d">
+                  <h2 class="mb-0">
+                    <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseL{{ lesson.id }}" aria-expanded="true" aria-controls="collapseL{{ lesson.id }}">
+                        Lezione: {{ lesson.title }}
+                    </button>
+                  </h2>
+                </div>
+
+                <div id="collapseL{{ lesson.id }}" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                  <div class="card-body">
+                    {{ lesson.description }}
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+        </div>
+            <!-- LEZIONE DIFFICILE BASE (5.0) -->
+        <h1 class="text-center"> DIFFICOLTA' DIFFICILE </h1>
+        <div class="accordion my-4" id="accordionExample">
+            {% for lesson in lesson_list_5 %}
+              <div class="card">
+                <div class="card-header" id="headingOne" style="background-color: #e64b30;">
+                  <h2 class="mb-0">
+                    <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseL{{ lesson.id }}" aria-expanded="true" aria-controls="collapseL{{ lesson.id }}">
+                        Lezione: {{ lesson.title }}
+                    </button>
+                  </h2>
+                </div>
+
+                <div id="collapseL{{ lesson.id }}" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                  <div class="card-body">
+                    {{ lesson.description }}
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+            <!-- LEZIONE DIFFICILE AVANZATO (6.0) -->
+            {% for lesson in lesson_list_6 %}
+              <div class="card">
+                <div class="card-header" id="headingOne" style="background-color: #f02a07;">
+                  <h2 class="mb-0">
+                    <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseL{{ lesson.id }}" aria-expanded="true" aria-controls="collapseL{{ lesson.id }}">
+                        Lezione: {{ lesson.title }}
+                    </button>
+                  </h2>
+                </div>
+
+                <div id="collapseL{{ lesson.id }}" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                  <div class="card-body">
+                    {{ lesson.description }}
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+        </div>
+
+
+    <!-- PACCHETTI -->
+        <h1 class="text-center"> DIFFICOLTA' FACILE </h1>
+        <div class="accordion my-4" id="accordionExample">
+            <!-- PACCHETTO FACILE BASE (1.0) -->
+            {% for packet in packet_list_1 %}
+              <div class="card">
+                <div class="card-header" id="headingOne" style="background-color: #18d624">
+                  <h2 class="mb-0">
+                    <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseP{{ packet.id }}" aria-expanded="true" aria-controls="collapseP{{ packet.id }}">
+                        Pacchetto:  {{ packet.title }}
+                    </button>
+                  </h2>
+                </div>
+
+                <div id="collapseP{{ packet.id }}" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                  <div class="card-body">
+                    {{ packet.description }}
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+            <!-- PACCHETTO FACILE AVANZATO (2.0) -->
+            {% for packet in packet_list_2 %}
+              <div class="card">
+                <div class="card-header" id="headingOne" style="background-color: #11ab1b">
+                  <h2 class="mb-0">
+                    <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseP{{ packet.id }}" aria-expanded="true" aria-controls="collapseP{{ packet.id }}">
+                        Pacchetto:  {{ packet.title }}
+                    </button>
+                  </h2>
+                </div>
+
+                <div id="collapseP{{ packet.id }}" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                  <div class="card-body">
+                    {{ packet.description }}
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+        </div>
+            <!-- PACCHETTO MEDIO BASE (3.0) -->
+        <h1 class="text-center"> DIFFICOLTA' MEDIA </h1>
+        <div class="accordion my-4" id="accordionExample">
+            {% for packet in packet_list_3 %}
+              <div class="card">
+                <div class="card-header" id="headingOne" style="background-color: #f2a81d">
+                  <h2 class="mb-0">
+                    <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseP{{ packet.id }}" aria-expanded="true" aria-controls="collapseP{{ packet.id }}">
+                        Pacchetto:  {{ packet.title }}
+                    </button>
+                  </h2>
+                </div>
+
+                <div id="collapseP{{ packet.id }}" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                  <div class="card-body">
+                    {{ packet.description }}
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+            <!-- PACCHETTO MEDIO AVANZATO (4.0) -->
+            {% for packet in packet_list_4 %}
+              <div class="card">
+                <div class="card-header" id="headingOne" style="background-color: #f2791d">
+                  <h2 class="mb-0">
+                    <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseP{{ packet.id }}" aria-expanded="true" aria-controls="collapseP{{ packet.id }}">
+                        Pacchetto:  {{ packet.title }}
+                    </button>
+                  </h2>
+                </div>
+
+                <div id="collapseP{{ packet.id }}" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                  <div class="card-body">
+                    {{ packet.description }}
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+        </div>
+            <!-- PACCHETTO DIFFICILE BASE (5.0) -->
+        <h1 class="text-center"> DIFFICOLTA' DIFFICILE </h1>
+        <div class="accordion my-4" id="accordionExample">
+            {% for packet in packet_list_5 %}
+              <div class="card">
+                <div class="card-header" id="headingOne" style="background-color: #e64b30">
+                  <h2 class="mb-0">
+                    <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseP{{ packet.id }}" aria-expanded="true" aria-controls="collapseP{{ packet.id }}">
+                        Pacchetto:  {{ packet.title }}
+                    </button>
+                  </h2>
+                </div>
+
+                <div id="collapseP{{ packet.id }}" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                  <div class="card-body">
+                    {{ packet.description }}
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+            <!-- PACCHETTO DIFFICILE AVANZATO (6.0) -->
+            {% for packet in packet_list_6 %}
+              <div class="card">
+                <div class="card-header" id="headingOne" style="background-color: #f02a07">
+                  <h2 class="mb-0">
+                    <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseP{{ packet.id }}" aria-expanded="true" aria-controls="collapseP{{ packet.id }}">
+                        Pacchetto:  {{ packet.title }}
+                    </button>
+                  </h2>
+                </div>
+
+                <div id="collapseP{{ packet.id }}" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                  <div class="card-body">
+                    {{ packet.description }}
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+        </div>
+
+    <!-- PERCORSI -->
+        <h1 class="text-center"> DIFFICOLTA' FACILE </h1>
+        <div class="accordion my-4" id="accordionExample">
+            <!-- PERCORSO FACILE BASE (1.0) -->
+            {% for course in course_list_1 %}
+              <div class="card">
+                <div class="card-header" id="headingOne" style="background-color: #18d624">
+                  <h2 class="mb-0">
+                    <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseC{{ course.id }}" aria-expanded="true" aria-controls="collapseC{{ course.id }}">
+                        Percorso:  {{ course.title }}
+                    </button>
+                  </h2>
+                </div>
+
+                <div id="collapseC{{ course.id }}" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                  <div class="card-body">
+                    {{ course.description }}
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+            <!-- PERCORSO FACILE AVANZATO (2.0) -->
+            {% for course in course_list_2 %}
+              <div class="card">
+                <div class="card-header" id="headingOne" style="background-color: #11ab1b">
+                  <h2 class="mb-0">
+                    <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseC{{ course.id }}" aria-expanded="true" aria-controls="collapseC{{ course.id }}">
+                        Percorso:  {{ course.title }}
+                    </button>
+                  </h2>
+                </div>
+
+                <div id="collapseC{{ course.id }}" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                  <div class="card-body">
+                    {{ course.description }}
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+        </div>
+            <!-- PERCORSO MEDIO BASE (3.0) -->
+        <h1 class="text-center"> DIFFICOLTA' MEDIA </h1>
+        <div class="accordion my-4" id="accordionExample">
+            {% for course in course_list_3 %}
+              <div class="card">
+                <div class="card-header" id="headingOne" style="background-color: #f2a81d">
+                  <h2 class="mb-0">
+                    <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseC{{ course.id }}" aria-expanded="true" aria-controls="collapseC{{ course.id }}">
+                        Percorso:  {{ course.title }}
+                    </button>
+                  </h2>
+                </div>
+
+                <div id="collapseC{{ course.id }}" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                  <div class="card-body">
+                    {{ course.description }}
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+            <!-- PERCORSO MEDIO AVANZATO (4.0) -->
+            {% for course in course_list_4 %}
+              <div class="card">
+                <div class="card-header" id="headingOne" style="background-color: #f2791d">
+                  <h2 class="mb-0">
+                    <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseC{{ course.id }}" aria-expanded="true" aria-controls="collapseC{{ course.id }}">
+                        Percorso:  {{ course.title }}
+                    </button>
+                  </h2>
+                </div>
+
+                <div id="collapseC{{ course.id }}" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                  <div class="card-body">
+                    {{ course.description }}
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+        </div>
+            <!-- PERCORSO DIFFICILE BASE (5.0) -->
+        <h1 class="text-center"> DIFFICOLTA' DIFFICILE </h1>
+        <div class="accordion my-4" id="accordionExample">
+            {% for course in course_list_5 %}
+              <div class="card">
+                <div class="card-header" id="headingOne" style="background-color: #e64b30">
+                  <h2 class="mb-0">
+                    <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseC{{ course.id }}" aria-expanded="true" aria-controls="collapseC{{ course.id }}">
+                        Percorso:  {{ course.title }}
+                    </button>
+                  </h2>
+                </div>
+
+                <div id="collapseC{{ course.id }}" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                  <div class="card-body">
+                    {{ course.description }}
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+            <!-- PERCORSO DIFFICILE AVANZATO (6.0) -->
+            {% for course in course_list_6 %}
+              <div class="card">
+                <div class="card-header" id="headingOne" style="background-color: #f02a07">
+                  <h2 class="mb-0">
+                    <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseC{{ course.id }}" aria-expanded="true" aria-controls="collapseC{{ course.id }}">
+                        Percorso:  {{ course.title }}
+                    </button>
+                  </h2>
+                </div>
+
+                <div id="collapseC{{ course.id }}" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                  <div class="card-body">
+                    {{ course.description }}
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+        </div>
+
+
+
+    </div>
+{% endblock %}
