@@ -16,7 +16,7 @@ class Lesson(models.Model):
     difficulty = models.CharField(max_length=30, choices=DIFFICULTY_CHOICES, default='1.0')
     genre = models.CharField(max_length=30, choices=GENRE_CHOICES, default='A')
     price = models.FloatField(default=20.0)
-    video = models.FileField(upload_to='gallery', default='uploaded_files/media/user_db/user_photo/None/none_picture.png') #videolezione
+    video = models.FileField(upload_to='video_lessons') #videolezione
 
     def __str__(self):
         return f'#{self.id} - {self.title}'

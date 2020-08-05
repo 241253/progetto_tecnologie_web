@@ -13,7 +13,7 @@ class LessonsCreationForm(forms.ModelForm):
         self.current_user = kwargs.pop('user')
         super(LessonsCreationForm, self).__init__(*args, **kwargs)
         self.fields['video'].label = "Video"
-        self.fields['video'].required = False
+        self.fields['video'].required = True
 
     def save(self, commit=True):
         lesson = super(LessonsCreationForm, self).save(commit=False)

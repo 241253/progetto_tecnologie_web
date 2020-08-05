@@ -8,6 +8,7 @@ from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views.generic import DetailView, UpdateView, ListView, DeleteView
 from user_management.forms import ProfileCreationForm, UserForm, UserUpdateForm, StaffForm, StaffUpdateForm
+from user_management.models import Profile
 
 
 def login_redirect(request):
@@ -45,9 +46,13 @@ def create_user(request):
 @method_decorator(login_required, name='dispatch')
 class UserPage(DetailView):
     context_object_name = 'user'
-    queryset = User.objects.all()
-    extra_context = {'profile':queryset[0].profile}
     template_name = 'user_management/user/user_page.html'
+    queryset = User.objects.all()
+
+    def get_context_data(self, **kwargs):
+        context = super(UserPage, self).get_context_data(**kwargs)
+        context['profile'] = Profile.objects.all().filter(user=context['user'])[0]
+        return context
 
 @method_decorator(login_required, name='dispatch')
 class UserUpdate(UpdateView):
@@ -76,7 +81,7 @@ class StaffList(ListView):
 def create_staff(request):
     if request.method == 'POST':
         user_form = StaffForm(request.POST)
-        profile_form = ProfileCreationForm(request.POST)
+        profile_form = ProfileCreationForm(data=request.POST,files=request.FILES)
         if user_form.is_valid() and profile_form.is_valid():
             user = user_form.save()
             user.is_staff = True

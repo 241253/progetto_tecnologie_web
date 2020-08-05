@@ -11,7 +11,7 @@
     <div class="container my-5">
         <!-- CARD UTENTE -->
         <div class="card" style="width: 18rem;">
-            <img class="card-img-top p-3" src="{% static 'img/card_temp_photo.jpg' %}" alt="Card image cap">
+            <img class="card-img-top p-3" src="/uploaded_files/{{  profile.foto }}" alt="Card image cap">
             <ul class="list-group list-group-flush">
                 <li class="list-group-item">{{ user.first_name }} {{ user.last_name }}</li>
                 <li class="list-group-item">Email: {{ user.email }}</li>

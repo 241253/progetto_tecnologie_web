@@ -10,7 +10,7 @@
 {% block content %}
     <div class="container">
         <h1 style="margin-top: 30px; margin-bottom: 30px">Inserisci i dati della videolezione</h1>
-        <form method="POST">
+        <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             {{ form | crispy }}
             <input type="submit" value="Aggiungi" class="btn btn-primary" style="float: right; margin-bottom: 30px">
