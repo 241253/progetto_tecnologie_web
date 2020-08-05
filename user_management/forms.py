@@ -42,11 +42,10 @@ class ProfileCreationForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(ProfileCreationForm, self).__init__(*args, **kwargs)
         self.fields['foto'].label = "Foto"
-        self.fields['foto'].required = False
+        self.fields['foto'].required = True
 
     def clean_foto(self):
         foto = self.cleaned_data['foto']
-        print(foto.path)
 
         try:
             w, h = get_image_dimensions(foto)

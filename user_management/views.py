@@ -20,22 +20,24 @@ def login_redirect(request):
 def create_user(request):
     if request.method == 'POST':
         user_form = UserForm(request.POST)
-        profile_form = ProfileCreationForm(request.POST)
+        profile_form = ProfileCreationForm(data=request.POST, files=request.FILES)
         if user_form.is_valid() and profile_form.is_valid():
             user = user_form.save()
 
             profile = profile_form.save(commit=False)
             profile.user = user
+            profile.foto = profile_form.cleaned_data['foto']
+            profile.save()
             profile_form.save()
 
             username = user_form.cleaned_data.get('username')
             password = user_form.cleaned_data.get('password')
             login(request, user, backend='django.contrib.auth.backends.ModelBackend')
 
-            return redirect('landingPage')
+            return redirect('homePage')
     else:
         user_form = UserForm()
-        profile_form = ProfileCreationForm()
+        profile_form = ProfileCreationForm(data=request.GET, files=request.FILES or None)
 
     context = {'user_form':user_form, 'profile_form':profile_form}
     return render(request, 'user_management/user/user_create.html', context)

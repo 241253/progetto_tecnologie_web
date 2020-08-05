@@ -6,7 +6,10 @@ from django.dispatch import receiver
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
     # foto profilo dell'utente
-    foto = models.ImageField(upload_to='gallery')
+    foto = models.ImageField(upload_to='user_photo/')
+
+    def __str__(self):
+        return f'profile user di: {self.user.username} (id: {self.user.id})'
 
     @receiver(post_save, sender=User)
     def create_user_profile(sender, instance, created, **kwargs):
