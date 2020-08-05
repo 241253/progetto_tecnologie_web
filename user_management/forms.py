@@ -46,6 +46,7 @@ class ProfileCreationForm(forms.ModelForm):
 
     def clean_foto(self):
         foto = self.cleaned_data['foto']
+        print(foto.path)
 
         try:
             w, h = get_image_dimensions(foto)
@@ -54,14 +55,12 @@ class ProfileCreationForm(forms.ModelForm):
             max_width = max_height = 1500
             if w > max_width or h > max_height:
                 raise forms.ValidationError(
-                    u'Please use an image that is '
-                     '%s x %s pixels or smaller.' % (max_width, max_height))
+                    u'Please use an image that is %s x %s pixels or smaller.' % (max_width, max_height))
 
             #validate content type
             main, sub = foto.content_type.split('/')
             if not (main == 'image' and sub in ['jpeg', 'pjpeg', 'gif', 'png']):
-                raise forms.ValidationError(u'Please use a JPEG, '
-                    'GIF or PNG image.')
+                raise forms.ValidationError(u'Please use a JPEG, GIF or PNG image.')
 
             #validate file size
             if len(foto) > (4000 * 1024):
