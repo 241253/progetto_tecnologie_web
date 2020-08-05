@@ -48,6 +48,9 @@ class UpdateLesson(UpdateView):
     template_name = 'lessons_management/lessons/update_lesson.html'
     success_url = reverse_lazy('list_hub')
 
+class LessonDetail(DeleteView):
+    template_name = 'lessons_management/lessons/detail_lesson.html'
+    model = Lesson
 
 # PACKETS
 @method_decorator(login_required, name='dispatch')
@@ -77,6 +80,10 @@ class UpdatePacket(UpdateView):
     template_name = 'lessons_management/packets/update_packet.html'
     success_url = reverse_lazy('list_hub')
 
+class PacketDetail(DeleteView):
+    template_name = 'lessons_management/packets/detail_packet.html'
+    model = Packet
+
 # COURSES
 @method_decorator(login_required, name='dispatch')
 class CreateCourse(CreateView):
@@ -102,3 +109,7 @@ class UpdateCourse(UpdateView):
     form_class = CourseUpdateForm
     template_name = 'lessons_management/course/update_course.html'
     success_url = reverse_lazy('list_hub')
+
+class CourseDetail(DeleteView):
+    template_name = 'lessons_management/course/detail_course.html'
+    model = Course

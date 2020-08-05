@@ -55,6 +55,9 @@
                     {% if user.is_authenticated %}
                     <li class="nav-item my-3 my-lg-0">
                         {% if not user.is_staff %}
+                            <li class="nav-item active">
+                                <a class="nav-link" style="color: white" href="#">Carrello</a>
+                            </li>
                             <a class="nav-link mr-lg-3 px-xl-4" style="color: white" href="{% url 'user_page' user.pk%}">{{ user.username }}</a>
                         {% else %}
                             <a class="nav-link mr-lg-3 px-xl-4" style="color: white" href="{% url 'login_redirect_url'%}">Staff: {{ user.username }}</a>

@@ -11,7 +11,7 @@
     <h1 class="text-center mt-5">LEZIONI</h1>
     <!-- LEZIONE FACILE -->
     <h1 class="text-center"> DIFFICOLTA' FACILE </h1>
-    <div class="accordion my-4" id="accordionExample">
+    <div class="accordion my-4" id="accordion1">
         <!-- LEZIONE FACILE BASE (1.0) -->
         {% for lesson in lesson_list_1 %}
             <div class="card">
@@ -23,9 +23,13 @@
                     </h2>
                 </div>
 
-                <div id="collapseL{{ lesson.id }}" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                <div id="collapseL{{ lesson.id }}" class="collapse" aria-labelledby="headingOne" data-parent="#accordion1">
                     <div class="card-body">
-                        {{ lesson.description }}
+                        <p>Titolo: {{ lesson.title }}</p>
+                        <p>Descrizione: {{ lesson.description }}</p>
+                        <p>Prezzo: {{ lesson.price }}</p>
+                        <a class="btn btn-primary" href="{% url 'detail_lesson' lesson.id %}">Dettagli</a>
+                        <a class="btn btn-primary">Aggiungi al carrello</a>
                     </div>
                 </div>
             </div>
@@ -41,9 +45,13 @@
                     </h2>
                 </div>
 
-                <div id="collapseL{{ lesson.id }}" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                <div id="collapseL{{ lesson.id }}" class="collapse" aria-labelledby="headingOne" data-parent="#accordion1">
                     <div class="card-body">
-                        {{ lesson.description }}
+                        <p>Titolo: {{ lesson.title }}</p>
+                        <p>Descrizione: {{ lesson.description }}</p>
+                        <p>Prezzo: {{ lesson.price }}</p>
+                        <a class="btn btn-primary" href="{% url 'detail_lesson' lesson.id %}">Dettagli</a>
+                        <a class="btn btn-primary">Aggiungi al carrello</a>
                     </div>
                 </div>
             </div>
@@ -51,7 +59,7 @@
     </div>
     <!-- LEZIONE MEDIO -->
     <h1 class="text-center"> DIFFICOLTA' MEDIA </h1>
-    <div class="accordion my-4" id="accordionExample">
+    <div class="accordion my-4" id="accordion2">
         <!-- LEZIONE MEDIO BASE (3.0) -->
         {% for lesson in lesson_list_3 %}
             <div class="card">
@@ -63,9 +71,13 @@
                     </h2>
                 </div>
 
-                <div id="collapseL{{ lesson.id }}" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                <div id="collapseL{{ lesson.id }}" class="collapse" aria-labelledby="headingOne" data-parent="#accordion2">
                     <div class="card-body">
-                        {{ lesson.description }}
+                        <p>Titolo: {{ lesson.title }}</p>
+                        <p>Descrizione: {{ lesson.description }}</p>
+                        <p>Prezzo: {{ lesson.price }}</p>
+                        <a class="btn btn-primary" href="{% url 'detail_lesson' lesson.id %}">Dettagli</a>
+                        <a class="btn btn-primary">Aggiungi al carrello</a>
                     </div>
                 </div>
             </div>
@@ -81,9 +93,13 @@
                     </h2>
                 </div>
 
-                <div id="collapseL{{ lesson.id }}" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                <div id="collapseL{{ lesson.id }}" class="collapse" aria-labelledby="headingOne" data-parent="#accordion2">
                     <div class="card-body">
-                        {{ lesson.description }}
+                        <p>Titolo: {{ lesson.title }}</p>
+                        <p>Descrizione: {{ lesson.description }}</p>
+                        <p>Prezzo: {{ lesson.price }}</p>
+                        <a class="btn btn-primary" href="{% url 'detail_lesson' lesson.id %}">Dettagli</a>
+                        <a class="btn btn-primary">Aggiungi al carrello</a>
                     </div>
                 </div>
             </div>
@@ -91,7 +107,7 @@
     </div>
     <!-- LEZIONE DIFFICILE -->
     <h1 class="text-center"> DIFFICOLTA' DIFFICILE </h1>
-    <div class="accordion my-4" id="accordionExample">
+    <div class="accordion my-4" id="accordion3">
         <!-- LEZIONE DIFFICILE BASE (5.0) -->
         {% for lesson in lesson_list_5 %}
             <div class="card">
@@ -103,9 +119,13 @@
                     </h2>
                 </div>
 
-                <div id="collapseL{{ lesson.id }}" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                <div id="collapseL{{ lesson.id }}" class="collapse" aria-labelledby="headingOne" data-parent="#accordion3">
                     <div class="card-body">
-                        {{ lesson.description }}
+                        <p>Titolo: {{ lesson.title }}</p>
+                        <p>Descrizione: {{ lesson.description }}</p>
+                        <p>Prezzo: {{ lesson.price }}</p>
+                        <a class="btn btn-primary" href="{% url 'detail_lesson' lesson.id %}">Dettagli</a>
+                        <a class="btn btn-primary">Aggiungi al carrello</a>
                     </div>
                 </div>
             </div>
@@ -121,9 +141,13 @@
                     </h2>
                 </div>
 
-                <div id="collapseL{{ lesson.id }}" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                <div id="collapseL{{ lesson.id }}" class="collapse" aria-labelledby="headingOne" data-parent="#accordion3">
                     <div class="card-body">
-                        {{ lesson.description }}
+                        <p>Titolo: {{ lesson.title }}</p>
+                        <p>Descrizione: {{ lesson.description }}</p>
+                        <p>Prezzo: {{ lesson.price }}</p>
+                        <a class="btn btn-primary" href="{% url 'detail_lesson' lesson.id %}">Dettagli</a>
+                        <a class="btn btn-primary">Aggiungi al carrello</a>
                     </div>
                 </div>
             </div>
@@ -133,7 +157,7 @@
     <h1 class="text-center mt-5">PACCHETTI</h1>
     <!-- PACCHETTO FACILE -->
     <h1 class="text-center"> DIFFICOLTA' FACILE </h1>
-    <div class="accordion my-4" id="accordionExample">
+    <div class="accordion my-4" id="accordion4">
         <!-- PACCHETTO FACILE BASE (1.0) -->
         {% for packet in packet_list_1 %}
             <div class="card">
@@ -145,9 +169,19 @@
                     </h2>
                 </div>
 
-                <div id="collapseP{{ packet.id }}" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                <div id="collapseP{{ packet.id }}" class="collapse" aria-labelledby="headingOne" data-parent="#accordion4">
                     <div class="card-body">
-                        {{ packet.description }}
+                        <p>Titolo: {{ packet.title }}</p>
+                        <p>Descrizione: {{ packet.description }}</p>
+                        <p>Lezioni contenute: </p>
+                        <ul>
+                        {% for lesson in packet.lessons.all %}
+                            <li>{{ lesson.title }}</li>
+                        {% endfor %}
+                        </ul>
+                        <p>Prezzo: {{ packet.price }}</p>
+                        <a class="btn btn-primary" href="{% url 'detail_pacekt' packet.id %}">Dettagli</a>
+                        <a class="btn btn-primary">Aggiungi al carrello</a>
                     </div>
                 </div>
             </div>
@@ -163,9 +197,19 @@
                     </h2>
                 </div>
 
-                <div id="collapseP{{ packet.id }}" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                <div id="collapseP{{ packet.id }}" class="collapse" aria-labelledby="headingOne" data-parent="#accordion4">
                     <div class="card-body">
-                        {{ packet.description }}
+                        <p>Titolo: {{ packet.title }}</p>
+                        <p>Descrizione: {{ packet.description }}</p>
+                        <p>Lezioni contenute: </p>
+                        <ul>
+                        {% for lesson in packet.lessons.all %}
+                            <li>{{ lesson.title }}</li>
+                        {% endfor %}
+                        </ul>
+                        <p>Prezzo: {{ packet.price }}</p>
+                        <a class="btn btn-primary" href="{% url 'detail_pacekt' packet.id %}">Dettagli</a>
+                        <a class="btn btn-primary">Aggiungi al carrello</a>
                     </div>
                 </div>
             </div>
@@ -173,7 +217,7 @@
     </div>
     <!-- PACCHETTO MEDIO -->
     <h1 class="text-center"> DIFFICOLTA' MEDIA </h1>
-    <div class="accordion my-4" id="accordionExample">
+    <div class="accordion my-4" id="accordion5">
         <!-- PACCHETTO MEDIO BASE (3.0) -->
         {% for packet in packet_list_3 %}
             <div class="card">
@@ -185,9 +229,19 @@
                     </h2>
                 </div>
 
-                <div id="collapseP{{ packet.id }}" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                <div id="collapseP{{ packet.id }}" class="collapse" aria-labelledby="headingOne" data-parent="#accordion5">
                     <div class="card-body">
-                        {{ packet.description }}
+                        <p>Titolo: {{ packet.title }}</p>
+                        <p>Descrizione: {{ packet.description }}</p>
+                        <p>Lezioni contenute: </p>
+                        <ul>
+                        {% for lesson in packet.lessons.all %}
+                            <li>{{ lesson.title }}</li>
+                        {% endfor %}
+                        </ul>
+                        <p>Prezzo: {{ packet.price }}</p>
+                        <a class="btn btn-primary" href="{% url 'detail_pacekt' packet.id %}">Dettagli</a>
+                        <a class="btn btn-primary">Aggiungi al carrello</a>
                     </div>
                 </div>
             </div>
@@ -203,9 +257,19 @@
                     </h2>
                 </div>
 
-                <div id="collapseP{{ packet.id }}" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                <div id="collapseP{{ packet.id }}" class="collapse" aria-labelledby="headingOne" data-parent="#accordion5">
                     <div class="card-body">
-                        {{ packet.description }}
+                        <p>Titolo: {{ packet.title }}</p>
+                        <p>Descrizione: {{ packet.description }}</p>
+                        <p>Lezioni contenute: </p>
+                        <ul>
+                        {% for lesson in packet.lessons.all %}
+                            <li>{{ lesson.title }}</li>
+                        {% endfor %}
+                        </ul>
+                        <p>Prezzo: {{ packet.price }}</p>
+                        <a class="btn btn-primary" href="{% url 'detail_pacekt' packet.id %}">Dettagli</a>
+                        <a class="btn btn-primary">Aggiungi al carrello</a>
                     </div>
                 </div>
             </div>
@@ -213,7 +277,7 @@
     </div>
     <!-- PACCHETTO DIFFICILE -->
     <h1 class="text-center"> DIFFICOLTA' DIFFICILE </h1>
-    <div class="accordion my-4" id="accordionExample">
+    <div class="accordion my-4" id="accordion6">
         <!-- PACCHETTO DIFFICILE BASE (5.0) -->
         {% for packet in packet_list_5 %}
             <div class="card">
@@ -225,9 +289,19 @@
                     </h2>
                 </div>
 
-                <div id="collapseP{{ packet.id }}" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                <div id="collapseP{{ packet.id }}" class="collapse" aria-labelledby="headingOne" data-parent="#accordion6">
                     <div class="card-body">
-                        {{ packet.description }}
+                        <p>Titolo: {{ packet.title }}</p>
+                        <p>Descrizione: {{ packet.description }}</p>
+                        <p>Lezioni contenute: </p>
+                        <ul>
+                        {% for lesson in packet.lessons.all %}
+                            <li>{{ lesson.title }}</li>
+                        {% endfor %}
+                        </ul>
+                        <p>Prezzo: {{ packet.price }}</p>
+                        <a class="btn btn-primary" href="{% url 'detail_pacekt' packet.id %}">Dettagli</a>
+                        <a class="btn btn-primary">Aggiungi al carrello</a>
                     </div>
                 </div>
             </div>
@@ -243,9 +317,19 @@
                     </h2>
                 </div>
 
-                <div id="collapseP{{ packet.id }}" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                <div id="collapseP{{ packet.id }}" class="collapse" aria-labelledby="headingOne" data-parent="#accordion6">
                     <div class="card-body">
-                        {{ packet.description }}
+                        <p>Titolo: {{ packet.title }}</p>
+                        <p>Descrizione: {{ packet.description }}</p>
+                        <p>Lezioni contenute: </p>
+                        <ul>
+                        {% for lesson in packet.lessons.all %}
+                            <li>{{ lesson.title }}</li>
+                        {% endfor %}
+                        </ul>
+                        <p>Prezzo: {{ packet.price }}</p>
+                        <a class="btn btn-primary" href="{% url 'detail_pacekt' packet.id %}">Dettagli</a>
+                        <a class="btn btn-primary">Aggiungi al carrello</a>
                     </div>
                 </div>
             </div>
@@ -255,7 +339,7 @@
     <h1 class="text-center mt-5">PERCORSI</h1>
     <!-- PERCORSO FACILE -->
     <h1 class="text-center"> DIFFICOLTA' FACILE </h1>
-    <div class="accordion my-4" id="accordionExample">
+    <div class="accordion my-4" id="accordion7">
         <!-- PERCORSO FACILE BASE (1.0) -->
         {% for course in course_list_1 %}
             <div class="card">
@@ -267,9 +351,19 @@
                     </h2>
                 </div>
 
-                <div id="collapseC{{ course.id }}" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                <div id="collapseC{{ course.id }}" class="collapse" aria-labelledby="headingOne" data-parent="#accordion7">
                     <div class="card-body">
-                        {{ course.description }}
+                        <p>Titolo: {{ course.title }}</p>
+                        <p>Descrizione: {{ course.description }}</p>
+                        <p>Pacchetti contenuti: </p>
+                        <ul>
+                        {% for packet in course.packets.all %}
+                            <li>{{ packet.title }}</li>
+                        {% endfor %}
+                        </ul>
+                        <p>Prezzo: {{ course.price }}</p>
+                        <a class="btn btn-primary" href="{% url 'detail_course' course.id %}">Dettagli</a>
+                        <a class="btn btn-primary">Aggiungi al carrello</a>
                     </div>
                 </div>
             </div>
@@ -285,9 +379,19 @@
                     </h2>
                 </div>
 
-                <div id="collapseC{{ course.id }}" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                <div id="collapseC{{ course.id }}" class="collapse" aria-labelledby="headingOne" data-parent="#accordion7">
                     <div class="card-body">
-                        {{ course.description }}
+                        <p>Titolo: {{ course.title }}</p>
+                        <p>Descrizione: {{ course.description }}</p>
+                        <p>Pacchetti contenuti: </p>
+                        <ul>
+                        {% for packet in course.packets.all %}
+                            <li>{{ packet.title }}</li>
+                        {% endfor %}
+                        </ul>
+                        <p>Prezzo: {{ course.price }}</p>
+                        <a class="btn btn-primary" href="{% url 'detail_course' course.id %}">Dettagli</a>
+                        <a class="btn btn-primary">Aggiungi al carrello</a>
                     </div>
                 </div>
             </div>
@@ -295,7 +399,7 @@
     </div>
     <!-- PERCORSO MEDIO -->
     <h1 class="text-center"> DIFFICOLTA' MEDIA </h1>
-    <div class="accordion my-4" id="accordionExample">
+    <div class="accordion my-4" id="accordion8">
         <!-- PERCORSO MEDIO BASE (3.0) -->
         {% for course in course_list_3 %}
             <div class="card">
@@ -307,9 +411,19 @@
                     </h2>
                 </div>
 
-                <div id="collapseC{{ course.id }}" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                <div id="collapseC{{ course.id }}" class="collapse" aria-labelledby="headingOne" data-parent="#accordion8">
                     <div class="card-body">
-                        {{ course.description }}
+                        <p>Titolo: {{ course.title }}</p>
+                        <p>Descrizione: {{ course.description }}</p>
+                        <p>Pacchetti contenuti: </p>
+                        <ul>
+                        {% for packet in course.packets.all %}
+                            <li>{{ packet.title }}</li>
+                        {% endfor %}
+                        </ul>
+                        <p>Prezzo: {{ course.price }}</p>
+                        <a class="btn btn-primary" href="{% url 'detail_course' course.id %}">Dettagli</a>
+                        <a class="btn btn-primary">Aggiungi al carrello</a>
                     </div>
                 </div>
             </div>
@@ -325,9 +439,19 @@
                     </h2>
                 </div>
 
-                <div id="collapseC{{ course.id }}" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                <div id="collapseC{{ course.id }}" class="collapse" aria-labelledby="headingOne" data-parent="#accordion8">
                     <div class="card-body">
-                        {{ course.description }}
+                        <p>Titolo: {{ course.title }}</p>
+                        <p>Descrizione: {{ course.description }}</p>
+                        <p>Pacchetti contenuti: </p>
+                        <ul>
+                        {% for packet in course.packets.all %}
+                            <li>{{ packet.title }}</li>
+                        {% endfor %}
+                        </ul>
+                        <p>Prezzo: {{ course.price }}</p>
+                        <a class="btn btn-primary" href="{% url 'detail_course' course.id %}">Dettagli</a>
+                        <a class="btn btn-primary">Aggiungi al carrello</a>
                     </div>
                 </div>
             </div>
@@ -335,7 +459,7 @@
     </div>
     <!-- PERCORSO DIFFICILE -->
     <h1 class="text-center"> DIFFICOLTA' DIFFICILE </h1>
-    <div class="accordion my-4" id="accordionExample">
+    <div class="accordion my-4" id="accordion9">
         <!-- PERCORSO DIFFICILE BASE (5.0) -->
         {% for course in course_list_5 %}
             <div class="card">
@@ -347,9 +471,19 @@
                     </h2>
                 </div>
 
-                <div id="collapseC{{ course.id }}" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                <div id="collapseC{{ course.id }}" class="collapse" aria-labelledby="headingOne" data-parent="#accordion9">
                     <div class="card-body">
-                        {{ course.description }}
+                        <p>Titolo: {{ course.title }}</p>
+                        <p>Descrizione: {{ course.description }}</p>
+                        <p>Pacchetti contenuti: </p>
+                        <ul>
+                        {% for packet in course.packets.all %}
+                            <li>{{ packet.title }}</li>
+                        {% endfor %}
+                        </ul>
+                        <p>Prezzo: {{ course.price }}</p>
+                        <a class="btn btn-primary" href="{% url 'detail_course' course.id %}">Dettagli</a>
+                        <a class="btn btn-primary">Aggiungi al carrello</a>
                     </div>
                 </div>
             </div>
@@ -365,9 +499,19 @@
                     </h2>
                 </div>
 
-                <div id="collapseC{{ course.id }}" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                <div id="collapseC{{ course.id }}" class="collapse" aria-labelledby="headingOne" data-parent="#accordion9">
                     <div class="card-body">
-                        {{ course.description }}
+                        <p>Titolo: {{ course.title }}</p>
+                        <p>Descrizione: {{ course.description }}</p>
+                        <p>Pacchetti contenuti: </p>
+                        <ul>
+                        {% for packet in course.packets.all %}
+                            <li>{{ packet.title }}</li>
+                        {% endfor %}
+                        </ul>
+                        <p>Prezzo: {{ course.price }}</p>
+                        <a class="btn btn-primary" href="{% url 'detail_course' course.id %}">Dettagli</a>
+                        <a class="btn btn-primary">Aggiungi al carrello</a>
                     </div>
                 </div>
             </div>

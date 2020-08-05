@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block browser_page_title %}Pacchetto: {{ object.title }}{% endblock %}
+
+{% block personal_css %}
+{% endblock %}
+
+{% block content %}
+    <div class="container my-5">
+        <p>Titolo: {{ object.title }}</p>
+        <p>Descrizione: {{ object.description }}</p>
+        <p>Difficoltà: {{ object.difficulty }}</p>
+        <p>Lezioni:</p>
+        <ul>
+        {% for lesson in object.lessons.all %}
+            <li>{{ lesson.title }}</li>
+        {% endfor %}
+        </ul>
+        <p>Prezzo: {{ object.price }}</p>
+    </div>
+{% endblock %}
+
+{#dhkcureabvlkjntnvltnrwnLJDCKDBVTRBKTVHHTR#}
+{#WRCBKEBVKHTRBTVBHRBKHRBVKRHBK#}
+{#verificare funzionamento del git push / commit e committare roba nuova a zaaza prim di ricominciare il 3 o poco più avanti#}
+{#dhkcureabvlkjntnvltnrwnLJDCKDBVTRBKTVHHTR#}
+{#WRCBKEBVKHTRBTVBHRBKHRBVKRHBK#}

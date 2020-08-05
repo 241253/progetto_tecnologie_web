@@ -23,7 +23,8 @@ INSTALLED_APPS = [
     #MyApp
     'user_management',
     'lessons_management',
-
+    'user_cart',
+    #DEFAULT
     'crispy_forms',
     'django.contrib.admin',
     'django.contrib.auth',

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block browser_page_title %}Lezione: {{ object.title }}{% endblock %}
+
+{% block personal_css %}
+{% endblock %}
+
+{% block content %}
+    <div class="container my-5">
+        <p>Titolo: {{ object.title }}</p>
+        <p>Descrizione: {{ object.description }}</p>
+        <p>Difficoltà: {{ object.difficulty }}</p>
+        <p>Genere: {{ object.genre }}</p>
+        <p>Prezzo: {{ object.price }}</p>
+    </div>
+{% endblock %}
