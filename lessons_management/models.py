@@ -29,7 +29,6 @@ class Packet(models.Model):
     title = models.CharField(max_length=60)
     description = models.TextField(max_length=300)
     difficulty = models.CharField(max_length=30, choices=DIFFICULTY_CHOICES, default='1.0')
-    price = models.FloatField(default=100.0)
     lessons = models.ManyToManyField(Lesson)
 
     @property
@@ -49,7 +48,6 @@ class Course(models.Model):
     title = models.CharField(max_length=60)
     description = models.TextField(max_length=300)
     difficulty = models.CharField(max_length=30, choices=DIFFICULTY_CHOICES, default='1.0')
-    price = models.FloatField(default=300.0)
     packets = models.ManyToManyField(Packet)
 
     @property

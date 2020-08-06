@@ -96,7 +96,7 @@ def create_staff(request):
             return redirect('staff_list')
     else:
         user_form = UserForm()
-        profile_form = ProfileCreationForm()
+        profile_form = ProfileCreationForm(data=request.GET, files=request.FILES or None)
 
     context = {'user_form': user_form, 'profile_form': profile_form}
     return render(request, 'user_management/staff/staff_create.html', context)

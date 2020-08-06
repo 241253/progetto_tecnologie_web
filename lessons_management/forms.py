@@ -3,7 +3,6 @@ from lessons_management.models import Lesson, Packet, Course
 
 
 # LESSONS
-
 class LessonsCreationForm(forms.ModelForm):
     class Meta:
         model = Lesson
@@ -29,7 +28,6 @@ class LessonsUpdateForm(forms.ModelForm):
         model = Lesson
         fields = ('title', 'description', 'difficulty', 'genre', 'price', 'video')
 
-    # def clean_video(self): da implementare prima o poi
 
 # PACKETS
 def getLessonsChoices():
@@ -71,15 +69,12 @@ class PacketCreationForm(forms.ModelForm):
         packet.user_id = self.current_user.id
 
         difficulty = 0.0
-        price = 0.0
         for lesson_id in self.cleaned_data['lessons']:
             lesson = Lesson.objects.filter(id=lesson_id)[0]
             difficulty += float(lesson.difficulty)
-            price += lesson.price
         difficulty /= len(self.cleaned_data['lessons'])
 
         packet.difficulty = self.normalize_difficulty(difficulty)
-        packet.price = price*0.80
 
         if commit:
             packet.save()
@@ -114,15 +109,12 @@ class PacketUpdateForm(forms.ModelForm):
         packet = super(PacketUpdateForm, self).save(commit=False)
 
         difficulty = 0.0
-        price = 0.0
         for lesson_id in self.cleaned_data['lessons']:
             lesson = Lesson.objects.filter(id=lesson_id)[0]
             difficulty += float(lesson.difficulty)
-            price += lesson.price
         difficulty /= len(self.cleaned_data['lessons'])
 
         packet.difficulty = self.normalize_difficulty(difficulty)
-        packet.price = price*0.80
 
         # print(self.fields['lessons'])mi piglio il campo lessons (devo vedere se posso usarlo)
 
@@ -138,7 +130,6 @@ def getPacketChoices():
     for packet in Packet.objects.all():
         choices.append((packet.id, f'Pacchetto: {packet.title}'))
     return choices
-
 
 class CourseCreationForm(forms.ModelForm):
     choices = getPacketChoices()
@@ -172,21 +163,17 @@ class CourseCreationForm(forms.ModelForm):
         course.user_id = self.current_user.id
 
         difficulty = 0.0
-        price = 0.0
         for packet_id in self.cleaned_data['packets']:
             packet = Packet.objects.filter(id=packet_id)[0]
             difficulty += float(packet.difficulty)
-            price += packet.price
         difficulty /= len(self.cleaned_data['packets'])
 
         course.difficulty = self.normalize_difficulty(difficulty)
-        course.price = price * 0.75
 
         if commit:
             course.save()
             course.packets.set([int(packet_id) for packet_id in self.cleaned_data['packets']])
         return course
-
 
 class CourseUpdateForm(forms.ModelForm):
     choices = getPacketChoices()
@@ -215,17 +202,12 @@ class CourseUpdateForm(forms.ModelForm):
         course = super(CourseUpdateForm, self).save(commit=False)
 
         difficulty = 0.0
-        price = 0.0
         for packet_id in self.cleaned_data['packets']:
             packet = Packet.objects.filter(id=packet_id)[0]
             difficulty += float(packet.difficulty)
-            price += packet.price
         difficulty /= len(self.cleaned_data['packets'])
 
-        # print(self.fields['packet'])mi piglio il campo packets (devo vedere se posso usarlo)
-
         course.difficulty = self.normalize_difficulty(difficulty)
-        course.price = price * 0.75
 
         if commit:
             course.save()

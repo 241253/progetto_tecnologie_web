@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block browser_page_title %}Carrello{% endblock %}
+
+{% block personal_css %}
+{% endblock %}
+
+{% block content %}
+    <div class="container my-5">
+        {% if lessons.count == 0 %}
+            <p>Carrello vuoto</p>
+        {% else %}
+            {% for lesson in lessons %}
+                <div>
+                    <h3>{{ lesson.title }}</h3>
+                    <p>Descrizione: {{ lesson.description }}</p>
+                    <p>Prezzo: {{ lesson.price }}</p>
+                    <a class="btn btn-primary" href="#">Rimuovi</a>
+                </div>
+                <hr></hr>
+            {% endfor %}
+        {% endif %}
+        {% if sconto == 'si' %}
+            <p>Prezzo totale (scontato): {{ totale }}</p>
+        {% else %}
+            <p>Prezzo totale: {{ totale }}</p>
+        {% endif %}
+        <a class="btn btn-primary" href="#">Procedi al pagamento</a>
+    </div>
+{% endblock %}
