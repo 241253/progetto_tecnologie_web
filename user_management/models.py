@@ -7,6 +7,7 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
     # foto profilo dell'utente
     foto = models.ImageField(upload_to='user_photo/')
+    saldo = models.FloatField(default=400.0)
 
     def __str__(self):
         return f'profile user di: {self.user.username} (id: {self.user.id})'

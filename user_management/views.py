@@ -70,7 +70,7 @@ def UserUpdateComplete(request):
 class StaffPage(DetailView):
     context_object_name = 'user'
     queryset = User.objects.all()
-    extra_context = {'profile': queryset[0].profile}
+    # extra_context = {'profile': queryset[0].profile}
     template_name = 'user_management/user/staff_page.html'
 
 @method_decorator(login_required, name='dispatch')
