@@ -116,19 +116,19 @@ class PurchaseConfirmView(TemplateView):
 
 class PurchaseSuccessView(View):
     def get(self, request, *args, **kwargs):
-        # cart = Cart.objects.get(user=request.user.id)
-        # cart_details = CartDetail.objects.all().filter(cart=cart.id)
-        #
-        # totale = 0.0
-        # for cart_detail in cart_details:
-        #     l = Lesson.objects.get(id=cart_detail.product_id)
-        #     totale += l.price
-        #     pl = PurchasedLessons.objects.create(user=request.user, lesson=l)
-        #     pl.save()
-        # user = User.objects.get(id=request.user.id)
-        # user.saldo -= totale
-        # user.save()
-        #
-        # cart_details.delete()
+        cart = Cart.objects.get(user=request.user.id)
+        cart_details = CartDetail.objects.all().filter(cart=cart.id)
 
-        render(request, 'user_cart/purchase_success.html')
+        totale = 0.0
+        for cart_detail in cart_details:
+            l = Lesson.objects.get(id=cart_detail.product_id)
+            totale += l.price
+            pl = PurchasedLessons.objects.create(user=request.user, lesson=l)
+            pl.save()
+        profile = Profile.objects.get(user_id=request.user.id)
+        profile.saldo -= totale
+        profile.save()
+
+        cart_details.delete()
+
+        return render(request, 'user_cart/purchase_success.html')

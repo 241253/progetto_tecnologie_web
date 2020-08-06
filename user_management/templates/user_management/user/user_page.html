@@ -16,6 +16,7 @@
                 <li class="list-group-item">{{ user.first_name }} {{ user.last_name }}</li>
                 <li class="list-group-item">Email: {{ user.email }}</li>
                 <li class="list-group-item">Username: {{ user.username }}</li>
+                <li class="list-group-item">DANARI!: {{ profile.saldo }}</li>
             </ul>
             <div class="card-body">
                 <a href="{% url 'user_update' user.id %}" class="card-link">Modifica</a>
