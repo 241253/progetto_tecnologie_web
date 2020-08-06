@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block browser_page_title %} Conferma acquisto {% endblock %}
+
+{% block personal_css %}
+{% endblock %}
+
+{% block content %}
+    {% for lesson in lessons %}
+        <p> {{ lesson.title }}</p>
+    {% endfor %}
+    <a class="btn btn-primary" href="{% url "cart_purchase_success" %}"> Conferma </a>
+    <a class="btn bt-primary" href="{% url "cart" %}"> Annulla </a>
+    <br>
+{% endblock %}

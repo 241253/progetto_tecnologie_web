@@ -1,12 +1,16 @@
+from django.contrib.auth.models import User
 from django.db.models import QuerySet
 from django.shortcuts import render
 from django.views.generic.base import View, TemplateView
 
 from lessons_management.models import Lesson
-from user_cart.models import Cart, CartDetail
+from user_cart.models import Cart, CartDetail, PurchasedLessons
 
 from django.urls import reverse_lazy
-from django.views.generic.edit import DeleteView
+from django.views.generic.edit import DeleteView, CreateView
+
+from user_management.models import Profile
+
 
 class AddToCart(View):
 
@@ -69,3 +73,62 @@ class CartView(TemplateView):
             else:
                 context.update({'sconto': 'no',})
             return context
+
+class PurchaseConfirmView(TemplateView):
+    template_name = "user_cart/purchase_confirm.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(PurchaseConfirmView, self).get_context_data(**kwargs)
+        cart = Cart.objects.get(user=self.request.user.id)
+        cart_details = CartDetail.objects.all().filter(cart=cart.id)
+        lessons = Lesson.objects.filter(id__in=[cart_detail.product_id for cart_detail in cart_details])
+        totale = 0.0
+        sconto = False
+        if len(lessons) != 0:
+            count = 1
+            for lesson in lessons:
+                totale += lesson.price
+                if count == 5:
+                    totale *= 0.8
+                    count = 1
+                    sconto = True
+                else:
+                    count += 1
+
+        context.update({
+            'lessons': lessons,
+            'totale': totale,
+            'cart_details': cart_details,
+        })
+        if sconto:
+            context.update({'sconto': 'si',})
+        else:
+            context.update({'sconto': 'no',})
+
+        saldo = Profile.objects.get(user=self.request.user.id).saldo
+
+        if saldo >= totale:
+            context.update({'saldoSufficiente': 'si',})
+        else:
+            context.update({'saldoSufficiente': 'no',})
+
+        return context
+
+class PurchaseSuccessView(View):
+    def get(self, request, *args, **kwargs):
+        # cart = Cart.objects.get(user=request.user.id)
+        # cart_details = CartDetail.objects.all().filter(cart=cart.id)
+        #
+        # totale = 0.0
+        # for cart_detail in cart_details:
+        #     l = Lesson.objects.get(id=cart_detail.product_id)
+        #     totale += l.price
+        #     pl = PurchasedLessons.objects.create(user=request.user, lesson=l)
+        #     pl.save()
+        # user = User.objects.get(id=request.user.id)
+        # user.saldo -= totale
+        # user.save()
+        #
+        # cart_details.delete()
+
+        render(request, 'user_cart/purchase_success.html')

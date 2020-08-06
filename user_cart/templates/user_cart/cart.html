@@ -30,6 +30,6 @@
         {% else %}
             <p>Prezzo totale: {{ totale }}</p>
         {% endif %}
-        <a class="btn btn-primary" href="#">Procedi al pagamento</a>
+        <a class="btn btn-primary" href="{% url 'cart_purchase_confirm' %}">Procedi al pagamento</a>
     </div>
 {% endblock %}
