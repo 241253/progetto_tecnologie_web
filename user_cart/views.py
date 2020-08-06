@@ -5,6 +5,9 @@ from django.views.generic.base import View, TemplateView
 from lessons_management.models import Lesson
 from user_cart.models import Cart, CartDetail
 
+from django.urls import reverse_lazy
+from django.views.generic.edit import DeleteView
+
 class AddToCart(View):
 
     def get(self, request, *args, **kwargs):
@@ -25,24 +28,10 @@ class AddToCart(View):
             return render(request, 'user_cart/cart_error.html')
 
 
-# class RemoveToCart(View):
-#
-#     def get(self, request, *args, **kwargs):
-#         product_id = self.kwargs['id']
-#
-#         cart = None
-#         if len(Cart.objects.filter(user_id=request.user.id)) == 1:
-#             cart = Cart.objects.filter(user_id=request.user.id)[0]
-#         else:
-#             cart = Cart.objects.create(user_id=request.user.id)
-#             cart.save()
-#
-#         if len(CartDetail.objects.filter(cart_id=cart.id, product_id=product_id)) != 1:
-#             cart_detail = CartDetail.objects.create(cart_id=cart.id, product_id=product_id)
-#             cart_detail.save()
-#             return render(request, 'user_cart/cart.html')
-#         else:
-#             return render(request, 'user_cart/cart_error.html')
+class RemoveToCart(DeleteView):
+        model = CartDetail
+        template_name = 'user_cart/cart_remove.html'
+        success_url = reverse_lazy('cart')
 
 class CartView(TemplateView):
     template_name = 'user_cart/cart.html'
@@ -73,6 +62,7 @@ class CartView(TemplateView):
             context.update({
                 'lessons': lessons,
                 'totale': totale,
+                'cart_details': cart_details,
             })
             if sconto:
                 context.update({'sconto': 'si',})

@@ -16,7 +16,11 @@
                     <h3>{{ lesson.title }}</h3>
                     <p>Descrizione: {{ lesson.description }}</p>
                     <p>Prezzo: {{ lesson.price }}</p>
-                    <a class="btn btn-primary" href="#">Rimuovi</a>
+                    {% for cart_detail in cart_details %}
+                        {% if cart_detail.product_id == lesson.id %}
+                            <a class="btn btn-primary" href="{% url 'cart_remove' cart_detail.id %}">Rimuovi</a>
+                        {% endif %}
+                    {% endfor %}
                 </div>
                 <hr></hr>
             {% endfor %}

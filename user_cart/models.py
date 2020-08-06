@@ -24,3 +24,10 @@ class CartDetail(models.Model):
 
     def __str__(self):
         return f'id: {self.id} - Cart_id: {self.cart.id} - Product_id: {self.product_id}'
+
+class PurchasedLessons(models.Model):
+    lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE, null=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+
+    def __str__(self):
+        return f'id: {self.id} - Lesson_title: {self.lesson.title} - User_name: {self.user.username} - # {self.lesson.id} - # {self.user.id}'
