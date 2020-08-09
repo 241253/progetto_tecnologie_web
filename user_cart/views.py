@@ -51,13 +51,14 @@ class CartView(TemplateView):
             cart_details = CartDetail.objects.all().filter(cart=cart.id)
             lessons = Lesson.objects.filter(id__in=[cart_detail.product_id for cart_detail in cart_details])
             totale = 0.0
+            totale_scontato = 0.0
             sconto = False
             if len(lessons) != 0:
                 count = 1
                 for lesson in lessons:
                     totale += lesson.price
                     if count == 5:
-                        totale *= 0.8
+                        totale_scontato += totale*0.8
                         count = 1
                         sconto = True
                     else:
@@ -69,7 +70,10 @@ class CartView(TemplateView):
                 'cart_details': cart_details,
             })
             if sconto:
-                context.update({'sconto': 'si',})
+                context.update({
+                    'sconto': 'si',
+                    'totale_scontato': totale_scontato,
+                })
             else:
                 context.update({'sconto': 'no',})
             return context
@@ -83,13 +87,14 @@ class PurchaseConfirmView(TemplateView):
         cart_details = CartDetail.objects.all().filter(cart=cart.id)
         lessons = Lesson.objects.filter(id__in=[cart_detail.product_id for cart_detail in cart_details])
         totale = 0.0
+        totale_scontato = 0.0
         sconto = False
         if len(lessons) != 0:
             count = 1
             for lesson in lessons:
                 totale += lesson.price
                 if count == 5:
-                    totale *= 0.8
+                    totale_scontato += totale*0.8
                     count = 1
                     sconto = True
                 else:
@@ -101,7 +106,10 @@ class PurchaseConfirmView(TemplateView):
             'cart_details': cart_details,
         })
         if sconto:
-            context.update({'sconto': 'si',})
+            context.update({
+                'sconto': 'si',
+                'totale_scontato': totale_scontato,
+            })
         else:
             context.update({'sconto': 'no',})
 

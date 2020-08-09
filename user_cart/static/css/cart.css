@@ -1,0 +1,23 @@
+/* CARRELLO VUOTO */
+.cart-empty-img
+{
+    width: 20%;
+    height: auto;
+}
+
+.cart-empty-text
+{
+    font-size: 30px;
+}
+
+/* CARRELLO NORMALE */
+.cart-item-img
+{
+    width: 150px;
+    height: 150px;
+}
+
+.fas
+{
+    color: rgb(255,170,0);
+}
