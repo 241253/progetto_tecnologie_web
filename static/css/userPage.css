@@ -20,3 +20,14 @@
 {
     text-align: center;
 }
+
+.card-empty-img
+{
+    width: 200px;
+    height: auto;
+}
+
+.list-group-empty
+{
+    list-style-type: none;
+}

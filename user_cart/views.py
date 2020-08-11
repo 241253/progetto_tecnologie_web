@@ -37,6 +37,14 @@ class RemoveToCart(DeleteView):
         template_name = 'user_cart/cart_remove.html'
         success_url = reverse_lazy('cart')
 
+        def get_context_data(self, **kwargs):
+            context = super(RemoveToCart, self).get_context_data(**kwargs)
+            lesson = Lesson.objects.get(id=context['cartdetail'].product_id)
+            context.update({'lesson_title':lesson.title})
+            print(lesson.title)
+            return context
+
+
 class CartView(TemplateView):
     template_name = 'user_cart/cart.html'
 
@@ -51,28 +59,21 @@ class CartView(TemplateView):
             cart_details = CartDetail.objects.all().filter(cart=cart.id)
             lessons = Lesson.objects.filter(id__in=[cart_detail.product_id for cart_detail in cart_details])
             totale = 0.0
-            totale_scontato = 0.0
-            sconto = False
+            sconto = 0
             if len(lessons) != 0:
-                count = 1
                 for lesson in lessons:
                     totale += lesson.price
-                    if count == 5:
-                        totale_scontato += totale*0.8
-                        count = 1
-                        sconto = True
-                    else:
-                        count += 1
+                sconto = int(len(lessons)/5)
 
             context.update({
                 'lessons': lessons,
                 'totale': totale,
                 'cart_details': cart_details,
             })
-            if sconto:
+            if sconto != 0:
                 context.update({
                     'sconto': 'si',
-                    'totale_scontato': totale_scontato,
+                    'totale_scontato': totale - sconto * 20,
                 })
             else:
                 context.update({'sconto': 'no',})

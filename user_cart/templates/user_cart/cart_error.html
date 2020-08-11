@@ -1,12 +1,19 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block browser_page_title %}errore carrello{% endblock %}
+{% block browser_page_title %}Aggiunto al carrello{% endblock %}
 
 {% block personal_css %}
+    <link rel="stylesheet" href="{% static 'css/cart.css' %}"/>
 {% endblock %}
 
 {% block content %}
-    errore, impossibile aggiungere il prodotto al carrello
-    <a href="{% url 'homePage' %}">Torna alla home</a>
+    <div class="container text-center">
+        <img class="error-cart-img my-5" src="{% static 'img/cart_error.png' %}"/>
+        <p class="error-cart-text mx-auto">La lezione selezionata è già presente nel carrello</p>
+        <div class="d-flex flex-row justify-content-around my-5">
+            <a class="btn btn-primary" href="{% url 'homePage' %}">Continua a comprare</a>
+            <a class="btn btn-primary" href="{% url 'cart' %}">Vai al carrello</a>
+        </div>
+    </div>
 {% endblock %}

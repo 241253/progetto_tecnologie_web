@@ -7,6 +7,8 @@ from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views.generic import DetailView, UpdateView, ListView, DeleteView
+
+from user_cart.models import PurchasedLessons
 from user_management.forms import ProfileCreationForm, UserForm, UserUpdateForm, StaffForm, StaffUpdateForm
 from user_management.models import Profile
 
@@ -52,6 +54,8 @@ class UserPage(DetailView):
     def get_context_data(self, **kwargs):
         context = super(UserPage, self).get_context_data(**kwargs)
         context['profile'] = Profile.objects.all().filter(user=context['user'])[0]
+        context['purchased_items'] = PurchasedLessons.objects.filter(user_id=context['user'].id)[:7]
+        context['empty_items'] = [x for x in range(7-len(PurchasedLessons.objects.filter(user_id=context['user'].id)[:7])+1)]
         return context
 
 @method_decorator(login_required, name='dispatch')

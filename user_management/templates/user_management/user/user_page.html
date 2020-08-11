@@ -26,16 +26,29 @@
         <div class="card" style="width: 18rem;">
             <ul class="list-group list-group-flush">
                 <li class="list-group-item"><b>Prodotti acquistati</b></li>
-                <li class="list-group-item">prodotto 1</li>
-                <li class="list-group-item">prodotto 2</li>
-                <li class="list-group-item">prodotto 3</li>
-                <li class="list-group-item">prodotto 4</li>
-                <li class="list-group-item">prodotto 5</li>
-                <li class="list-group-item">prodotto 6</li>
-                <li class="list-group-item">...</li>
+                {% for purchasedItem in purchased_items %}
+                    <li class="list-group-item">{{ purchasedItem.lesson.title }}</li>
+                {% endfor %}
+                {% if purchased_items %}
+                    {% if empty_items|length == 1 %}
+                        <li class="list-group-item">...</li>
+                    {% else %}
+                        {% for _ in empty_items %}
+                            <li class="list-group-empty my-4"></li>
+                        {% endfor %}
+                    {% endif %}
+                {% endif %}
             </ul>
             <div class="card-body">
-                <a href="#" class="card-link">Visualizza tutto</a>
+                {% if purchased_items %}
+                    <a href="#" class="card-link">Visualizza tutto</a>
+                {% else %}
+                    <div class="d-flex flex-column text-center justify-content-center" style="width: 100%; height: 100%;">
+                        <img class="card-empty-img mx-auto" src="{% static 'img/product_empty.png' %}"/>
+                        <p class="my-4">Non hai ancora acquistato nessuna lezione</p>
+                        <a class="btn btn-primary mx-auto" href="{% url 'homePage' %}">Vedi tutte le lezioni</a>
+                    </div>
+                {% endif %}
             </div>
         </div>
         <!-- CARD PRENOTAZIONI -->

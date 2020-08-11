@@ -4,9 +4,16 @@
 {% block browser_page_title %}Aggiunto al carrello{% endblock %}
 
 {% block personal_css %}
+    <link rel="stylesheet" href="{% static 'css/cart.css' %}"/>
 {% endblock %}
 
 {% block content %}
-    aggiunto correttamente
-    <a href="{% url 'homePage' %}">Torna alla home</a>
+    <div class="container text-center">
+        <img class="success-cart-img my-5" src="{% static 'img/cart_ok.png' %}"/>
+        <p class="success-cart-text mx-auto">La lezione selezionata è stata aggiunta correttamente al carrello</p>
+        <div class="d-flex flex-row justify-content-around my-5">
+            <a class="btn btn-primary" href="{% url 'homePage' %}">Continua a comprare</a>
+            <a class="btn btn-primary" href="{% url 'cart' %}">Vai al carrello</a>
+        </div>
+    </div>
 {% endblock %}

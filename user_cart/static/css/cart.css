@@ -21,3 +21,41 @@
 {
     color: rgb(255,170,0);
 }
+
+/* RIMUOVI CARRELLO */
+.remove-cart-text
+{
+    width: 50%;
+    font-size: 25px;
+}
+
+.remove-cart-img
+{
+    width: 20%;
+    height: auto;
+}
+
+/* AGGIUNGI CARRELLO */
+.error-cart-text
+{
+    width: 50%;
+    font-size: 25px;
+}
+
+.error-cart-img
+{
+    width: 20%;
+    height: auto;
+}
+
+.success-cart-text
+{
+    width: 50%;
+    font-size: 25px;
+}
+
+.success-cart-img
+{
+    width: 20%;
+    height: auto;
+}

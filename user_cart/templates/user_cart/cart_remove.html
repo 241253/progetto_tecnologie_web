@@ -4,13 +4,16 @@
 {% block browser_page_title %} Rimuovi lezione dal carrello {% endblock %}
 
 {% block personal_css %}
+    <link rel="stylesheet" href="{% static 'css/cart.css' %}"/>
 {% endblock %}
 
 {% block content %}
-    <form method="post">{% csrf_token %}
-        <p> Sei sicuro di voler eliminare la lezione?</p>
-        <input type="submit" class="btn btn-primary" value="Conferma">
-        <a class="btn btn-primary" href="{% url "cart" %}"> Annulla </a>
-    </form>
-    <br>
+    <div class="container text-center">
+        <img class="remove-cart-img my-5" src="{% static 'img/cart_remove.png' %}"/>
+        <p class="remove-cart-text mx-auto">Sei sicuro di voler rimuovere la lezione </br>"{{ lesson_title }}" dal tuo carrello?</p>
+        <form class="my-5 d-flex flex-row justify-content-around" method="post">{% csrf_token %}
+            <a class="btn btn-primary" href="{% url "cart" %}"> Annulla </a>
+            <input type="submit" class="btn btn-primary" value="Conferma">
+        </form>
+    </div>
 {% endblock %}

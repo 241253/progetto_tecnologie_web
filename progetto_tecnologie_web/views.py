@@ -3,6 +3,7 @@ from django.views.decorators.cache import never_cache
 from django.views.generic.base import View, TemplateView
 
 from lessons_management.models import Lesson, Packet, Course
+from user_cart.models import PurchasedLessons
 
 
 class HomePage(TemplateView):
@@ -11,6 +12,9 @@ class HomePage(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(HomePage, self).get_context_data(**kwargs)
+        purchasedLessons = []
+        for pl in PurchasedLessons.objects.filter(user_id=self.request.user.id):
+            purchasedLessons.append(pl.lesson.id)
         context.update({
             'lesson_list_1': Lesson.objects.all().filter(difficulty=1.0),
             'lesson_list_2': Lesson.objects.all().filter(difficulty=2.0),
@@ -30,6 +34,7 @@ class HomePage(TemplateView):
             'course_list_4': Course.objects.all().filter(difficulty=4.0),
             'course_list_5': Course.objects.all().filter(difficulty=5.0),
             'course_list_6': Course.objects.all().filter(difficulty=6.0),
+            'purchased_item': purchasedLessons
         })
         return context
 
