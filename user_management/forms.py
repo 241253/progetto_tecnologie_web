@@ -42,7 +42,7 @@ class ProfileCreationForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(ProfileCreationForm, self).__init__(*args, **kwargs)
         self.fields['foto'].label = "Foto"
-        self.fields['foto'].required = True
+        self.fields['foto'].required = False
 
     def clean_foto(self):
         foto = self.cleaned_data['foto']

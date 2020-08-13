@@ -4,13 +4,37 @@
 {% block browser_page_title %} Conferma acquisto {% endblock %}
 
 {% block personal_css %}
+        <link rel="stylesheet" href="{% static 'css/cart.css' %}"/> <!-- Utilizza lo stesso css del carrello ma la grafica utilizzata è la stessa -->
 {% endblock %}
 
 {% block content %}
-    {% for lesson in lessons %}
-        <p> {{ lesson.title }}</p>
-    {% endfor %}
-    <a class="btn btn-primary" href="{% url "cart_purchase_success" %}"> Conferma </a>
-    <a class="btn bt-primary" href="{% url "cart" %}"> Annulla </a>
-    <br>
+    <div class="container my-5">
+        <div class="card">
+            <h5 class="card-header">Stai per acquistare:</h5>
+            <div class="card-body">
+                {% for lesson in lessons %}
+                    <div class="d-flex flex-row">
+                        <img class="cart-item-img" src="{% static 'img/card_temp_photo.jpg' %}"/>
+                        <div class="mx-5">
+                            <h3>{{ lesson.title }}</h3>
+                            <p>Descrizione: {{ lesson.description|truncatechars:347 }}...</p>
+                            <p>Prezzo: {{ lesson.price }}</p>
+                        </div>
+                    </div>
+                    <hr></hr>
+                {% endfor %}
+            </div>
+            <div class="card-footer text-muted flex-row align-items-center">
+                {% if sconto == 'si' %}
+                    <p>Prezzo totale (scontato): <del>{{ totale }}€</del> {{ totale_scontato }}€</p>
+                {% else %}
+                    <p>Prezzo totale: {{ totale }}</p>
+                {% endif %}
+                <div style="float: right">
+                    <a class="btn btn-primary" href="{% url "cart" %}"> Torna al carrello </a>
+                    <a class="btn btn-primary" href="{% url "cart_purchase_success" %}"> Conferma l'acquisto </a>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

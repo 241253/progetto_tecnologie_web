@@ -1,10 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Tutto ok bro</title>
-</head>
-<body>
-<p> Tutto ok bro</p>
-</body>
-</html>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block browser_page_title %}Acquisto effettuato{% endblock %}
+
+{% block personal_css %}
+{% endblock %}
+
+{% block content %}
+    <h1 class="scritta_tariffe"> Complimenti, hai effettuato l'acquisto con successo! </h1>
+
+{% endblock %}

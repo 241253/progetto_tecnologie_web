@@ -6,7 +6,7 @@ from django.dispatch import receiver
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
     # foto profilo dell'utente
-    foto = models.ImageField(upload_to='user_photo/')
+    foto = models.ImageField(upload_to='user_photo/', default="uploaded_files/media/user_db/user_photo/None/none_picture.png")
     saldo = models.FloatField(default=400.0)
 
     def __str__(self):
