@@ -132,4 +132,7 @@ class StaffDetailUpdate(UpdateView):
     model = User
     form_class = StaffUpdateForm
     template_name = 'user_management/staff/staff_detail_update.html'
-    success_url = reverse_lazy('landingPage')
+    success_url = reverse_lazy('staff_detail_update_complete')
+
+def StaffDetailUpdateComplete(request):
+    return render(request, 'user_management/staff/staff_detail_update_complete.html')
