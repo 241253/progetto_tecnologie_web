@@ -7,6 +7,7 @@ from django.views.generic import ListView, CreateView, DeleteView, UpdateView
 from lessons_management.forms import LessonsCreationForm, LessonsUpdateForm, PacketCreationForm, PacketUpdateForm, \
     CourseUpdateForm, CourseCreationForm
 from lessons_management.models import Lesson, Packet, Course
+from user_cart.models import PurchasedLessons
 
 
 @method_decorator(login_required, name='dispatch')
@@ -51,6 +52,14 @@ class UpdateLesson(UpdateView):
 class LessonDetail(DeleteView):
     template_name = 'lessons_management/lessons/detail_lesson.html'
     model = Lesson
+
+    def get_context_data(self, **kwargs):
+        context = super(LessonDetail, self).get_context_data(**kwargs)
+        purchasedLessons = []
+        for pl in PurchasedLessons.objects.filter(user_id=self.request.user.id):
+            purchasedLessons.append(pl.lesson.id)
+        context['purchased_item'] = purchasedLessons
+        return context
 
 # PACKETS
 @method_decorator(login_required, name='dispatch')

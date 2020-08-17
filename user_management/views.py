@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
-from django.views.generic import DetailView, UpdateView, ListView, DeleteView
+from django.views.generic import DetailView, UpdateView, ListView, DeleteView, TemplateView
 
 from user_cart.models import PurchasedLessons
 from user_management.forms import ProfileCreationForm, UserForm, UserUpdateForm, StaffForm, StaffUpdateForm
@@ -67,6 +67,14 @@ class UserUpdate(UpdateView):
 
 def UserUpdateComplete(request):
     return render(request, 'user_management/user/user_update_complete.html')
+
+class UserPurchasedLessonView(TemplateView):
+    template_name = 'user_management/user/user_purchased_lesson.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(UserPurchasedLessonView, self).get_context_data(**kwargs)
+        context['lessons'] = PurchasedLessons.objects.filter(user_id=self.request.user.id)
+        return context
 
 
 #STAFF VIEW

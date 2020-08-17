@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block browser_page_title %}Virgilian Code{% endblock %}
+
+{% block personal_css %}
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="container my-5">
+        <h1 class="text-center my-5">Lezioni acquistate</h1>
+        {% for pl in lessons %}
+            <div class="d-flex flex-row">
+                <a href="{% url 'detail_lesson' pl.lesson.id %}">
+                    <img class="lesson-img" src="{% static 'img/card_temp_photo.jpg' %}"/>
+                </a>
+                <div class="mx-5">
+                    <a class="lesson-title-a" href="{% url 'detail_lesson' pl.lesson.id %}">
+                        <h3 class="lesson-title">{{ pl.lesson.title|capfirst }} ({{ pl.lesson.difficulty }})</h3>
+                    </a>
+                    <p>Descrizione: {{ pl.lesson.description|truncatechars:300 }}</p>
+                    <p>Descrizione: Genere: {{ pl.lesson.genre }}</p>
+                </div>
+            </div>
+            <hr/>
+        {% endfor %}
+    </div>
+{% endblock %}

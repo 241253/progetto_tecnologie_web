@@ -31,3 +31,45 @@
 {
     list-style-type: none;
 }
+
+.card-edit-img-btn
+{
+    color: white;
+    background-color: #448EFF;
+    opacity: 70%;
+}
+
+.card-edit-img-btn:hover
+{
+    opacity: 100%;
+}
+
+.list-group-btn:hover
+{
+    color: white;
+    text-decoration: none;
+}
+
+.list-group-btn:after
+{
+    color: white;
+    text-decoration: none;
+}
+
+.list-group-btn:link
+{
+    color: white;
+    text-decoration: none;
+}
+
+.list-group-btn:visited
+{
+    color: white;
+    text-decoration: none;
+}
+
+.list-group-btn:active
+{
+    color: white;
+    text-decoration: none;
+}
