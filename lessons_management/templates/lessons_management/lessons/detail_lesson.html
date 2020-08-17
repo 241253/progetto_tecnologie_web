@@ -8,14 +8,52 @@
 
 {% block content %}
     <div class="container my-5">
-        <p>Titolo: {{ object.title }}</p>
-        <p>Descrizione: {{ object.description }}</p>
-        <p>Difficoltà: {{ object.difficulty }}</p>
-        <p>Genere: {{ object.genre }}</p>
-        <p>Prezzo: {{ object.price }}</p>
-        <video oncontextmenu="return false;" width='800' height='600' controls disablepictureinpicture controlsList="nodownload">
-        <source src="/uploaded_files/{{ object.video }}" type='video/mp4'>
-        Your browser does not support the video tag.
-        </video>
+    <div class="card">
+        <h1 class="card-header" style="text-align: center; background-color: rgb(68, 142, 255); color: rgb(255,255,255)">{{ object.title }}</h1>
+        <p class="card-header" style="background-color: rgb(255,170,0); color: rgb(255,255,255)">Descrizione: {{ object.description }}</p>
+        <!-- DIFFICULTY_CHOICES = (('1.0','Facile - base'), ('2.0', 'Facile - avanzato'), ('3.0', 'Media - base'), ('4.0', 'Media - avanzata'), ('5.0', 'Difficile - base'), ('6.0', 'Difficile - avanzata')) -->
+        {% if object.difficulty == '1.0' %}
+            <p class="card-header" style="background-color: rgb(255,170,0); color: rgb(255,255,255)">Difficoltà: facile base</p>
+        {% elif object.difficulty == '2.0'%}
+            <p class="card-header" style="background-color: rgb(255,170,0); color: rgb(255,255,255)">Difficoltà: facile avanzato</p>
+        {% elif object.difficulty == '3.0'%}
+            <p class="card-header" style="background-color: rgb(255,170,0); color: rgb(255,255,255)">Difficoltà: media di base</p>
+        {% elif object.difficulty == '4.0'%}
+            <p class="card-header" style="background-color: rgb(255,170,0); color: rgb(255,255,255)">Difficoltà: media avanzata</p>
+        {% elif object.difficulty == '5.0'%}
+            <p class="card-header" style="background-color: rgb(255,170,0); color: rgb(255,255,255)">Difficoltà: difficile base</p>
+        {% elif object.difficulty == '6.0'%}
+            <p class="card-header" style="background-color: rgb(255,170,0); color: rgb(255,255,255)">Difficoltà: difficile avanzato</p>
+        {% endif %}
+
+        <!-- GENRE_CHOICES = (('PC', 'Punta e clicca'), ('A', 'Avventura'), ('GM', 'Gioco matematico'), ('ST', 'Story-telling'), ('GV', 'Giochi vocali'), ('R', 'Racing'), ('A', 'Altro...')) -->
+        {% if object.genre == 'PC' %}
+            <p class="card-header" style="background-color: rgb(255,170,0); color: rgb(255,255,255)">Genere: punta e clicca</p>
+        {% elif object.genre == 'A'%}
+            <p class="card-header" style="background-color: rgb(255,170,0); color: rgb(255,255,255)">Genere: azione</p>
+        {% elif object.genre == 'GM'%}
+            <p class="card-header" style="background-color: rgb(255,170,0); color: rgb(255,255,255)">Genere: gioco matematico</p>
+        {% elif object.genre == 'ST'%}
+            <p class="card-header" style="background-color: rgb(255,170,0); color: rgb(255,255,255)">Genere: story-telling</p>
+        {% elif object.genre == 'GV'%}
+            <p class="card-header" style="background-color: rgb(255,170,0); color: rgb(255,255,255)">Genere: giochi vocali</p>
+        {% elif object.genre == 'R'%}
+            <p class="card-header" style="background-color: rgb(255,170,0); color: rgb(255,255,255)">Genere: racing</p>
+        {% endif %}
+        <div class="card-body">
+            <div class="embed-responsive embed-responsive-16by9"> <!-- Con questa classe il video è impaginato meglio ed è più grande -->
+                    <video oncontextmenu="return false;" width='800' height='600' controls disablepictureinpicture controlsList="nodownload">
+                    <source src="/uploaded_files/{{ object.video }}" type='video/mp4'>
+                    Your browser does not support the video tag.
+                    </video>
+            </div>
+            <hr></hr>
+    </div>
+    <div class="card-footer text-muted d-flex flex-row justify-content-between align-items-center" style="background-color: rgb(68, 142, 255)">
+        <a class="btn btn-primary" href="{% url 'homePage' %}">Torna alle tue lezioni</a>
+    </div>
+</div>
+
+
     </div>
 {% endblock %}

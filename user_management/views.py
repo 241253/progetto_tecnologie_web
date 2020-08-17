@@ -119,3 +119,17 @@ class UpdateStaff(UpdateView):
     form_class = StaffUpdateForm
     template_name = 'user_management/staff/staff_update.html'
     success_url = reverse_lazy('staff_list')
+
+@method_decorator(login_required, name='dispatch')
+class DetailStaff(DetailView):
+    context_object_name = 'user'
+    queryset = User.objects.all()
+    extra_context = {'profile': queryset[0].profile}
+    template_name = 'user_management/staff/staff_detail.html'
+
+@method_decorator(login_required, name='dispatch')
+class StaffDetailUpdate(UpdateView):
+    model = User
+    form_class = StaffUpdateForm
+    template_name = 'user_management/staff/staff_detail_update.html'
+    success_url = reverse_lazy('landingPage')

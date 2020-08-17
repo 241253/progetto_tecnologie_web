@@ -141,10 +141,10 @@ CSRF_COOKIE_DOMAIN = None
 
 from .reset_password import *
 #se non è presente reset_password.py creare il file in questo modo
-# # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 # EMAIL_HOST = 'smtp.<host>'
 # EMAIL_PORT = 587
-# EMAIL_HOST_USER = 'email'
-# EMAIL_HOST_PASSWORD = 'password'
+# EMAIL_HOST_USER = 'virgiliancodeonline@gmail.com'
+# EMAIL_HOST_PASSWORD = 'michelejason123!'
 # EMAIL_USE_TLS = True
-# DEFAULT_FROM_EMAIL = 'email'
+# DEFAULT_FROM_EMAIL = 'virgiliancodeonline@gmail.com'

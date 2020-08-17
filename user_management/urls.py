@@ -19,4 +19,6 @@ urlpatterns = [
     path('staff/add/', views.create_staff, name='create_staff'),
     path('staff/remove/<int:pk>', views.DeleteStaff.as_view(), name='delete_staff'),
     path('staff/edit/<int:pk>', views.UpdateStaff.as_view(), name='update_staff'),
+    path('staff/detail/<int:pk>', views.DetailStaff.as_view(), name='detail_staff'),
+    path('staff/detail/update/<int:pk>', views.StaffDetailUpdate.as_view(), name='detail_update_staff')
 ]

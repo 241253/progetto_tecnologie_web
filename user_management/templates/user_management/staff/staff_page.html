@@ -9,7 +9,7 @@
 
 {% block content %}
     <div class="container my-5">
-    <a class="btn btn-primary">Gestione profilo</a>
+    <a class="btn btn-primary" href="{% url 'detail_staff' user.pk %}">Gestione profilo</a>
     {% if user.is_superuser %}
         <a class="btn btn-primary" href="{% url 'staff_list' %}">Gestione staff</a>
     {% endif %}
