@@ -7,6 +7,7 @@ class LessonsCreationForm(forms.ModelForm):
     class Meta:
         model = Lesson
         fields = ('title', 'description', 'difficulty', 'genre', 'price', 'video')
+        labels = {'title': 'Titolo', 'description':'Descrizione','difficulty':'Difficoltà','genre':'Genere','price':'Prezzo','video':'Video'}
 
     def __init__(self, *args, **kwargs):
         self.current_user = kwargs.pop('user')
@@ -27,6 +28,7 @@ class LessonsUpdateForm(forms.ModelForm):
     class Meta:
         model = Lesson
         fields = ('title', 'description', 'difficulty', 'genre', 'price', 'video')
+        labels = {'title': 'Titolo', 'description':'Descrizione','difficulty':'Difficoltà','genre':'Genere','price':'Prezzo','video':'Video'}
 
 
 # PACKETS
