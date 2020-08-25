@@ -11,11 +11,24 @@
 {% block content %}
     <div class="container my-5">
         <h1>prenotazioni</h1>
-        <form method="POST">
-            {% csrf_token %}
-            {{ form | crispy }}
-            <input type="submit" class="btn btn-primary" style="float: right" value="effettua prenotazione">
-        </form>
-        <a class="btn btn-primary" href="{% url 'user_page' user.id %}">annulla</a>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ut lacinia tellus. Donec mollis dui dui, eu volutpat mi venenatis vitae. Nullam tincidunt orci tempor tellus hendrerit, et pellentesque urna facilisis. Aliquam velit libero, pulvinar vel risus ac, viverra aliquam dui. Nulla mollis rhoncus sapien. Sed lobortis lacus et nisi egestas, quis porttitor libero accumsan. Donec ultrices eros dapibus mi fermentum, a lacinia arcu tristique. Ut vehicula aliquet lectus, ut elementum nisi dapibus nec. Duis vitae nibh sed diam mollis pellentesque ac sed est. Vestibulum ac dapibus urna.
+
+Praesent elementum, eros eget iaculis fringilla, risus nisl laoreet orci, id pellentesque velit ligula a nunc. In tempor maximus dui, ut aliquet orci viverra sed. Duis nec efficitur tortor, sed interdum magna. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Morbi faucibus laoreet mollis. Nam luctus orci eget eros gravida vestibulum. Morbi dignissim consequat auctor. Mauris quis urna suscipit, condimentum massa et, lobortis ligula. Vivamus volutpat risus non erat mattis dignissim. Nunc velit felis, maximus sed aliquet iaculis, porta at quam.
+
+Nullam posuere odio elit, ut sodales nulla tristique sit amet. Sed eleifend elit elit. Interdum et malesuada fames ac ante ipsum primis in faucibus. Integer euismod turpis pellentesque placerat consequat. Cras molestie leo a erat pharetra, quis mollis ipsum tincidunt. Mauris sollicitudin feugiat tortor eget suscipit. Nulla diam sem, euismod id sem non, faucibus tempor nibh. Nulla sit amet condimentum orci. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Suspendisse pretium nunc id turpis auctor gravida.
+
+Etiam porttitor a enim eget malesuada. Suspendisse potenti. Aenean in viverra diam. In libero dolor, condimentum sed laoreet non, fermentum eget purus. Aliquam consequat suscipit augue, a faucibus est viverra fringilla. Maecenas non tortor posuere massa consectetur fermentum. Nam finibus nisi lorem, gravida aliquam ligula consequat ac. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris euismod tellus metus, vel rhoncus sem feugiat vel. Donec fringilla, nisi a congue blandit, tortor nibh feugiat eros, vel tristique tellus ipsum vitae turpis. Sed gravida mauris dolor, in sagittis turpis lacinia quis.
+
+Proin suscipit sapien lectus, ac condimentum mi auctor a. Donec lacus nisi, venenatis id rhoncus volutpat, vehicula vitae sapien. Nulla in pharetra ex, sit amet tristique augue. Ut neque dolor, rhoncus et convallis vitae, volutpat a magna. Curabitur lobortis tristique urna, sit amet aliquam diam faucibus sed. Pellentesque eget ipsum in nunc fringilla consequat eget eu risus. Morbi at imperdiet nunc, sed rhoncus dolor. Vivamus blandit rhoncus augue at ultrices. Nam finibus aliquet turpis nec tempus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Ut lobortis leo nibh, et facilisis lacus luctus at. Phasellus rutrum justo in mi vehicula, rutrum varius sapien interdum. Aenean convallis, odio id interdum ultrices, magna ipsum aliquam risus, ut fringilla ex nunc et velit. Quisque commodo placerat odio eget molestie.
+        </p>
+        {% if not user.is_staff %}
+            <form method="POST">
+                {% csrf_token %}
+                {{ form | crispy }}
+                <input type="submit" class="btn btn-primary" style="float: right" value="effettua prenotazione">
+            </form>
+            <a class="btn btn-primary" href="{% url 'user_page' user.id %}">annulla</a>
+        {% endif %}
     </div>
 {% endblock %}

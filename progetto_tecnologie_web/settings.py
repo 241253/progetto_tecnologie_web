@@ -1,6 +1,6 @@
 import os
 from django.urls import reverse_lazy
-# from . import views
+from django.conf.global_settings import DATETIME_INPUT_FORMATS
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -107,15 +107,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
-
-TIME_ZONE = 'UTC'
-
-USE_I18N = True
-
-USE_L10N = True
-
-USE_TZ = True
+DATETIME_INPUT_FORMATS += ('%d/%m/%Y %H:%M', )
 
 
 # Static files (CSS, JavaScript, Images)
