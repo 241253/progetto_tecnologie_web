@@ -1,7 +1,6 @@
 from django.shortcuts import render
 from django.views.decorators.cache import never_cache
 from django.views.generic.base import View, TemplateView
-
 from lessons_management.models import Lesson, Packet, Course
 from user_cart.models import PurchasedLessons
 
@@ -41,9 +40,6 @@ class HomePage(TemplateView):
 @never_cache
 def landingPage(request):
     return render(request, 'landingPage.html')
-
-def reservationPage(request):
-    return render(request, 'prenotazioni.html')
 
 def pricesPage(request):
     return render(request, 'tariffe.html')

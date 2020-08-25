@@ -31,6 +31,7 @@ class CreateLesson(CreateView):
     form_class = LessonsCreationForm
     template_name = 'lessons_management/lessons/create_lesson.html'
     success_url = reverse_lazy('list_hub')
+
     def get_form_kwargs(self):
         kwargs = super(CreateLesson, self).get_form_kwargs()
         kwargs.update({'user': self.request.user})

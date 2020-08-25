@@ -24,6 +24,8 @@ INSTALLED_APPS = [
     'user_management',
     'lessons_management',
     'user_cart',
+    'booking_management',
+
     #DEFAULT
     'crispy_forms',
     'django.contrib.admin',
