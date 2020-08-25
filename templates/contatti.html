@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load crispy_forms_filters %}
 
 {% block browser_page_title %}Contatti{% endblock %}
 
@@ -9,30 +10,26 @@
 
 {% block content %}
     <div class="container my-5">
-        <h1 class="titolo_contatti"> Contatti </h1>
+        <h1 class="titolo_contatti"> Contattaci </h1>
         <div class="container my-5 container_contatti">
-            <div class="container my-5 container_contatti_foto">
+            <div class="container container_contatti_foto">
                     <div class="my-auto">
-                        <p class="pr-4 contatti_paragrafi"> Telefono/Whatsapp: +39 347 8742136 </p>
-                        <p class="pr-4 contatti_paragrafi"> Email: renatoturbati@gmail.com
-                        <p class="pr-4 contatti_paragrafi"> Skype: renato.turbati </p>
-                        <p class="pr-4 contatti_paragrafi"> LinkedIn: <a href="https://it.linkedin.com/in/renato-turbati-2039a1b"> Renato Turbati </a> </p>
+                        <img class="foto my-3" src="{% static 'img/contatti/renato.png' %}"/>
+                        <p class="contatti_paragrafi"> Telefono/Whatsapp: +39 347 8742136 </p>
+                        <p class="contatti_paragrafi"> Email: renatoturbati@gmail.com
+                        <p class="contatti_paragrafi"> Skype: renato.turbati </p>
+                        <p class="contatti_paragrafi"> LinkedIn: <a href="https://it.linkedin.com/in/renato-turbati-2039a1b"> Renato Turbati </a> </p>
                     </div>
-                    <img class="foto my-auto" src="{% static 'img/contatti/renato.png' %}"/>
             </div>
-            <form class="div_contatti_form">
               <div class="form-group form_contatti">
-                <label class="form_label contatti_form_font">La tua email</label>
-                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="nome@esempio.com">
-                <label class="form_label contatti_form_font">Nome e cognome</label>
-                <input class="form-control" id="exampleFormControlInput2" placeholder="">
-                <label class="form_label contatti_form_font">Oggetto</label>
-                <input class="form-control" id="exampleFormControlInput1" placeholder="">
-                <label class="form_label contatti_form_font">Messaggio</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                <button type="submit" class="btn btn-primary contatti_bottone">Contattaci</button>
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    <div class="form-actions">
+                      <button class="btn btn-primary" type="submit">Invia</button>
+                    </div>
+                </form>
               </div>
-            </form>
         </div>
     </div>
 

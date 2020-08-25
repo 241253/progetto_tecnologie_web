@@ -16,7 +16,8 @@ urlpatterns = [
     path('home/', views.HomePage.as_view(), name='homePage'),
     path('chi_siamo/', views.chi_siamoPage, name='chi_siamo'),
     path('tariffe/', views.pricesPage, name='tariffe'),
-    path('contatti/', views.contacts, name="contatti"),
+    path('contatti/', views.contactView, name="contatti"),
+    path('contatti_success/', views.ContattiSuccessView, name='contatti_success'),
     #USER_MANAGEMENT
     path('user_management/', include(um_urls)),
     #LESSONS_MANAGEMENT

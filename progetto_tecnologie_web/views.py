@@ -50,3 +50,28 @@ def chi_siamoPage(request):
 def contacts(request):
     return render(request, 'contatti.html')
 
+# sendemail/views.py
+from django.core.mail import send_mail, BadHeaderError
+from django.http import HttpResponse, HttpResponseRedirect
+from django.shortcuts import render, redirect
+from .forms import ContactForm
+
+def contactView(request):
+    if request.method == 'GET':
+        form = ContactForm()
+    else:
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            subject = form.cleaned_data['subject']
+            from_email = form.cleaned_data['from_email']
+            message = form.cleaned_data['message']
+            message = "Mail inviata da: " + from_email + "\n\n" + message
+            try:
+                send_mail(subject, message, from_email, ['virgiliancodeonline@gmail.com'])
+            except BadHeaderError:
+                return HttpResponse('Invalid header found.')
+            return redirect('contatti_success')
+    return render(request, "contatti.html", {'form': form})
+
+def ContattiSuccessView(request):
+    return render(request, 'contatti_success.html')
