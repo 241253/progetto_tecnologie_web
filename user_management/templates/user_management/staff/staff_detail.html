@@ -11,7 +11,7 @@
         <!-- CARD UTENTE -->
         <div class="card" style="width: 18rem; margin: auto">
             {% if profile.foto != "uploaded_files/media/user_db/user_photo/None/none_picture.png" %}                    <!-- Ho aggiunto un if per distinguere la foto personalizzata scelta dagli utenti dalla foto di default (None per picture) per problemi legati al percorso per come l'avevamo fatto. -->
-                <img class="card-img-top p-3" src="/uploaded_files/{{  profile.foto }}" alt="Card image cap">
+                <img class="card-img-top p-3" src="/uploaded_files/{{ profile.foto }}" alt="Card image cap">
             {% else %}
                 <img class="card-img-top p-3" src="/uploaded_files/media/user_db/user_photo/None/none_picture.png" alt="Card image cap">
             {% endif %}

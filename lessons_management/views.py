@@ -82,6 +82,7 @@ class DeletePacket(DeleteView):
     success_url = reverse_lazy('list_hub')
 
 
+
 @method_decorator(login_required, name='dispatch')
 class UpdatePacket(UpdateView):
     model = Packet

@@ -33,7 +33,7 @@
                             {% if lesson.description|length <= 20 %}
                                <td>"{{ lesson.description }}"</td>
                             {% else %}
-                                <td>"{{ lesson.description|slice:"17" }}"...</td>
+                                <td>{{ lesson.description|truncatechars:17 }}</td>
                             {% endif %}
 
                             <!-- DIFFICULTY_CHOICES = (('1.0','Facile - base'), ('2.0', 'Facile - avanzato'), ('3.0', 'Media - base'), ('4.0', 'Media - avanzata'), ('5.0', 'Difficile - base'), ('6.0', 'Difficile - avanzata')) -->
