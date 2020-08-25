@@ -90,6 +90,14 @@
     margin: 0 2.5% 0 2.5%;
 }
 
+.footer-landingpagelink {
+    float: left;
+    margin-left: 3.0%;
+    font-weight: bold;
+    text-decoration: underline;
+    color: white;
+}
+
 .footer-copyright {
     float: right;
     margin-right: 2.5%;

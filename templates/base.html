@@ -99,7 +99,11 @@
                 </div>
             </div>
             <hr class="footer-hr-style" />
-            <p class="footer-texts my-3 footer-copyright"> © 2020 Virgilian code. All Rights Reserved. </p>
+                {% url 'landingPage' as landing_page_url %}
+                {% if not request.get_full_path == landing_page_url %}
+                    <a class="footer-texts my-3 footer-landingpagelink" href="{% url 'landingPage' %}">Torna alla landing page</a>
+                {% endif %}
+                <p class="footer-texts my-3 footer-copyright"> © 2020 Virgilian code. All Rights Reserved. </p>
         </div>
         <!-- FINE FOOTER -->
         <!-- Optional JavaScript -->

@@ -113,6 +113,7 @@ class StaffUpdateForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ('email', 'first_name', 'last_name')
+        labels = {'email': 'Indirizzo email', 'first_name':'Nome','last_name':'Cognome'}
 
         def __init__(self, *args, **kwargs):
             super(forms.ModelForm, self).__init__(*args, **kwargs)
