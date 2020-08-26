@@ -15,9 +15,9 @@
         <div class="card">
             <div class="card-header" id="headingOne" style="background-color: #18d624;">
                 <h2 class="mb-0 d-flex flex-row">
-                    <button class="lesson-header-title btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
+                    <div class="lesson-header-title btn btn-link btn-block text-left" data-toggle="collapse" data-target="#collapse1">
                         DIFFICOLTA' FACILE
-                    </button>
+                    </div>
                     <img class="lesson-header-icon" src="{% static 'img/home/arrow_down.png' %}"/>
                 </h2>
             </div>
@@ -26,7 +26,21 @@
                     {% for lesson in lesson_list_1 %}
                         <div class="d-flex flex-row">
                             <a href="{% url 'detail_lesson' lesson.id %}">
-                                <img class="lesson-img" src="{% static 'img/card_temp_photo.jpg' %}"/>
+                                {% if lesson.genre == 'PC' %}
+                                    <img style="margin-left: 10px;" class="lesson-img" src="{% static 'img/lessons/click.png' %}"/>
+                                {% elif lesson.genre == 'A' %}
+                                    <img style="margin-left: 15px;" class="lesson-img" src="{% static 'img/lessons/tourist.png' %}"/>
+                                {% elif lesson.genre == 'GM' %}
+                                    <img style="margin-left: 10px;"  class="lesson-img" src="{% static 'img/lessons/calculator.png' %}"/>
+                                {% elif lesson.genre == 'ST' %}
+                                    <img style="margin-left: 10px;"  class="lesson-img" src="{% static 'img/lessons/book.png' %}"/>
+                                {% elif lesson.genre == 'GV' %}
+                                    <img style="margin-left: 10px;"  class="lesson-img" src="{% static 'img/lessons/microphone.png' %}"/>
+                                {% elif lesson.genre == 'R' %}
+                                    <img style="margin-left: 10px;"  class="lesson-img" src="{% static 'img/lessons/start.png' %}"/>
+                                {% elif lesson.genre == 'AL' %}
+                                    <img style="margin-left: 10px;"  class="lesson-img" src="{% static 'img/lessons/icon.png' %}"/>
+                                {% endif %}
                             </a>
                             <div class="mx-5">
                                 <a class="lesson-title-a" href="{% url 'detail_lesson' lesson.id %}">
@@ -40,7 +54,7 @@
                             {% if lesson.id in purchased_item %}
                                 <p>Lezione già acquistata</p>
                             {% else %}
-                                <a class="btn btn-primary add-to-cart-btn" href="{% url 'cart_add' lesson.id %}"><img class="add-to-cart-icon" src="{% static 'img/home/add-to-cart.png' %}"/>   Aggiungi al carrello</a>
+                                <a class="btn btn-primary add-to-cart-btn" style="margin-top: 10px; width: 180px;" href="{% url 'cart_add' lesson.id %}"><img class="add-to-cart-icon" src="{% static 'img/home/add-to-cart.png' %}"/><br>Aggiungi al carrello</a>
                             {% endif %}
                         {% endif %}
                         <hr/>
@@ -48,7 +62,21 @@
                     {% for lesson in lesson_list_2 %}
                         <div class="d-flex flex-row">
                             <a href="{% url 'detail_lesson' lesson.id %}">
-                                <img class="lesson-img" src="{% static 'img/card_temp_photo.jpg' %}"/>
+                                {% if lesson.genre == 'PC' %}
+                                    <img style="margin-left: 10px;"  class="lesson-img" src="{% static 'img/lessons/click.png' %}"/>
+                                {% elif lesson.genre == 'A' %}
+                                    <img style="margin-left: 10px;"  class="lesson-img" src="{% static 'img/lessons/tourist.png' %}"/>
+                                {% elif lesson.genre == 'GM' %}
+                                    <img style="margin-left: 10px;"  class="lesson-img" src="{% static 'img/lessons/calculator.png' %}"/>
+                                {% elif lesson.genre == 'ST' %}
+                                    <img style="margin-left: 10px;"  class="lesson-img" src="{% static 'img/lessons/book.png' %}"/>
+                                {% elif lesson.genre == 'GV' %}
+                                    <img style="margin-left: 10px;"  class="lesson-img" src="{% static 'img/lessons/microphone.png' %}"/>
+                                {% elif lesson.genre == 'R' %}
+                                    <img style="margin-left: 10px;"  class="lesson-img" src="{% static 'img/lessons/start.png' %}"/>
+                                {% elif lesson.genre == 'AL' %}
+                                    <img style="margin-left: 10px;"  class="lesson-img" src="{% static 'img/lessons/icon.png' %}"/>
+                                {% endif %}
                             </a>
                             <div class="mx-5">
                                 <a class="lesson-title-a" href="{% url 'detail_lesson' lesson.id %}">
@@ -62,7 +90,7 @@
                             {% if lesson.id in purchased_item %}
                                 <p>Lezione già acquistata</p>
                             {% else %}
-                                <a class="btn btn-primary add-to-cart-btn" href="{% url 'cart_add' lesson.id %}"><img class="add-to-cart-icon" src="{% static 'img/home/add-to-cart.png' %}"/>   Aggiungi al carrello</a>
+                                <a class="btn btn-primary add-to-cart-btn" style="margin-top: 10px; width: 180px;" href="{% url 'cart_add' lesson.id %}"><img class="add-to-cart-icon" src="{% static 'img/home/add-to-cart.png' %}"/><br>Aggiungi al carrello</a>
                             {% endif %}
                         {% endif %}
                         <hr/>
@@ -87,7 +115,21 @@
                     {% for lesson in lesson_list_3 %}
                         <div class="d-flex flex-row">
                             <a href="{% url 'detail_lesson' lesson.id %}">
-                                <img class="lesson-img" src="{% static 'img/card_temp_photo.jpg' %}"/>
+                                {% if lesson.genre == 'PC' %}
+                                    <img style="margin-left: 10px;"  class="lesson-img" src="{% static 'img/lessons/click.png' %}"/>
+                                {% elif lesson.genre == 'A' %}
+                                    <img style="margin-left: 10px;"  class="lesson-img" src="{% static 'img/lessons/tourist.png' %}"/>
+                                {% elif lesson.genre == 'GM' %}
+                                    <img style="margin-left: 10px;"  class="lesson-img" src="{% static 'img/lessons/calculator.png' %}"/>
+                                {% elif lesson.genre == 'ST' %}
+                                    <img style="margin-left: 10px;"  class="lesson-img" src="{% static 'img/lessons/book.png' %}"/>
+                                {% elif lesson.genre == 'GV' %}
+                                    <img style="margin-left: 10px;"  class="lesson-img" src="{% static 'img/lessons/microphone.png' %}"/>
+                                {% elif lesson.genre == 'R' %}
+                                    <img style="margin-left: 10px;"  class="lesson-img" src="{% static 'img/lessons/start.png' %}"/>
+                                {% elif lesson.genre == 'AL' %}
+                                    <img style="margin-left: 10px;"  class="lesson-img" src="{% static 'img/lessons/icon.png' %}"/>
+                                {% endif %}
                             </a>
                             <div class="mx-5">
                                 <a class="lesson-title-a" href="{% url 'detail_lesson' lesson.id %}">
@@ -101,7 +143,7 @@
                             {% if lesson.id in purchased_item %}
                                 <p>Lezione già acquistata</p>
                             {% else %}
-                                <a class="btn btn-primary add-to-cart-btn" href="{% url 'cart_add' lesson.id %}"><img class="add-to-cart-icon" src="{% static 'img/home/add-to-cart.png' %}"/>   Aggiungi al carrello</a>
+                                <a class="btn btn-primary add-to-cart-btn" style="margin-top: 10px; width: 180px;" href="{% url 'cart_add' lesson.id %}"><img class="add-to-cart-icon" src="{% static 'img/home/add-to-cart.png' %}"/><br>Aggiungi al carrello</a>
                             {% endif %}
                         {% endif %}
                         <hr/>
@@ -109,7 +151,21 @@
                     {% for lesson in lesson_list_4 %}
                         <div class="d-flex flex-row">
                             <a href="{% url 'detail_lesson' lesson.id %}">
-                                <img class="lesson-img" src="{% static 'img/card_temp_photo.jpg' %}"/>
+                                {% if lesson.genre == 'PC' %}
+                                    <img style="margin-left: 10px;"  class="lesson-img" src="{% static 'img/lessons/click.png' %}"/>
+                                {% elif lesson.genre == 'A' %}
+                                    <img style="margin-left: 10px;"  class="lesson-img" src="{% static 'img/lessons/tourist.png' %}"/>
+                                {% elif lesson.genre == 'GM' %}
+                                    <img style="margin-left: 10px;"  class="lesson-img" src="{% static 'img/lessons/calculator.png' %}"/>
+                                {% elif lesson.genre == 'ST' %}
+                                    <img style="margin-left: 10px;"  class="lesson-img" src="{% static 'img/lessons/book.png' %}"/>
+                                {% elif lesson.genre == 'GV' %}
+                                    <img style="margin-left: 10px;"  class="lesson-img" src="{% static 'img/lessons/microphone.png' %}"/>
+                                {% elif lesson.genre == 'R' %}
+                                    <img style="margin-left: 10px;"  class="lesson-img" src="{% static 'img/lessons/start.png' %}"/>
+                                {% elif lesson.genre == 'AL' %}
+                                    <img style="margin-left: 10px;"  class="lesson-img" src="{% static 'img/lessons/icon.png' %}"/>
+                                {% endif %}
                             </a>
                             <div class="mx-5">
                                 <a class="lesson-title-a" href="{% url 'detail_lesson' lesson.id %}">
@@ -123,7 +179,7 @@
                             {% if lesson.id in purchased_item %}
                                 <p>Lezione già acquistata</p>
                             {% else %}
-                                <a class="btn btn-primary add-to-cart-btn" href="{% url 'cart_add' lesson.id %}"><img class="add-to-cart-icon" src="{% static 'img/home/add-to-cart.png' %}"/>   Aggiungi al carrello</a>
+                                <a class="btn btn-primary add-to-cart-btn" style="margin-top: 10px; width: 180px;" href="{% url 'cart_add' lesson.id %}"><img class="add-to-cart-icon" src="{% static 'img/home/add-to-cart.png' %}"/><br>Aggiungi al carrello</a>
                             {% endif %}
                         {% endif %}
                         <hr/>
@@ -148,7 +204,21 @@
                     {% for lesson in lesson_list_5 %}
                         <div class="d-flex flex-row">
                             <a href="{% url 'detail_lesson' lesson.id %}">
-                                <img class="lesson-img" src="{% static 'img/card_temp_photo.jpg' %}"/>
+                                {% if lesson.genre == 'PC' %}
+                                    <img style="margin-left: 10px;"  class="lesson-img" src="{% static 'img/lessons/click.png' %}"/>
+                                {% elif lesson.genre == 'A' %}
+                                    <img style="margin-left: 10px;"  class="lesson-img" src="{% static 'img/lessons/tourist.png' %}"/>
+                                {% elif lesson.genre == 'GM' %}
+                                    <img style="margin-left: 10px;"  class="lesson-img" src="{% static 'img/lessons/calculator.png' %}"/>
+                                {% elif lesson.genre == 'ST' %}
+                                    <img style="margin-left: 10px;"  class="lesson-img" src="{% static 'img/lessons/book.png' %}"/>
+                                {% elif lesson.genre == 'GV' %}
+                                    <img style="margin-left: 10px;"  class="lesson-img" src="{% static 'img/lessons/microphone.png' %}"/>
+                                {% elif lesson.genre == 'R' %}
+                                    <img style="margin-left: 10px;"  class="lesson-img" src="{% static 'img/lessons/start.png' %}"/>
+                                {% elif lesson.genre == 'AL' %}
+                                    <img style="margin-left: 10px;"  class="lesson-img" src="{% static 'img/lessons/icon.png' %}"/>
+                                {% endif %}
                             </a>
                             <div class="mx-5">
                                 <a class="lesson-title-a" href="{% url 'detail_lesson' lesson.id %}">
@@ -162,7 +232,7 @@
                             {% if lesson.id in purchased_item %}
                                 <p>Lezione già acquistata</p>
                             {% else %}
-                                <a class="btn btn-primary add-to-cart-btn" href="{% url 'cart_add' lesson.id %}"><img class="add-to-cart-icon" src="{% static 'img/home/add-to-cart.png' %}"/>   Aggiungi al carrello</a>
+                                <a class="btn btn-primary add-to-cart-btn" style="margin-top: 10px; width: 180px;" href="{% url 'cart_add' lesson.id %}"><img class="add-to-cart-icon" src="{% static 'img/home/add-to-cart.png' %}"/><br>Aggiungi al carrello</a>
                             {% endif %}
                         {% endif %}
                         <hr/>
@@ -170,7 +240,21 @@
                     {% for lesson in lesson_list_6 %}
                         <div class="d-flex flex-row">
                             <a href="{% url 'detail_lesson' lesson.id %}">
-                                <img class="lesson-img" src="{% static 'img/card_temp_photo.jpg' %}"/>
+                                {% if lesson.genre == 'PC' %}
+                                    <img style="margin-left: 10px;"  class="lesson-img" src="{% static 'img/lessons/click.png' %}"/>
+                                {% elif lesson.genre == 'A' %}
+                                    <img style="margin-left: 10px;"  class="lesson-img" src="{% static 'img/lessons/tourist.png' %}"/>
+                                {% elif lesson.genre == 'GM' %}
+                                    <img style="margin-left: 10px;"  class="lesson-img" src="{% static 'img/lessons/calculator.png' %}"/>
+                                {% elif lesson.genre == 'ST' %}
+                                    <img style="margin-left: 10px;"  class="lesson-img" src="{% static 'img/lessons/book.png' %}"/>
+                                {% elif lesson.genre == 'GV' %}
+                                    <img style="margin-left: 10px;"  class="lesson-img" src="{% static 'img/lessons/microphone.png' %}"/>
+                                {% elif lesson.genre == 'R' %}
+                                    <img style="margin-left: 10px;"  class="lesson-img" src="{% static 'img/lessons/start.png' %}"/>
+                                {% elif lesson.genre == 'AL' %}
+                                    <img style="margin-left: 10px;"  class="lesson-img" src="{% static 'img/lessons/icon.png' %}"/>
+                                {% endif %}
                             </a>
                             <div class="mx-5">
                                 <a class="lesson-title-a" href="{% url 'detail_lesson' lesson.id %}">
@@ -184,7 +268,7 @@
                             {% if lesson.id in purchased_item %}
                                 <p>Lezione già acquistata</p>
                             {% else %}
-                                <a class="btn btn-primary add-to-cart-btn" href="{% url 'cart_add' lesson.id %}"><img class="add-to-cart-icon" src="{% static 'img/home/add-to-cart.png' %}"/>   Aggiungi al carrello</a>
+                                <a class="btn btn-primary add-to-cart-btn" style="margin-top: 10px; width: 180px;" href="{% url 'cart_add' lesson.id %}"><img class="add-to-cart-icon" src="{% static 'img/home/add-to-cart.png' %}"/><br>Aggiungi al carrello</a>
                             {% endif %}
                         {% endif %}
                         <hr/>
@@ -193,357 +277,6 @@
             </div>
         </div>
     </div>
-{#    <h1 class="text-center mt-5">PACCHETTI</h1>#}
-{#    <!-- PACCHETTO FACILE -->#}
-{#    <h1 class="text-center"> DIFFICOLTA' FACILE </h1>#}
-{#    <div class="accordion my-4" id="accordion4">#}
-{#        <!-- PACCHETTO FACILE BASE (1.0) -->#}
-{#        {% for packet in packet_list_1 %}#}
-{#            <div class="card">#}
-{#                <div class="card-header" id="headingOne" style="background-color: #18d624">#}
-{#                    <h2 class="mb-0">#}
-{#                        <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseP{{ packet.id }}" aria-expanded="true" aria-controls="collapseP{{ packet.id }}">#}
-{#                            Pacchetto:  {{ packet.title }}#}
-{#                        </button>#}
-{#                    </h2>#}
-{#                </div>#}
-{##}
-{#                <div id="collapseP{{ packet.id }}" class="collapse" aria-labelledby="headingOne" data-parent="#accordion4">#}
-{#                    <div class="card-body">#}
-{#                        <p>Titolo: {{ packet.title }}</p>#}
-{#                        <p>Descrizione: {{ packet.description }}</p>#}
-{#                        <p>Lezioni contenute: </p>#}
-{#                        <ul>#}
-{#                        {% for lesson in packet.lessons.all %}#}
-{#                            <li>{{ lesson.title }}</li>#}
-{#                        {% endfor %}#}
-{#                        </ul>#}
-{#                        <p>Prezzo: {{ packet.price }}</p>#}
-{#                        <a class="btn btn-primary" href="{% url 'detail_pacekt' packet.id %}">Dettagli</a>#}
-{#                    </div>#}
-{#                </div>#}
-{#            </div>#}
-{#        {% endfor %}#}
-{#        <!-- PACCHETTO FACILE AVANZATO (2.0) -->#}
-{#        {% for packet in packet_list_2 %}#}
-{#            <div class="card">#}
-{#                <div class="card-header" id="headingOne" style="background-color: #11ab1b">#}
-{#                    <h2 class="mb-0">#}
-{#                        <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseP{{ packet.id }}" aria-expanded="true" aria-controls="collapseP{{ packet.id }}">#}
-{#                            Pacchetto:  {{ packet.title }}#}
-{#                        </button>#}
-{#                    </h2>#}
-{#                </div>#}
-{##}
-{#                <div id="collapseP{{ packet.id }}" class="collapse" aria-labelledby="headingOne" data-parent="#accordion4">#}
-{#                    <div class="card-body">#}
-{#                        <p>Titolo: {{ packet.title }}</p>#}
-{#                        <p>Descrizione: {{ packet.description }}</p>#}
-{#                        <p>Lezioni contenute: </p>#}
-{#                        <ul>#}
-{#                        {% for lesson in packet.lessons.all %}#}
-{#                            <li>{{ lesson.title }}</li>#}
-{#                        {% endfor %}#}
-{#                        </ul>#}
-{#                        <p>Prezzo: {{ packet.price }}</p>#}
-{#                        <a class="btn btn-primary" href="{% url 'detail_pacekt' packet.id %}">Dettagli</a>#}
-{#                    </div>#}
-{#                </div>#}
-{#            </div>#}
-{#        {% endfor %}#}
-{#    </div>#}
-{#    <!-- PACCHETTO MEDIO -->#}
-{#    <h1 class="text-center"> DIFFICOLTA' MEDIA </h1>#}
-{#    <div class="accordion my-4" id="accordion5">#}
-{#        <!-- PACCHETTO MEDIO BASE (3.0) -->#}
-{#        {% for packet in packet_list_3 %}#}
-{#            <div class="card">#}
-{#                <div class="card-header" id="headingOne" style="background-color: #f2a81d">#}
-{#                    <h2 class="mb-0">#}
-{#                        <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseP{{ packet.id }}" aria-expanded="true" aria-controls="collapseP{{ packet.id }}">#}
-{#                            Pacchetto:  {{ packet.title }}#}
-{#                        </button>#}
-{#                    </h2>#}
-{#                </div>#}
-{##}
-{#                <div id="collapseP{{ packet.id }}" class="collapse" aria-labelledby="headingOne" data-parent="#accordion5">#}
-{#                    <div class="card-body">#}
-{#                        <p>Titolo: {{ packet.title }}</p>#}
-{#                        <p>Descrizione: {{ packet.description }}</p>#}
-{#                        <p>Lezioni contenute: </p>#}
-{#                        <ul>#}
-{#                        {% for lesson in packet.lessons.all %}#}
-{#                            <li>{{ lesson.title }}</li>#}
-{#                        {% endfor %}#}
-{#                        </ul>#}
-{#                        <p>Prezzo: {{ packet.price }}</p>#}
-{#                        <a class="btn btn-primary" href="{% url 'detail_pacekt' packet.id %}">Dettagli</a>#}
-{#                    </div>#}
-{#                </div>#}
-{#            </div>#}
-{#        {% endfor %}#}
-{#        <!-- PACCHETTO MEDIO AVANZATO (4.0) -->#}
-{#        {% for packet in packet_list_4 %}#}
-{#            <div class="card">#}
-{#                <div class="card-header" id="headingOne" style="background-color: #f2791d">#}
-{#                    <h2 class="mb-0">#}
-{#                        <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseP{{ packet.id }}" aria-expanded="true" aria-controls="collapseP{{ packet.id }}">#}
-{#                            Pacchetto:  {{ packet.title }}#}
-{#                        </button>#}
-{#                    </h2>#}
-{#                </div>#}
-{##}
-{#                <div id="collapseP{{ packet.id }}" class="collapse" aria-labelledby="headingOne" data-parent="#accordion5">#}
-{#                    <div class="card-body">#}
-{#                        <p>Titolo: {{ packet.title }}</p>#}
-{#                        <p>Descrizione: {{ packet.description }}</p>#}
-{#                        <p>Lezioni contenute: </p>#}
-{#                        <ul>#}
-{#                        {% for lesson in packet.lessons.all %}#}
-{#                            <li>{{ lesson.title }}</li>#}
-{#                        {% endfor %}#}
-{#                        </ul>#}
-{#                        <p>Prezzo: {{ packet.price }}</p>#}
-{#                        <a class="btn btn-primary" href="{% url 'detail_pacekt' packet.id %}">Dettagli</a>#}
-{#                    </div>#}
-{#                </div>#}
-{#            </div>#}
-{#        {% endfor %}#}
-{#    </div>#}
-{#    <!-- PACCHETTO DIFFICILE -->#}
-{#    <h1 class="text-center"> DIFFICOLTA' DIFFICILE </h1>#}
-{#    <div class="accordion my-4" id="accordion6">#}
-{#        <!-- PACCHETTO DIFFICILE BASE (5.0) -->#}
-{#        {% for packet in packet_list_5 %}#}
-{#            <div class="card">#}
-{#                <div class="card-header" id="headingOne" style="background-color: #e64b30">#}
-{#                    <h2 class="mb-0">#}
-{#                        <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseP{{ packet.id }}" aria-expanded="true" aria-controls="collapseP{{ packet.id }}">#}
-{#                            Pacchetto:  {{ packet.title }}#}
-{#                        </button>#}
-{#                    </h2>#}
-{#                </div>#}
-{##}
-{#                <div id="collapseP{{ packet.id }}" class="collapse" aria-labelledby="headingOne" data-parent="#accordion6">#}
-{#                    <div class="card-body">#}
-{#                        <p>Titolo: {{ packet.title }}</p>#}
-{#                        <p>Descrizione: {{ packet.description }}</p>#}
-{#                        <p>Lezioni contenute: </p>#}
-{#                        <ul>#}
-{#                        {% for lesson in packet.lessons.all %}#}
-{#                            <li>{{ lesson.title }}</li>#}
-{#                        {% endfor %}#}
-{#                        </ul>#}
-{#                        <p>Prezzo: {{ packet.price }}</p>#}
-{#                        <a class="btn btn-primary" href="{% url 'detail_pacekt' packet.id %}">Dettagli</a>#}
-{#                    </div>#}
-{#                </div>#}
-{#            </div>#}
-{#        {% endfor %}#}
-{#        <!-- PACCHETTO DIFFICILE AVANZATO (6.0) -->#}
-{#        {% for packet in packet_list_6 %}#}
-{#            <div class="card">#}
-{#                <div class="card-header" id="headingOne" style="background-color: #f02a07">#}
-{#                    <h2 class="mb-0">#}
-{#                        <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseP{{ packet.id }}" aria-expanded="true" aria-controls="collapseP{{ packet.id }}">#}
-{#                            Pacchetto:  {{ packet.title }}#}
-{#                        </button>#}
-{#                    </h2>#}
-{#                </div>#}
-{##}
-{#                <div id="collapseP{{ packet.id }}" class="collapse" aria-labelledby="headingOne" data-parent="#accordion6">#}
-{#                    <div class="card-body">#}
-{#                        <p>Titolo: {{ packet.title }}</p>#}
-{#                        <p>Descrizione: {{ packet.description }}</p>#}
-{#                        <p>Lezioni contenute: </p>#}
-{#                        <ul>#}
-{#                        {% for lesson in packet.lessons.all %}#}
-{#                            <li>{{ lesson.title }}</li>#}
-{#                        {% endfor %}#}
-{#                        </ul>#}
-{#                        <p>Prezzo: {{ packet.price }}</p>#}
-{#                        <a class="btn btn-primary" href="{% url 'detail_pacekt' packet.id %}">Dettagli</a>#}
-{#                    </div>#}
-{#                </div>#}
-{#            </div>#}
-{#        {% endfor %}#}
-{#    </div>#}
-{##}
-{#    <h1 class="text-center mt-5">PERCORSI</h1>#}
-{#    <!-- PERCORSO FACILE -->#}
-{#    <h1 class="text-center"> DIFFICOLTA' FACILE </h1>#}
-{#    <div class="accordion my-4" id="accordion7">#}
-{#        <!-- PERCORSO FACILE BASE (1.0) -->#}
-{#        {% for course in course_list_1 %}#}
-{#            <div class="card">#}
-{#                <div class="card-header" id="headingOne" style="background-color: #18d624">#}
-{#                    <h2 class="mb-0">#}
-{#                        <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseC{{ course.id }}" aria-expanded="true" aria-controls="collapseC{{ course.id }}">#}
-{#                            Percorso:  {{ course.title }}#}
-{#                        </button>#}
-{#                    </h2>#}
-{#                </div>#}
-{##}
-{#                <div id="collapseC{{ course.id }}" class="collapse" aria-labelledby="headingOne" data-parent="#accordion7">#}
-{#                    <div class="card-body">#}
-{#                        <p>Titolo: {{ course.title }}</p>#}
-{#                        <p>Descrizione: {{ course.description }}</p>#}
-{#                        <p>Pacchetti contenuti: </p>#}
-{#                        <ul>#}
-{#                        {% for packet in course.packets.all %}#}
-{#                            <li>{{ packet.title }}</li>#}
-{#                        {% endfor %}#}
-{#                        </ul>#}
-{#                        <p>Prezzo: {{ course.price }}</p>#}
-{#                        <a class="btn btn-primary" href="{% url 'detail_course' course.id %}">Dettagli</a>#}
-{#                    </div>#}
-{#                </div>#}
-{#            </div>#}
-{#        {% endfor %}#}
-{#        <!-- PERCORSO FACILE AVANZATO (2.0) -->#}
-{#        {% for course in course_list_2 %}#}
-{#            <div class="card">#}
-{#                <div class="card-header" id="headingOne" style="background-color: #11ab1b">#}
-{#                    <h2 class="mb-0">#}
-{#                        <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseC{{ course.id }}" aria-expanded="true" aria-controls="collapseC{{ course.id }}">#}
-{#                            Percorso:  {{ course.title }}#}
-{#                        </button>#}
-{#                    </h2>#}
-{#                </div>#}
-{##}
-{#                <div id="collapseC{{ course.id }}" class="collapse" aria-labelledby="headingOne" data-parent="#accordion7">#}
-{#                    <div class="card-body">#}
-{#                        <p>Titolo: {{ course.title }}</p>#}
-{#                        <p>Descrizione: {{ course.description }}</p>#}
-{#                        <p>Pacchetti contenuti: </p>#}
-{#                        <ul>#}
-{#                        {% for packet in course.packets.all %}#}
-{#                            <li>{{ packet.title }}</li>#}
-{#                        {% endfor %}#}
-{#                        </ul>#}
-{#                        <p>Prezzo: {{ course.price }}</p>#}
-{#                        <a class="btn btn-primary" href="{% url 'detail_course' course.id %}">Dettagli</a>#}
-{#                    </div>#}
-{#                </div>#}
-{#            </div>#}
-{#        {% endfor %}#}
-{#    </div>#}
-{#    <!-- PERCORSO MEDIO -->#}
-{#    <h1 class="text-center"> DIFFICOLTA' MEDIA </h1>#}
-{#    <div class="accordion my-4" id="accordion8">#}
-{#        <!-- PERCORSO MEDIO BASE (3.0) -->#}
-{#        {% for course in course_list_3 %}#}
-{#            <div class="card">#}
-{#                <div class="card-header" id="headingOne" style="background-color: #f2a81d">#}
-{#                    <h2 class="mb-0">#}
-{#                        <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseC{{ course.id }}" aria-expanded="true" aria-controls="collapseC{{ course.id }}">#}
-{#                            Percorso:  {{ course.title }}#}
-{#                        </button>#}
-{#                    </h2>#}
-{#                </div>#}
-{##}
-{#                <div id="collapseC{{ course.id }}" class="collapse" aria-labelledby="headingOne" data-parent="#accordion8">#}
-{#                    <div class="card-body">#}
-{#                        <p>Titolo: {{ course.title }}</p>#}
-{#                        <p>Descrizione: {{ course.description }}</p>#}
-{#                        <p>Pacchetti contenuti: </p>#}
-{#                        <ul>#}
-{#                        {% for packet in course.packets.all %}#}
-{#                            <li>{{ packet.title }}</li>#}
-{#                        {% endfor %}#}
-{#                        </ul>#}
-{#                        <p>Prezzo: {{ course.price }}</p>#}
-{#                        <a class="btn btn-primary" href="{% url 'detail_course' course.id %}">Dettagli</a>#}
-{#                    </div>#}
-{#                </div>#}
-{#            </div>#}
-{#        {% endfor %}#}
-{#        <!-- PERCORSO MEDIO AVANZATO (4.0) -->#}
-{#        {% for course in course_list_4 %}#}
-{#            <div class="card">#}
-{#                <div class="card-header" id="headingOne" style="background-color: #f2791d">#}
-{#                    <h2 class="mb-0">#}
-{#                        <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseC{{ course.id }}" aria-expanded="true" aria-controls="collapseC{{ course.id }}">#}
-{#                            Percorso:  {{ course.title }}#}
-{#                        </button>#}
-{#                    </h2>#}
-{#                </div>#}
-{##}
-{#                <div id="collapseC{{ course.id }}" class="collapse" aria-labelledby="headingOne" data-parent="#accordion8">#}
-{#                    <div class="card-body">#}
-{#                        <p>Titolo: {{ course.title }}</p>#}
-{#                        <p>Descrizione: {{ course.description }}</p>#}
-{#                        <p>Pacchetti contenuti: </p>#}
-{#                        <ul>#}
-{#                        {% for packet in course.packets.all %}#}
-{#                            <li>{{ packet.title }}</li>#}
-{#                        {% endfor %}#}
-{#                        </ul>#}
-{#                        <p>Prezzo: {{ course.price }}</p>#}
-{#                        <a class="btn btn-primary" href="{% url 'detail_course' course.id %}">Dettagli</a>#}
-{#                    </div>#}
-{#                </div>#}
-{#            </div>#}
-{#        {% endfor %}#}
-{#    </div>#}
-{#    <!-- PERCORSO DIFFICILE -->#}
-{#    <h1 class="text-center"> DIFFICOLTA' DIFFICILE </h1>#}
-{#    <div class="accordion my-4" id="accordion9">#}
-{#        <!-- PERCORSO DIFFICILE BASE (5.0) -->#}
-{#        {% for course in course_list_5 %}#}
-{#            <div class="card">#}
-{#                <div class="card-header" id="headingOne" style="background-color: #e64b30">#}
-{#                    <h2 class="mb-0">#}
-{#                        <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseC{{ course.id }}" aria-expanded="true" aria-controls="collapseC{{ course.id }}">#}
-{#                            Percorso:  {{ course.title }}#}
-{#                        </button>#}
-{#                    </h2>#}
-{#                </div>#}
-{##}
-{#                <div id="collapseC{{ course.id }}" class="collapse" aria-labelledby="headingOne" data-parent="#accordion9">#}
-{#                    <div class="card-body">#}
-{#                        <p>Titolo: {{ course.title }}</p>#}
-{#                        <p>Descrizione: {{ course.description }}</p>#}
-{#                        <p>Pacchetti contenuti: </p>#}
-{#                        <ul>#}
-{#                        {% for packet in course.packets.all %}#}
-{#                            <li>{{ packet.title }}</li>#}
-{#                        {% endfor %}#}
-{#                        </ul>#}
-{#                        <p>Prezzo: {{ course.price }}</p>#}
-{#                        <a class="btn btn-primary" href="{% url 'detail_course' course.id %}">Dettagli</a>#}
-{#                    </div>#}
-{#                </div>#}
-{#            </div>#}
-{#        {% endfor %}#}
-{#        <!-- PERCORSO DIFFICILE AVANZATO (6.0) -->#}
-{#        {% for course in course_list_6 %}#}
-{#            <div class="card">#}
-{#                <div class="card-header" id="headingOne" style="background-color: #f02a07">#}
-{#                    <h2 class="mb-0">#}
-{#                        <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseC{{ course.id }}" aria-expanded="true" aria-controls="collapseC{{ course.id }}">#}
-{#                            Percorso:  {{ course.title }}#}
-{#                        </button>#}
-{#                    </h2>#}
-{#                </div>#}
-{##}
-{#                <div id="collapseC{{ course.id }}" class="collapse" aria-labelledby="headingOne" data-parent="#accordion9">#}
-{#                    <div class="card-body">#}
-{#                        <p>Titolo: {{ course.title }}</p>#}
-{#                        <p>Descrizione: {{ course.description }}</p>#}
-{#                        <p>Pacchetti contenuti: </p>#}
-{#                        <ul>#}
-{#                        {% for packet in course.packets.all %}#}
-{#                            <li>{{ packet.title }}</li>#}
-{#                        {% endfor %}#}
-{#                        </ul>#}
-{#                        <p>Prezzo: {{ course.price }}</p>#}
-{#                        <a class="btn btn-primary" href="{% url 'detail_course' course.id %}">Dettagli</a>#}
-{#                    </div>#}
-{#                </div>#}
-{#            </div>#}
-{#        {% endfor %}#}
-{#    </div>#}
 </div>
 {% endblock %}
 
