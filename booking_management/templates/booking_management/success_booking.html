@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_filters %}
+
+{% block browser_page_title %}Prenotazioni{% endblock %}
+
+{% block personal_css %}
+    <link rel="stylesheet" href="{% static 'css/prenotazioni.css' %}"/>
+{% endblock %}
+
+{% block content %}
+    <div class="container text-center my-5">
+        <h1 class="text-center">Prenotazione avvenuta con sucecsso</h1>
+        <img class="success-img my-5" src="{% static 'img/cart_ok.png' %}"/>
+        <p class="success-text mx-auto">La prenotazione è avvenuta con successo. riceverai un'email di conferma o annullamento della prenotazione entro 72 ore all'indirizzo {{ user.email }}</p>
+        <div class="d-flex flex-row justify-content-around my-5">
+            <a class="btn btn-primary" href="{% url 'homePage' %}">Vai alla home page</a>
+            <a class="btn btn-primary" href="{% url 'homePage' %}">Vai al mio profilo</a>
+            <a class="btn btn-primary" href="{% url 'homePage' %}">Effettua un'altra prenotazione</a>
+        </div>
+
+    </div>
+
+{% endblock %}

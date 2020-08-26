@@ -1,0 +1,24 @@
+.booking-img
+{
+    width: 100%;
+}
+
+.booking-title
+{
+    width: 100%;
+	text-align: center;
+	font-weight: bold;
+	color: rgb(255,170,0);
+}
+
+.success-text
+{
+    width: 50%;
+    font-size: 25px;
+}
+
+.success-img
+{
+    width: 20%;
+    height: auto;
+}

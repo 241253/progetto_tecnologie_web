@@ -121,7 +121,8 @@ MEDIA_URL = '/uploaded_files/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
     'user_cart/static',
-    'lessons_management/static']
+    'lessons_management/static',
+    'booking_management/static']
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
