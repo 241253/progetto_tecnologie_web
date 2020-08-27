@@ -51,12 +51,16 @@
                         </video>
                     </div>
                 {% else %}
-                    <a class="btn btn-primary add-to-cart-btn" href="{% url 'cart_add' lesson.id %}"><img class="add-to-cart-icon" src="{% static 'img/home/add-to-cart.png' %}"/>   Aggiungi al carrello</a>
+                    {% if not user.is_anonymous %}
+                        <a class="btn btn-primary add-to-cart-btn" href="{% url 'cart_add' lesson.id %}"><img class="add-to-cart-icon" src="{% static 'img/home/add-to-cart.png' %}"/>   Aggiungi al carrello</a>
+                    {% else %}
+                        <p>Per acquistare questa lezione, <a href="{% url 'registration' %}"> registrati </a> su Virgilian Code Online!</p>
+                    {% endif %}
                 {% endif %}
             {% endif %}
     </div>
     <div class="card-footer text-muted d-flex flex-row justify-content-between align-items-center" style="background-color: rgb(68, 142, 255)">
-        <a class="btn btn-primary" href="{% url 'homePage' %}">Torna alle tue lezioni</a>
+        <a class="btn btn-primary" href="{% url 'homePage' %}">Torna alle lezioni</a>
     </div>
 </div>
 

@@ -17,7 +17,11 @@ def login_redirect(request):
     if request.user.is_staff:
         return render(request, 'user_management/staff/staff_page.html')
     else:
-        return render(request, 'landingPage.html')
+        context = {}
+        context['profile'] = Profile.objects.all().filter(user=request.user)[0]
+        context['purchased_items'] = PurchasedLessons.objects.filter(user_id=request.user.id)[:7]
+        context['empty_items'] = [x for x in range(7 - len(PurchasedLessons.objects.filter(user_id=request.user.id)[:7]) + 1)]
+        return render(request, 'user_management/user/user_page.html', context)
 
 #USER VIEW
 def create_user(request):

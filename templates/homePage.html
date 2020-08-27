@@ -50,7 +50,7 @@
                                 <p>Prezzo: {{ lesson.price }} €</p>
                             </div>
                         </div>
-                        {% if not user.is_staff %}
+                        {% if not user.is_anonymous and not user.is_staff %}
                             {% if lesson.id in purchased_item %}
                                 <p>Lezione già acquistata</p>
                             {% else %}
@@ -86,7 +86,7 @@
                                 <p>Prezzo: {{ lesson.price }} €</p>
                             </div>
                         </div>
-                        {% if not user.is_staff %}
+                        {%  if not user.is_anonymous and not user.is_staff %}
                             {% if lesson.id in purchased_item %}
                                 <p>Lezione già acquistata</p>
                             {% else %}
@@ -139,8 +139,8 @@
                                 <p>Prezzo: {{ lesson.price }} €</p>
                             </div>
                         </div>
-                        {% if not user.is_staff %}
-                            {% if lesson.id in purchased_item %}
+                        {% if not user.is_anonymous and not user.is_staff %}
+                            {% if not user.is_anonymous and lesson.id in purchased_item %}
                                 <p>Lezione già acquistata</p>
                             {% else %}
                                 <a class="btn btn-primary add-to-cart-btn" style="margin-top: 10px; width: 180px;" href="{% url 'cart_add' lesson.id %}"><img class="add-to-cart-icon" src="{% static 'img/home/add-to-cart.png' %}"/><br>Aggiungi al carrello</a>
@@ -175,7 +175,7 @@
                                 <p>Prezzo: {{ lesson.price }} €</p>
                             </div>
                         </div>
-                        {% if not user.is_staff %}
+                        {%  if not user.is_anonymous and not user.is_staff %}
                             {% if lesson.id in purchased_item %}
                                 <p>Lezione già acquistata</p>
                             {% else %}
@@ -228,7 +228,7 @@
                                 <p>Prezzo: {{ lesson.price }} €</p>
                             </div>
                         </div>
-                        {% if not user.is_staff %}
+                        {%  if not user.is_anonymous and not user.is_staff %}
                             {% if lesson.id in purchased_item %}
                                 <p>Lezione già acquistata</p>
                             {% else %}
@@ -264,7 +264,7 @@
                                 <p>Prezzo: {{ lesson.price }} €</p>
                             </div>
                         </div>
-                        {% if not user.is_staff %}
+                        {% if not user.is_anonymous and not user.is_staff %}
                             {% if lesson.id in purchased_item %}
                                 <p>Lezione già acquistata</p>
                             {% else %}
