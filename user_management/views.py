@@ -132,7 +132,7 @@ class UpdateStaff(UpdateView):
 class DetailStaff(DetailView):
     context_object_name = 'user'
     queryset = User.objects.all()
-    extra_context = {'profile': queryset[0].profile}
+    # extra_context = {'profile': queryset[0].profile}
     template_name = 'user_management/staff/staff_detail.html'
 
 @method_decorator(login_required, name='dispatch')

@@ -1,9 +1,7 @@
-from django.shortcuts import render
 from django.views.decorators.cache import never_cache
-from django.views.generic.base import View, TemplateView
-from lessons_management.models import Lesson, Packet, Course
+from django.views.generic.base import TemplateView
+from lessons_management.models import Lesson, Packet
 from user_cart.models import PurchasedLessons
-
 
 class HomePage(TemplateView):
 
@@ -27,12 +25,6 @@ class HomePage(TemplateView):
             'packet_list_4': Packet.objects.all().filter(difficulty=4.0),
             'packet_list_5': Packet.objects.all().filter(difficulty=5.0),
             'packet_list_6': Packet.objects.all().filter(difficulty=6.0),
-            'course_list_1': Course.objects.all().filter(difficulty=1.0),
-            'course_list_2': Course.objects.all().filter(difficulty=2.0),
-            'course_list_3': Course.objects.all().filter(difficulty=3.0),
-            'course_list_4': Course.objects.all().filter(difficulty=4.0),
-            'course_list_5': Course.objects.all().filter(difficulty=5.0),
-            'course_list_6': Course.objects.all().filter(difficulty=6.0),
             'purchased_item': purchasedLessons
         })
         return context
