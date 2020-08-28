@@ -7,9 +7,10 @@
 {% endblock %}
 
 {% block content %}
-    <div class="container my-5">
+    <div class="container py-5 my-5">
+        <img class="my-4" style="width: 20%; height: auto; margin: auto" src="{% static 'img/cart_ok.png' %}"/>
         <h1 class="scritta_tariffe"> Complimenti, hai effettuato l'acquisto con successo! </h1>
-        <p><a href=""> Clicca qui </a> per andare nella tua libreria di lezioni</p>
+        <p><a href="{% url 'user_lesson' %}"> Clicca qui </a> per andare nella tua libreria di lezioni</p>
     </div>
 
 {% endblock %}
