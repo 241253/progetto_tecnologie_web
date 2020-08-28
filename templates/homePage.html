@@ -10,94 +10,84 @@
 {% block content %}
 <div class="container py-3">
     <!-- LEZIONE FACILE -->
-    <div class="accordion my-4" id="accordion1">
-        <!-- LEZIONE FACILE BASE (1.0) -->
-        <div class="card">
-            <div class="card-header" id="headingOne" style="background-color: #18d624;">
-                <h2 class="mb-0 d-flex flex-row">
-                    <div class="lesson-header-title btn btn-link btn-block text-left" data-toggle="collapse" data-target="#collapse1">
-                        DIFFICOLTA' FACILE
-                    </div>
-                    <img class="lesson-header-icon" src="{% static 'img/home/arrow_down.png' %}"/>
-                </h2>
-            </div>
-            <div id="collapse1" class="collapse" aria-labelledby="headingOne" data-parent="#accordion1">
-                <div class="card-body">
-                    {% for lesson in lesson_list_1 %}
-                        <div class="d-flex flex-row">
-                            <a href="{% url 'detail_lesson' lesson.id %}">
-                                {% if lesson.genre == 'PC' %}
-                                    <img style="margin-left: 10px;" class="lesson-img" src="{% static 'img/lessons/click.png' %}"/>
-                                {% elif lesson.genre == 'A' %}
-                                    <img style="margin-left: 15px;" class="lesson-img" src="{% static 'img/lessons/tourist.png' %}"/>
-                                {% elif lesson.genre == 'GM' %}
-                                    <img style="margin-left: 10px;"  class="lesson-img" src="{% static 'img/lessons/calculator.png' %}"/>
-                                {% elif lesson.genre == 'ST' %}
-                                    <img style="margin-left: 10px;"  class="lesson-img" src="{% static 'img/lessons/book.png' %}"/>
-                                {% elif lesson.genre == 'GV' %}
-                                    <img style="margin-left: 10px;"  class="lesson-img" src="{% static 'img/lessons/microphone.png' %}"/>
-                                {% elif lesson.genre == 'R' %}
-                                    <img style="margin-left: 10px;"  class="lesson-img" src="{% static 'img/lessons/start.png' %}"/>
-                                {% elif lesson.genre == 'AL' %}
-                                    <img style="margin-left: 10px;"  class="lesson-img" src="{% static 'img/lessons/icon.png' %}"/>
-                                {% endif %}
-                            </a>
-                            <div class="mx-5">
-                                <a class="lesson-title-a" href="{% url 'detail_lesson' lesson.id %}">
-                                    <h3 class="lesson-title">{{ lesson.title|capfirst }} (BASE)</h3>
-                                </a>
-                                <p>Descrizione: {{ lesson.description|truncatechars:300 }}</p>
-                                <p>Prezzo: {{ lesson.price }} €</p>
-                            </div>
-                        </div>
-                        {% if not user.is_staff %}
-                            {% if lesson.id in purchased_item %}
-                                <p>Lezione già acquistata</p>
-                            {% else %}
-                                <a class="btn btn-primary add-to-cart-btn" style="margin-top: 10px; width: 180px;" href="{% url 'cart_add' lesson.id %}"><img class="add-to-cart-icon" src="{% static 'img/home/add-to-cart.png' %}"/><br>Aggiungi al carrello</a>
-                            {% endif %}
-                        {% endif %}
-                        <hr/>
-                    {% endfor %}
-                    {% for lesson in lesson_list_2 %}
-                        <div class="d-flex flex-row">
-                            <a href="{% url 'detail_lesson' lesson.id %}">
-                                {% if lesson.genre == 'PC' %}
-                                    <img style="margin-left: 10px;"  class="lesson-img" src="{% static 'img/lessons/click.png' %}"/>
-                                {% elif lesson.genre == 'A' %}
-                                    <img style="margin-left: 10px;"  class="lesson-img" src="{% static 'img/lessons/tourist.png' %}"/>
-                                {% elif lesson.genre == 'GM' %}
-                                    <img style="margin-left: 10px;"  class="lesson-img" src="{% static 'img/lessons/calculator.png' %}"/>
-                                {% elif lesson.genre == 'ST' %}
-                                    <img style="margin-left: 10px;"  class="lesson-img" src="{% static 'img/lessons/book.png' %}"/>
-                                {% elif lesson.genre == 'GV' %}
-                                    <img style="margin-left: 10px;"  class="lesson-img" src="{% static 'img/lessons/microphone.png' %}"/>
-                                {% elif lesson.genre == 'R' %}
-                                    <img style="margin-left: 10px;"  class="lesson-img" src="{% static 'img/lessons/start.png' %}"/>
-                                {% elif lesson.genre == 'AL' %}
-                                    <img style="margin-left: 10px;"  class="lesson-img" src="{% static 'img/lessons/icon.png' %}"/>
-                                {% endif %}
-                            </a>
-                            <div class="mx-5">
-                                <a class="lesson-title-a" href="{% url 'detail_lesson' lesson.id %}">
-                                    <h3 class="lesson-title">{{ lesson.title|capfirst }} (AVANZATO)</h3>
-                                </a>
-                                <p>Descrizione: {{ lesson.description|truncatechars:300 }}</p>
-                                <p>Prezzo: {{ lesson.price }} €</p>
-                            </div>
-                        </div>
-                        {% if not user.is_staff %}
-                            {% if lesson.id in purchased_item %}
-                                <p>Lezione già acquistata</p>
-                            {% else %}
-                                <a class="btn btn-primary add-to-cart-btn" style="margin-top: 10px; width: 180px;" href="{% url 'cart_add' lesson.id %}"><img class="add-to-cart-icon" src="{% static 'img/home/add-to-cart.png' %}"/><br>Aggiungi al carrello</a>
-                            {% endif %}
-                        {% endif %}
-                        <hr/>
-                    {% endfor %}
+    <div class="card">
+      <div class="card-header">
+        DIFFICOLTA' FACILE
+      </div>
+      <div class="card-body">
+        {% for lesson in lesson_list_1 %}
+            <div class="d-flex flex-row">
+                <a href="{% url 'detail_lesson' lesson.id %}">
+                    {% if lesson.genre == 'PC' %}
+                        <img style="margin-left: 10px;" class="lesson-img" src="{% static 'img/lessons/click.png' %}"/>
+                    {% elif lesson.genre == 'A' %}
+                        <img style="margin-left: 15px;" class="lesson-img" src="{% static 'img/lessons/tourist.png' %}"/>
+                    {% elif lesson.genre == 'GM' %}
+                        <img style="margin-left: 10px;"  class="lesson-img" src="{% static 'img/lessons/calculator.png' %}"/>
+                    {% elif lesson.genre == 'ST' %}
+                        <img style="margin-left: 10px;"  class="lesson-img" src="{% static 'img/lessons/book.png' %}"/>
+                    {% elif lesson.genre == 'GV' %}
+                        <img style="margin-left: 10px;"  class="lesson-img" src="{% static 'img/lessons/microphone.png' %}"/>
+                    {% elif lesson.genre == 'R' %}
+                        <img style="margin-left: 10px;"  class="lesson-img" src="{% static 'img/lessons/start.png' %}"/>
+                    {% elif lesson.genre == 'AL' %}
+                        <img style="margin-left: 10px;"  class="lesson-img" src="{% static 'img/lessons/icon.png' %}"/>
+                    {% endif %}
+                </a>
+                <div class="mx-5">
+                    <a class="lesson-title-a" href="{% url 'detail_lesson' lesson.id %}">
+                        <h3 class="lesson-title">{{ lesson.title|capfirst }} (BASE)</h3>
+                    </a>
+                    <p>Descrizione: {{ lesson.description|truncatechars:300 }}</p>
+                    <p>Prezzo: {{ lesson.price }} €</p>
                 </div>
             </div>
-        </div>
+            {% if not user.is_staff %}
+                {% if lesson.id in purchased_item %}
+                    <p>Lezione già acquistata</p>
+                {% else %}
+                    <a class="btn btn-primary add-to-cart-btn" style="margin-top: 10px; width: 180px;" href="{% url 'cart_add' lesson.id %}"><img class="add-to-cart-icon" src="{% static 'img/home/add-to-cart.png' %}"/><br>Aggiungi al carrello</a>
+                {% endif %}
+            {% endif %}
+            <hr/>
+        {% endfor %}
+        {% for lesson in lesson_list_2 %}
+            <div class="d-flex flex-row">
+                <a href="{% url 'detail_lesson' lesson.id %}">
+                    {% if lesson.genre == 'PC' %}
+                        <img style="margin-left: 10px;"  class="lesson-img" src="{% static 'img/lessons/click.png' %}"/>
+                    {% elif lesson.genre == 'A' %}
+                        <img style="margin-left: 10px;"  class="lesson-img" src="{% static 'img/lessons/tourist.png' %}"/>
+                    {% elif lesson.genre == 'GM' %}
+                        <img style="margin-left: 10px;"  class="lesson-img" src="{% static 'img/lessons/calculator.png' %}"/>
+                    {% elif lesson.genre == 'ST' %}
+                        <img style="margin-left: 10px;"  class="lesson-img" src="{% static 'img/lessons/book.png' %}"/>
+                    {% elif lesson.genre == 'GV' %}
+                        <img style="margin-left: 10px;"  class="lesson-img" src="{% static 'img/lessons/microphone.png' %}"/>
+                    {% elif lesson.genre == 'R' %}
+                        <img style="margin-left: 10px;"  class="lesson-img" src="{% static 'img/lessons/start.png' %}"/>
+                    {% elif lesson.genre == 'AL' %}
+                        <img style="margin-left: 10px;"  class="lesson-img" src="{% static 'img/lessons/icon.png' %}"/>
+                    {% endif %}
+                </a>
+                <div class="mx-5">
+                    <a class="lesson-title-a" href="{% url 'detail_lesson' lesson.id %}">
+                        <h3 class="lesson-title">{{ lesson.title|capfirst }} (AVANZATO)</h3>
+                    </a>
+                    <p>Descrizione: {{ lesson.description|truncatechars:300 }}</p>
+                    <p>Prezzo: {{ lesson.price }} €</p>
+                </div>
+            </div>
+            {% if not user.is_staff %}
+                {% if lesson.id in purchased_item %}
+                    <p>Lezione già acquistata</p>
+                {% else %}
+                    <a class="btn btn-primary add-to-cart-btn" style="margin-top: 10px; width: 180px;" href="{% url 'cart_add' lesson.id %}"><img class="add-to-cart-icon" src="{% static 'img/home/add-to-cart.png' %}"/><br>Aggiungi al carrello</a>
+                {% endif %}
+            {% endif %}
+            <hr/>
+        {% endfor %}
+      </div>
     </div>
     <!-- LEZIONE MEDIO -->
     <div class="accordion my-4" id="accordion2">
