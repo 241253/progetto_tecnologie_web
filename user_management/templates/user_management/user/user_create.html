@@ -14,6 +14,7 @@
             {% csrf_token %}
             {{ user_form | crispy }}
             {{ profile_form | crispy }}
+            <a class="btn btn-primary" href="{% url 'landingPage' %}">Indietro</a>
             <input type="submit" value="Registrati" class="btn btn-primary" style="float: right; margin-bottom: 30px">
         </form>
     </div>
