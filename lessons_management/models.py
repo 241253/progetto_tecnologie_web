@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-
+from .validators import validate_file_extension
 
 class Lesson(models.Model):
 
@@ -14,7 +14,7 @@ class Lesson(models.Model):
     difficulty = models.CharField(max_length=30, choices=DIFFICULTY_CHOICES, default='1.0')
     genre = models.CharField(max_length=30, choices=GENRE_CHOICES, default='A')
     price = models.FloatField(default=20.0)
-    video = models.FileField(upload_to='video_lessons') #videolezione
+    video = models.FileField(upload_to='video_lessons', validators=[validate_file_extension]) #videolezione
 
     def __str__(self):
         return f'#{self.id} - {self.title}'

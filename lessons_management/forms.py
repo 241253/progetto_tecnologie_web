@@ -22,7 +22,8 @@ class LessonsCreationForm(forms.ModelForm):
             lesson.save()
         return lesson
 
-    # def clean_video(self): da implementare prima o poi
+    def clean_video(self):
+        pass
 
 class LessonsUpdateForm(forms.ModelForm):
     class Meta:
