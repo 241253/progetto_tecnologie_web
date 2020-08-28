@@ -17,3 +17,9 @@ class CreateBookingView(CreateView):
 
 class BookingSuccessView(TemplateView):
     template_name = 'booking_management/success_booking.html'
+
+class BookingAdminView(TemplateView):
+    template_name = 'booking_management/booking_admin.html'
+
+class BookingStaffView(TemplateView):
+    template_name = 'booking_management/booking_staff.html'

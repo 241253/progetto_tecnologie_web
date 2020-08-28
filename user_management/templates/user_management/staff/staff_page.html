@@ -14,6 +14,10 @@
         <a class="btn btn-primary" href="{% url 'staff_list' %}">Gestione staff</a>
     {% endif %}
     <a class="btn btn-primary" href="{% url 'list_hub' %}">Gestione lezioni</a>
-    <a class="btn btn-primary">Conferma prenotazioni</a>
+    {%  if user.is_superuser %}
+        <a class="btn btn-primary" href="{% url 'booking_admin' %}">Conferma e visualizza prenotazioni</a>
+    {% else %}
+        <a class="btn btn-primary" href="{% url 'booking_staff' %}">Visualizza prenotazioni</a>
+    {% endif %}
     </div>
 {% endblock %}
