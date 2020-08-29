@@ -1,1 +1,55 @@
-<p>admin</p>
+{% extends 'struttura_staff.html' %}
+{% load static %}
+
+{% block browser_page_title %}Virgilian Code - pagina dello staff{% endblock %}
+
+{% block personal_css %}
+{% endblock %}
+
+{% block content %}
+    <div class="container my-5">
+        <h1>Prenotazioni da confermare</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">utente</th>
+                    <th scope="col">data</th>
+                    <th scope="col">ora</th>
+                    <th scope="col">azioni</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for b in booking %}
+                    <tr>
+                        <th scope="row">{{ b.user.username }}</th>
+                        <td>{{ b.data }}</td>
+                        <td>{{ b.ora }}</td>
+                        <td>
+                            <a class="btn btn-primary">Annulla prenotazione</a>
+                            <a class="btn btn-primary" href="{% url 'booking_status_confirm' b.id %}">Conferma prenotazione</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <h1>Prenotazioni già confermate</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Id prenotazione</th>
+                    <th scope="col">formatore</th>
+                    <th scope="col">stato prenotazione</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for b in booking_detail %}
+                    <tr>
+                        <th scope="row">{{ b.booking_id }}</th>
+                        <td>{{ b.formatore.username }}</td>
+                        <td>{{ b.stato }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

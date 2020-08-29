@@ -8,9 +8,12 @@ class Booking(models.Model):
     ora = models.TimeField(default=dt.time(00, 00))
 
     def __str__(self):
-        return f'prenotazione di {self.user.username} il giorno {self.data_ora}, #{self.id}'
+        return f'prenotazione di {self.user.username} il giorno {self.data}, #{self.id}'
 
 class BookingStatus(models.Model):
     booking_id = models.OneToOneField(Booking, on_delete=models.CASCADE)
     formatore = models.ForeignKey(User, on_delete=models.DO_NOTHING)
-    stato = models.CharField(max_length=20, choices=(('A','Annullato'), ('C','Confermato')))
+    stato = models.CharField(max_length=20, choices=(('0','Annullato'), ('1','Confermato')))
+
+    def __str__(self):
+        return f'prenotazione con id {self.booking_id} del formatore {self.formatore.username}, con stato {self.stato}'

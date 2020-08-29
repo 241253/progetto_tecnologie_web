@@ -1,0 +1,19 @@
+{% extends 'struttura_staff.html' %}
+{% load static %}
+{% load crispy_forms_filters %}
+
+{% block browser_page_title %}Virgilian Code - pagina dello staff{% endblock %}
+
+{% block personal_css %}
+{% endblock %}
+
+{% block content %}
+    <div class="container my-5">
+        <form method="POST">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <input type="submit" value="Conferma">
+            <a class="btn btn-primary" href="booking_admin.html">Annulla</a>
+        </form>
+    </div>
+{% endblock %}
