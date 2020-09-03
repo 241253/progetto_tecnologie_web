@@ -2,6 +2,7 @@ from django.urls import reverse_lazy
 from django.views.generic import CreateView, TemplateView, FormView
 from booking_management.forms import BookingCreationForm, BookingStatusConfirmForm, BookingStatusUndoForm
 from booking_management.models import Booking, BookingStatus
+import datetime as dt
 
 #BOOKING
 class CreateBookingView(CreateView):
@@ -32,6 +33,12 @@ class BookingAdminView(TemplateView):
 class BookingStaffView(TemplateView):
     template_name = 'booking_management/booking_staff.html'
 
+    def get_context_data(self, **kwargs):
+        context = super(BookingStaffView, self).get_context_data(**kwargs)
+        context['booking'] = BookingStatus.objects.filter(formatore=self.request.user, stato='1', booking__data__gte=dt.date.today()).order_by('booking__data', 'booking__ora')
+        context['booking_past'] = BookingStatus.objects.filter(formatore=self.request.user, stato='1', booking__data__lt=dt.date.today()).order_by('booking__data', 'booking__ora')
+        return context
+
 #BOOKING_STATUS
 class CreateBookingStatusView(FormView):
 
@@ -49,7 +56,6 @@ class CreateBookingStatusView(FormView):
             form.save()
             return super(CreateBookingStatusView, self).form_valid(form)
 
-#BOOKING_STATUS
 class UndoBookingStatusView(FormView):
 
     form_class = BookingStatusUndoForm
@@ -70,3 +76,14 @@ class UndoBookingStatusView(FormView):
         else:
             print('sbagliato')
             return super(UndoBookingStatusView, self).form_valid(form)
+
+#USER_BOOKING
+class UserBookingView(TemplateView):
+    template_name = 'user_management/user/user_booking.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(UserBookingView, self).get_context_data(**kwargs)
+        context['booking'] = Booking.objects.filter(user_id=self.request.user.id).exclude(id__in=[x.booking.id for x in BookingStatus.objects.filter(booking__user_id=self.request.user.id)])
+        context['booking_status'] = BookingStatus.objects.filter(booking__user_id=self.request.user.id, booking__data__gte=dt.date.today()).order_by('booking__data', 'booking__ora', 'stato')
+        context['booking_past'] = BookingStatus.objects.filter(booking__user_id=self.request.user.id, booking__data__lt=dt.date.today()).order_by('booking__data', 'booking__ora', 'stato')
+        return context

@@ -25,7 +25,9 @@ class BookingCreationForm(forms.ModelForm):
     def clean_data(self):
         data = self.cleaned_data['data']
         booking_date = (dt.date.today() + dt.timedelta(days=3))
-        if data <= booking_date:
+        if data < booking_date:
+            print('bboking: ', booking_date)
+            print('current: ', data)
             raise ValidationError(f"puoi prenotare a partire dal {booking_date.strftime('%d/%m/%Y')}")
         return data
 
@@ -67,8 +69,11 @@ class BookingStatusConfirmForm(forms.ModelForm):
         booking_status.booking = Booking.objects.get(id=self.booking_id)
 
         subject = 'Conferma prenotazione'
-        utente = User.objects.get(id=Booking.objects.get(id=self.booking_id).user.id)
-        message = 'Gentile ' + utente.username + ',\n\n la prenotazione da lei effettuata è stata Confermata'
+        prenotazione = Booking.objects.get(id=self.booking_id)
+        utente = User.objects.get(id=prenotazione.user.id)
+        message = 'Gentile ' + utente.username + \
+                  ',\n\nla prenotazione da lei effettuata in data ' + prenotazione.data.strftime('%d/%m/%Y') + ' alle ore ' + prenotazione.ora.strftime('%H:%M') + ' è stata Confermata.\n' \
+                  'Per qualsiasi informazione o necessità visita la sezione contatti del nostro sito www.virgiliancodeonline.it.'
         try:
             send_mail(subject, message, 'virgiliancodeonline@gmail.com', [utente.email], fail_silently=False,)
         except BadHeaderError:
@@ -109,8 +114,13 @@ class BookingStatusUndoForm(forms.ModelForm):
         booking_status.booking = Booking.objects.get(id=self.booking_id)
 
         subject = 'Annullamento prenotazione'
-        utente = User.objects.get(id=Booking.objects.get(id=self.booking_id).user.id)
-        message = 'Gentile ' + utente.username + ',\n\n la prenotazione da lei effettuata è stata annullata'
+        prenotazione = Booking.objects.get(id=self.booking_id)
+        utente = User.objects.get(id=prenotazione.user.id)
+        message = 'Gentile ' + utente.username + ',\n\nla prenotazione da lei effettuata in data ' + prenotazione.data.strftime('%d/%m/%Y') + \
+                  ' alle ore ' + prenotazione.ora.strftime('%H:%M') + \
+                  'è stata annullata in quanto non abbiamo formatori disponibile per quel giorno.\n' \
+                  'Lo staff di virgiliancode si scusa per l\'inconveniente e la invitiamo ad effettuare una nuova prenotazione ad un orario differente.\n\n' \
+                  'Per qualsiasi informazione o necessità visita la sezione contatti del nostro sito www.virgiliancodeonline.it.'
         try:
             send_mail(subject, message, 'virgiliancodeonline@gmail.com', [utente.email], fail_silently=False,)
         except BadHeaderError:

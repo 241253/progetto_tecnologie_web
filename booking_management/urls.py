@@ -11,4 +11,6 @@ urlpatterns = [
     #BOOKING_STATUS
     path('prenotazioni/detail/confirm/<int:booking_id>', views.CreateBookingStatusView.as_view(), name='booking_status_confirm'),
     path('prenotazioni/detail/undo/<int:booking_id>', views.UndoBookingStatusView.as_view(), name='booking_status_undo'),
+    #USER_BOOKING
+    path('prenotazioni/user/detail', views.UserBookingView.as_view(), name='user_booking'),
 ]

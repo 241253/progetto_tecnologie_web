@@ -9,6 +9,7 @@ from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views.generic import DetailView, UpdateView, ListView, DeleteView, TemplateView
 
+from booking_management.models import Booking, BookingStatus
 from user_cart.models import PurchasedLessons
 from user_management.forms import ProfileCreationForm, UserForm, UserUpdateForm, StaffForm, StaffUpdateForm
 from user_management.models import Profile
@@ -19,9 +20,11 @@ def login_redirect(request):
         return render(request, 'user_management/staff/staff_page.html')
     else:
         context = {}
-        context['profile'] = Profile.objects.all().filter(user=request.user)[0]
+        context['profile'] = Profile.objects.get(user=request.user)
         context['purchased_items'] = PurchasedLessons.objects.filter(user_id=request.user.id)[:7]
         context['empty_items'] = [x for x in range(7 - len(PurchasedLessons.objects.filter(user_id=request.user.id)[:7]) + 1)]
+        context['booking_items'] = Booking.objects.filter(user_id=request.user.id).exclude(id__in=[x.booking.id for x in BookingStatus.objects.filter(booking__user_id=request.user.id)])[:7]
+        context['empty_booking'] = [x for x in range(7 - len(Booking.objects.filter(user_id=request.user.id).exclude(id__in=[x.booking.id for x in BookingStatus.objects.filter(booking__user_id=request.user.id)])[:7]) + 1)]
         return render(request, 'user_management/user/user_page.html', context)
 
 #USER VIEW
@@ -61,6 +64,8 @@ class UserPage(DetailView):
         context['profile'] = Profile.objects.all().filter(user=context['user'])[0]
         context['purchased_items'] = PurchasedLessons.objects.filter(user_id=context['user'].id)[:7]
         context['empty_items'] = [x for x in range(7-len(PurchasedLessons.objects.filter(user_id=context['user'].id)[:7])+1)]
+        context['booking_items'] = Booking.objects.filter(user_id=context['user'].id).exclude(id__in=[x.booking.id for x in BookingStatus.objects.filter(booking__user_id=context['user'].id)])[:7]
+        context['empty_booking'] = [x for x in range(7 - len(Booking.objects.filter(user_id=context['user'].id).exclude(id__in=[x.booking.id for x in BookingStatus.objects.filter(booking__user_id=context['user'].id)])[:7]) + 1)]
         return context
 
 @method_decorator(login_required, name='dispatch')
@@ -95,7 +100,6 @@ class UserPurchasedLessonView(TemplateView):
         context = super(UserPurchasedLessonView, self).get_context_data(**kwargs)
         context['lessons'] = PurchasedLessons.objects.filter(user_id=self.request.user.id)
         return context
-
 
 #STAFF VIEW
 @method_decorator(login_required, name='dispatch')
@@ -133,13 +137,11 @@ def create_staff(request):
     context = {'user_form': user_form, 'profile_form': profile_form}
     return render(request, 'user_management/staff/staff_create.html', context)
 
-
 @method_decorator(login_required, name='dispatch')
 class DeleteStaff(DeleteView):
     model = User
     template_name = 'user_management/staff/staff_delete.html'
     success_url = reverse_lazy('staff_list')
-
 
 @method_decorator(login_required, name='dispatch')
 class UpdateStaff(UpdateView):

@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block browser_page_title %}Virgilian Code{% endblock %}
+
+{% block personal_css %}
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="container my-5">
+        {% if booking %}
+            <h1>Prenotazioni in attesa di conferma</h1>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Id prenotazione</th>
+                        <th scope="col">data</th>
+                        <th scope="col">ora</th>
+                        <th scope="col">Tempo rimanente per la conferma</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for b in booking %}
+                        <tr>
+                            <th scope="row">{{ b.id }}</th>
+                            <td>{{ b.data }}</td>
+                            <td>{{ b.ora }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>Non hai prenotazini in attesa di conferma</p>
+        {% endif %}
+        {% if booking_status %}
+            <h1>Videolezioni live prenotate imminenti</h1>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Id prenotazione</th>
+                        <th scope="col">Data</th>
+                        <th scope="col">Ora</th>
+                        <th scope="col">formatore</th>
+                        <th scope="col">stato prenotazione</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for b in booking_status %}
+                        <tr>
+                            <th scope="row">{{ b.booking.id }}</th>
+                            <th scope="row">{{ b.booking.data }}</th>
+                            <th scope="row">{{ b.booking.ora }}</th>
+                            <td>{{ b.formatore.username }}</td>
+                            <td>
+                                {% if b.stato == '1' %}
+                                    Confermato
+                                {% else %}
+                                    Annullato
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>Non hai videolezini live prenotate imminenti</p>
+        {% endif %}
+        {% if booking_past %}
+            <h1>Prenotazioni passate</h1>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Id prenotazione</th>
+                        <th scope="col">Data</th>
+                        <th scope="col">Ora</th>
+                        <th scope="col">formatore</th>
+                        <th scope="col">stato prenotazione</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for b in booking_past %}
+                        <tr>
+                            <th scope="row">{{ b.booking.id }}</th>
+                            <th scope="row">{{ b.booking.data }}</th>
+                            <th scope="row">{{ b.booking.ora }}</th>
+                            <td>{{ b.formatore.username }}</td>
+                            <td>
+                                {% if b.stato == '1' %}
+                                    Confermato
+                                {% else %}
+                                    Annullato
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% endif %}
+    </div>
+{% endblock %}

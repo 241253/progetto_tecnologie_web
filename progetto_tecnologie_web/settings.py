@@ -107,7 +107,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
-DATETIME_INPUT_FORMATS += ('%d/%m/%Y %H:%M', )
+DATE_INPUT_FORMATS = ('%d/%m/%Y', )
 
 
 # Static files (CSS, JavaScript, Images)

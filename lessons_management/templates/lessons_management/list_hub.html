@@ -66,8 +66,6 @@
                             {% elif lesson.genre == 'AL'%}
                                 <td>Altro</td>
                             {% endif %}
-
-
                             <td>
                                 <a class="btn btn-primary my-2" href="{% url 'update_lesson' lesson.id %}">modifica</a>
                                 <a class="btn btn-primary" href="{% url 'delete_lesson' lesson.id %}">elimina</a>

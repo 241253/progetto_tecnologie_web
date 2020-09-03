@@ -61,17 +61,30 @@
         <div class="card" style="width: 18rem;">
             <ul class="list-group list-group-flush">
                 <li class="list-group-item"><b>Videolezioni live prenotate</b></li>
-                <li class="list-group-item">prenotazione 1</li>
-                <li class="list-group-item">prenotazione 2</li>
-                <li class="list-group-item">prenotazione 3</li>
-                <li class="list-group-item">prenotazione 4</li>
-                <li class="list-group-item">prenotazione 5</li>
-                <li class="list-group-item">prenotazione 6</li>
-                <li class="list-group-item">...</li>
+                {% for bookingItem in booking_items %}
+                    <li class="list-group-item">{{ bookingItem.data }} {{ bookingItem.ora }}</li>
+                {% endfor %}
+                {% if booking_items %}
+                    {% if empty_booking|length == 1 %}
+                        <li class="list-group-item">...</li>
+                    {% else %}
+                        {% for _ in empty_booking %}
+                            <li class="list-group-empty my-4"></li>
+                        {% endfor %}
+                    {% endif %}
+                {% endif %}
             </ul>
             <div class="card-body">
-                <a href="#" class="card-link">Visualizza tutto</a>
-                <a href="{% url 'booking' %}" class="card-link"><i class="fas fa-plus-circle"></i></a>
+                {% if booking_items %}
+                    <a href="{% url 'user_booking' %}" class="card-link">Visualizza tutto</a>
+                {% else %}
+                    <div class="d-flex flex-column text-center justify-content-center" style="width: 100%; height: 100%;">
+                        <img class="card-empty-img mx-auto" src="{% static 'img/product_empty.png' %}"/>
+                        <p class="my-4">Non hai effettuato prenotazioni per i giorni successivi</p>
+                        <a class="btn btn-primary mx-auto" href="{% url 'booking' %}">effettua una prenotazione</a>
+                        <a href="{% url 'user_booking' %}" class="my-1 btn btn-primary">Visualizza tutte le prenotazioni</a>
+                    </div>
+                {% endif %}
             </div>
         </div>
     </div>

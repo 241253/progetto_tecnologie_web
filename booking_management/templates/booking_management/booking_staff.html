@@ -4,9 +4,65 @@
 {% block browser_page_title %}Virgilian Code - pagina dello staff{% endblock %}
 
 {% block personal_css %}
-    <link rel="stylesheet" href="{% static 'css/userPage.css' %}">
 {% endblock %}
 
 {% block content %}
-    <p>staff</p>
+    <div class="container">
+        {% if booking %}
+            <h1>Lezioni live da effettuare</h1>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Id prenotazione</th>
+                        <th scope="col">Data</th>
+                        <th scope="col">Ora</th>
+                        <th scope="col">Info utente</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for b in booking %}
+                        <tr>
+                            <th scope="row">{{ b.booking.id }}</th>
+                            <th scope="row">{{ b.booking.data }}</th>
+                            <th scope="row">{{ b.booking.ora }}</th>
+                            <th scope="row">
+                                Username: {{ b.booking.user.username }}<br/>
+                                Nome e cognome: {{ b.booking.user.first_name }} {{ b.booking.user.last_name }}<br/>
+                                Email: {{ b.booking.user.email }}<br/>
+                            </th>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>Non ci sono videolezioni live da svolgere</p>
+        {% endif %}
+        {% if booking_past %}
+            <h1>Lezioni live effettuate</h1>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Id prenotazione</th>
+                        <th scope="col">Data</th>
+                        <th scope="col">Ora</th>
+                        <th scope="col">Info utente</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for b in booking_past %}
+                        <tr>
+                            <th scope="row">{{ b.booking.id }}</th>
+                            <th scope="row">{{ b.booking.data }}</th>
+                            <th scope="row">{{ b.booking.ora }}</th>
+                            <th scope="row">
+                                Username: {{ b.booking.user.username }}<br/>
+                                Nome e cognome: {{ b.booking.user.first_name }} {{ b.booking.user.last_name }}<br/>
+                                Email: {{ b.booking.user.email }}<br/>
+                            </th>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% endif %}
+    </div>
 {% endblock %}
