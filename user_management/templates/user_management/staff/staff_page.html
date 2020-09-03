@@ -9,15 +9,46 @@
 
 {% block content %}
     <div class="container my-5">
-    <a class="btn btn-primary" href="{% url 'detail_staff' user.pk %}">Gestione profilo</a>
-    {% if user.is_superuser %}
-        <a class="btn btn-primary" href="{% url 'staff_list' %}">Gestione staff</a>
-    {% endif %}
-    <a class="btn btn-primary" href="{% url 'list_hub' %}">Gestione lezioni</a>
-    {%  if user.is_superuser %}
-        <a class="btn btn-primary" href="{% url 'booking_admin' %}">Conferma e visualizza prenotazioni</a>
-    {% else %}
-        <a class="btn btn-primary" href="{% url 'booking_staff' %}">Visualizza prenotazioni</a>
-    {% endif %}
-    </div>
+
+        <!-- CARD UTENTE -->
+        <div class="card" style="width: 18rem; margin: auto; margin-right: 10px">
+            <img class="card-img p-3" style="height: 280px; width:280px" src="/uploaded_files/{{ profile.foto }}" alt="Card image cap">
+            <ul class="list-group list-group-flush">
+                {% if user.username == 'admin' %}
+                    <li class="list-group-item">Admin</li>
+                {% else %}
+                    <li class="list-group-item">{{ user.first_name }} {{ user.last_name }}</li>
+                {% endif %}
+                <li class="list-group-item">Email: {{ user.email }} </li>
+                <li class="list-group-item">Username: {{ user.username }}</li>
+            </ul>
+            <div class="card-body" style="width: 18rem; margin: auto; margin-right: 10px">
+                <a href="{% url 'detail_update_staff' user.id %}" class="card-link">Modifica</a>
+            </div>
+        </div>
+
+        <div class="card" style="width: 18rem; margin: auto; margin-right: 10px;">
+            <img class="mx-auto" style="height: 250px; width:250px; margin-right: 10px" src="{% static 'img/training.png' %}">
+            <a style="margin-top:10px" class="btn btn-primary" href="{% url 'list_hub' %}">Gestione lezioni</a>
+        </div>
+        {%  if user.is_superuser %}
+            <div class="card" style="width: 18rem; margin: auto; margin-right: 10px">
+                <img class="mx-auto"  style="height: 250px; width:250px" src="{% static 'img/month.png' %}">
+                <a  style="margin-top:10px" class="btn btn-primary" href="{% url 'booking_admin' %}">Conferma e visualizza prenotazioni</a>
+            </div>
+        {% else %}
+            <div class="card" style="width: 18rem; margin: auto; margin-right: 10px">
+                <img  class="mx-auto" style="height: 250px; width:250px" src="{% static 'img/month.png' %}">
+                <a  style="margin-top:10px" class="btn btn-primary" href="{% url 'booking_staff' %}">Visualizza prenotazioni</a>
+            </div>
+        {% endif %}
+
+        <!-- SOLO PER ADMIN -->
+        {% if user.is_superuser %}
+            <div class="card" style="width: 18rem; margin: auto">
+                <img style="height: 250px; width:250px" class="mx-auto" src="{% static 'img/team.png' %}" style="width: 100px; heigth: 100px">
+                <a  style="margin-top:10px" class="btn btn-primary" href="{% url 'staff_list' %}">  Gestione staff</a>
+            </div>
+            {% endif %}
+        </div>
 {% endblock %}

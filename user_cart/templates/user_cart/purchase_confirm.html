@@ -8,47 +8,54 @@
 {% endblock %}
 
 {% block content %}
-    <div class="container my-5">
-        <div class="card">
-            <h5 class="card-header">Sei sicuro di voler procedere con l'acquisto? <br> <br> Stai per acquistare:</h5>
-            <div class="card-body">
-                {% for lesson in lessons %}
-                    <div class="d-flex flex-row">
-                        {% if lesson.genre == 'PC' %}
-                        <img style="margin-left: 10px; width: 180px; height: 180px"  class="lesson-img" src="{% static 'img/lessons/click.png' %}"/>
-                        {% elif lesson.genre == 'A' %}
-                            <img style="margin-left: 10px; width: 180px; height: 180px"  class="lesson-img" src="{% static 'img/lessons/tourist.png' %}"/>
-                        {% elif lesson.genre == 'GM' %}
-                            <img style="margin-left: 10px; width: 180px; height: 180px"  class="lesson-img" src="{% static 'img/lessons/calculator.png' %}"/>
-                        {% elif lesson.genre == 'ST' %}
-                            <img style="margin-left: 10px; width: 180px; height: 180px"  class="lesson-img" src="{% static 'img/lessons/book.png' %}"/>
-                        {% elif lesson.genre == 'GV' %}
-                            <img style="margin-left: 10px; width: 180px; height: 180px"  class="lesson-img" src="{% static 'img/lessons/microphone.png' %}"/>
-                        {% elif lesson.genre == 'R' %}
-                            <img style="margin-left: 10px; width: 180px; height: 180px"  class="lesson-img" src="{% static 'img/lessons/start.png' %}"/>
-                        {% elif lesson.genre == 'AL' %}
-                            <img style="margin-left: 10px; width: 180px; height: 180px"  class="lesson-img" src="{% static 'img/lessons/icon.png' %}"/>
-                        {% endif %}
-                        <div class="mx-5">
-                            <h3>{{ lesson.title }}</h3>
-                            <p>Descrizione: {{ lesson.description|truncatechars:347 }}...</p>
-                            <p>Prezzo: {{ lesson.price }}</p>
+    {% if saldoSufficiente == 'si' %}
+        <div class="container my-5">
+            <div class="card">
+                <h5 class="card-header">Sei sicuro di voler procedere con l'acquisto? <br> <br> Stai per acquistare:</h5>
+                <div class="card-body">
+                    {% for lesson in lessons %}
+                        <div class="d-flex flex-row">
+                            {% if lesson.genre == 'PC' %}
+                            <img style="margin-left: 10px; width: 180px; height: 180px"  class="lesson-img" src="{% static 'img/lessons/click.png' %}"/>
+                            {% elif lesson.genre == 'A' %}
+                                <img style="margin-left: 10px; width: 180px; height: 180px"  class="lesson-img" src="{% static 'img/lessons/tourist.png' %}"/>
+                            {% elif lesson.genre == 'GM' %}
+                                <img style="margin-left: 10px; width: 180px; height: 180px"  class="lesson-img" src="{% static 'img/lessons/calculator.png' %}"/>
+                            {% elif lesson.genre == 'ST' %}
+                                <img style="margin-left: 10px; width: 180px; height: 180px"  class="lesson-img" src="{% static 'img/lessons/book.png' %}"/>
+                            {% elif lesson.genre == 'GV' %}
+                                <img style="margin-left: 10px; width: 180px; height: 180px"  class="lesson-img" src="{% static 'img/lessons/microphone.png' %}"/>
+                            {% elif lesson.genre == 'R' %}
+                                <img style="margin-left: 10px; width: 180px; height: 180px"  class="lesson-img" src="{% static 'img/lessons/start.png' %}"/>
+                            {% elif lesson.genre == 'AL' %}
+                                <img style="margin-left: 10px; width: 180px; height: 180px"  class="lesson-img" src="{% static 'img/lessons/icon.png' %}"/>
+                            {% endif %}
+                            <div class="mx-5">
+                                <h3>{{ lesson.title }}</h3>
+                                <p>Descrizione: {{ lesson.description|truncatechars:347 }}...</p>
+                                <p>Prezzo: {{ lesson.price }}</p>
+                            </div>
                         </div>
+                        <hr></hr>
+                    {% endfor %}
+                </div>
+                <div class="card-footer text-muted flex-row align-items-center">
+                    {% if sconto == 'si' %}
+                        <p>Prezzo totale (scontato): <del>{{ totale }}€</del> {{ totale_scontato }}€</p>
+                    {% else %}
+                        <p>Prezzo totale: {{ totale }}</p>
+                    {% endif %}
+                    <div style="float: right">
+                        <a class="btn btn-primary" href="{% url "cart" %}"> Torna al carrello </a>
+                        <a class="btn btn-primary" href="{% url "cart_purchase_success" %}"> Conferma l'acquisto </a>
                     </div>
-                    <hr></hr>
-                {% endfor %}
-            </div>
-            <div class="card-footer text-muted flex-row align-items-center">
-                {% if sconto == 'si' %}
-                    <p>Prezzo totale (scontato): <del>{{ totale }}€</del> {{ totale_scontato }}€</p>
-                {% else %}
-                    <p>Prezzo totale: {{ totale }}</p>
-                {% endif %}
-                <div style="float: right">
-                    <a class="btn btn-primary" href="{% url "cart" %}"> Torna al carrello </a>
-                    <a class="btn btn-primary" href="{% url "cart_purchase_success" %}"> Conferma l'acquisto </a>
                 </div>
             </div>
         </div>
-    </div>
+    {% else %}
+        <div class="container" style="margin-top: 170px; margin-bottom: 170px">
+            <img style="margin: auto; width: 200px; height: 200px" src="{% static 'img/sad.png' %}">
+            <h5 style="margin: auto">Spiacente, non hai credito sufficiente. Torna alla <a href="{% url 'homePage' %}"> home page</a> per visualizzare altre lezioni!</h5>
+        </div>
+    {% endif %}
 {% endblock %}

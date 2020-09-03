@@ -13,14 +13,58 @@
         {% for pl in lessons %}
             <div class="d-flex flex-row">
                 <a href="{% url 'detail_lesson' pl.lesson.id %}">
-                    <img class="lesson-img" src="{% static 'img/card_temp_photo.jpg' %}"/>
+                    {% if pl.lesson.genre == 'PC' %}
+                        <img style="margin-left: 10px; width: 180px; height: 180px"  class="lesson-img" src="{% static 'img/lessons/click.png' %}"/>
+                    {% elif pl.lesson.genre == 'A' %}
+                        <img style="margin-left: 10px; width: 180px; height: 180px"  class="lesson-img" src="{% static 'img/lessons/tourist.png' %}"/>
+                    {% elif pl.lesson.genre == 'GM' %}
+                        <img style="margin-left: 10px; width: 180px; height: 180px"  class="lesson-img" src="{% static 'img/lessons/calculator.png' %}"/>
+                    {% elif pl.lesson.genre == 'ST' %}
+                        <img style="margin-left: 10px; width: 180px; height: 180px"  class="lesson-img" src="{% static 'img/lessons/book.png' %}"/>
+                    {% elif pl.lesson.genre == 'GV' %}
+                        <img style="margin-left: 10px; width: 180px; height: 180px"  class="lesson-img" src="{% static 'img/lessons/microphone.png' %}"/>
+                    {% elif pl.lesson.genre == 'R' %}
+                        <img style="margin-left: 10px; width: 180px; height: 180px"  class="lesson-img" src="{% static 'img/lessons/start.png' %}"/>
+                    {% elif pl.lesson.genre == 'AL' %}
+                        <img style="margin-left: 10px; width: 180px; height: 180px"  class="lesson-img" src="{% static 'img/lessons/icon.png' %}"/>
+                    {% endif %}
                 </a>
                 <div class="mx-5">
                     <a class="lesson-title-a" href="{% url 'detail_lesson' pl.lesson.id %}">
-                        <h3 class="lesson-title">{{ pl.lesson.title|capfirst }} ({{ pl.lesson.difficulty }})</h3>
+                        <h3 class="lesson-title">{{ pl.lesson.title|capfirst }} </h3>
                     </a>
+
                     <p>Descrizione: {{ pl.lesson.description|truncatechars:300 }}</p>
-                    <p>Descrizione: Genere: {{ pl.lesson.genre }}</p>
+
+                    <!-- DIFFICULTY_CHOICES = (('1.0','Facile - base'), ('2.0', 'Facile - avanzato'), ('3.0', 'Media - base'), ('4.0', 'Media - avanzata'), ('5.0', 'Difficile - base'), ('6.0', 'Difficile - avanzata')) -->
+                    {% if pl.lesson.difficulty == '1.0' %}
+                        <p>Difficoltà: facile base</p>
+                    {% elif pl.lesson.difficulty == '2.0'%}
+                        <p>Difficoltà: facile avanzato</p>
+                    {% elif pl.lesson.difficulty == '3.0'%}
+                        <p>Difficoltà: media di base</p>
+                    {% elif pl.lesson.difficulty == '4.0'%}
+                        <p>Difficoltà: media avanzata</p>
+                    {% elif pl.lesson.difficulty == '5.0'%}
+                        <p>Difficoltà: difficile base</p>
+                    {% elif pl.lesson.difficulty == '6.0'%}
+                        <p>Difficoltà: difficile avanzato</p>
+                    {% endif %}
+
+                     <!-- GENRE_CHOICES = (('PC', 'Punta e clicca'), ('A', 'Avventura'), ('GM', 'Gioco matematico'), ('ST', 'Story-telling'), ('GV', 'Giochi vocali'), ('R', 'Racing'), ('A', 'Altro...')) -->
+                    {% if pl.lesson.genre == 'PC' %}
+                        <p>Genere: punta e clicca</p>
+                    {% elif pl.lesson.genre == 'A'%}
+                        <p>Genere: azione</p>
+                    {% elif pl.lesson.genre == 'GM'%}
+                        <p>Genere: gioco matematico</p>
+                    {% elif pl.lesson.genre == 'ST'%}
+                        <p>Genere: story-telling</p>
+                    {% elif pl.lesson.genre == 'GV'%}
+                        <p>Genere: giochi vocali</p>
+                    {% elif pl.lesson.genre == 'R'%}
+                        <p>Genere: racing</p>
+                    {% endif %}
                 </div>
             </div>
             <hr/>

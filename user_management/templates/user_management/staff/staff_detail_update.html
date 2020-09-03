@@ -8,12 +8,12 @@
 {% endblock %}
 
 {% block content %}
-    <div class="container my-5">
+    <div class="container my-5" style="padding-top: 130px; padding-bottom: 130px">
         <form method="post">
             {% csrf_token %}
             {{ form|crispy }}
             <input class="btn btn-primary" type="submit" value="Modifica">
-            <a class="btn btn-primary" href="{% url 'detail_staff' user.id %}">Annulla</a>
+            <a class="btn btn-primary" href="{% url 'login_redirect_url' %}">Annulla</a>
         </form>
     </div>
 {% endblock %}

@@ -17,7 +17,9 @@ from user_management.models import Profile
 
 def login_redirect(request):
     if request.user.is_staff:
-        return render(request, 'user_management/staff/staff_page.html')
+        context = {}
+        context['profile'] = Profile.objects.get(user__id=request.user.id)
+        return render(request, 'user_management/staff/staff_page.html', context)
     else:
         context = {}
         context['profile'] = Profile.objects.get(user=request.user)
@@ -104,10 +106,15 @@ class UserPurchasedLessonView(TemplateView):
 #STAFF VIEW
 @method_decorator(login_required, name='dispatch')
 class StaffPage(DetailView):
-    context_object_name = 'user'
-    queryset = User.objects.all()
-    # extra_context = {'profile': queryset[0].profile}
-    template_name = 'user_management/user/staff_page.html'
+    class Meta:
+        model = User
+
+    template_name = 'user_management/staff/staff_page.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(StaffPage, self).get_context_data(**kwargs)
+        context['profile'] = Profile.objects.get(user__id=self.request.user.id)
+        return context
 
 @method_decorator(login_required, name='dispatch')
 class StaffList(ListView):
@@ -162,7 +169,7 @@ class StaffDetailUpdate(UpdateView):
     model = User
     form_class = StaffUpdateForm
     template_name = 'user_management/staff/staff_detail_update.html'
-    success_url = reverse_lazy('staff_detail_update_complete')
+    success_url = reverse_lazy('login_redirect_url')
 
 def StaffDetailUpdateComplete(request):
     return render(request, 'user_management/staff/staff_detail_update_complete.html')
