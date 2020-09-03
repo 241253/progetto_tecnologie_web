@@ -46,7 +46,7 @@
             <tbody>
                 {% for b in booking_detail %}
                     <tr>
-                        <th scope="row">{{ b.booking_id }}</th>
+                        <th scope="row">{{ b.booking.id }}</th>
                         <td>{{ b.formatore.username }}</td>
                         <td>
                             {% if b.stato == '1' %}
