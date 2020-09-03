@@ -26,7 +26,21 @@
     <div class="card-body">
         {% for lesson in lessons %}
             <div class="d-flex flex-row">
-                <img class="cart-item-img" src="{% static 'img/card_temp_photo.jpg' %}"/>
+                {% if lesson.genre == 'PC' %}
+                        <img style="margin-left: 10px; width: 180px; height: 180px"  class="lesson-img" src="{% static 'img/lessons/click.png' %}"/>
+                    {% elif lesson.genre == 'A' %}
+                        <img style="margin-left: 10px; width: 180px; height: 180px"  class="lesson-img" src="{% static 'img/lessons/tourist.png' %}"/>
+                    {% elif lesson.genre == 'GM' %}
+                        <img style="margin-left: 10px; width: 180px; height: 180px"  class="lesson-img" src="{% static 'img/lessons/calculator.png' %}"/>
+                    {% elif lesson.genre == 'ST' %}
+                        <img style="margin-left: 10px; width: 180px; height: 180px"  class="lesson-img" src="{% static 'img/lessons/book.png' %}"/>
+                    {% elif lesson.genre == 'GV' %}
+                        <img style="margin-left: 10px; width: 180px; height: 180px"  class="lesson-img" src="{% static 'img/lessons/microphone.png' %}"/>
+                    {% elif lesson.genre == 'R' %}
+                        <img style="margin-left: 10px; width: 180px; height: 180px"  class="lesson-img" src="{% static 'img/lessons/start.png' %}"/>
+                    {% elif lesson.genre == 'AL' %}
+                        <img style="margin-left: 10px; width: 180px; height: 180px"  class="lesson-img" src="{% static 'img/lessons/icon.png' %}"/>
+                    {% endif %}
                 <div class="mx-5">
                     <h3>{{ lesson.title }}</h3>
                     <p>Descrizione: {{ lesson.description|truncatechars:347 }}...</p>

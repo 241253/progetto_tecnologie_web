@@ -1,3 +1,4 @@
+import os
 from sqlite3 import OperationalError
 
 from django.contrib.auth import login
@@ -69,8 +70,23 @@ class UserUpdate(UpdateView):
     template_name = 'user_management/user/user_update.html'
     success_url = reverse_lazy('user_update_complete')
 
+@method_decorator(login_required, name='dispatch')
+class ProfilePictureUpdate(UpdateView):
+    fields = ['foto']
+    model = Profile
+    template_name = 'user_management/user/user_img_update.html'
+    success_url = reverse_lazy('profile_picture_update_complete')
+    
+    def form_valid(self, form):
+        if form.is_valid():
+            form.instance.user = self.request.user
+            return super().form_valid(form)
+
 def UserUpdateComplete(request):
     return render(request, 'user_management/user/user_update_complete.html')
+
+def UserImgUpdateComplete(request):
+    return render(request, 'user_management/user/user_img_update_complete.html')
 
 class UserPurchasedLessonView(TemplateView):
     template_name = 'user_management/user/user_purchased_lesson.html'

@@ -11,13 +11,13 @@
     <div class="container my-5">
         <!-- CARD UTENTE -->
         <div class="card" style="width: 18rem;">
-            {% if profile.foto != "uploaded_files/media/user_db/user_photo/None/none_picture.png" %}                                     <!-- Ho aggiunto un if per distinguere la foto personalizzata scelta dagli utenti dalla foto di default (None per picture) per problemi legati al percorso per come l'avevamo fatto. -->
-                <img class="card-img-top p-3" src="/uploaded_files/{{  profile.foto }}" alt="Card image cap">
+            {% if profile.foto != "uploaded_files/media/user_db/user_photo/None/none_picture.png" %}                    <!-- Ho aggiunto un if per distinguere la foto personalizzata scelta dagli utenti dalla foto di default (None per picture) per problemi legati al percorso per come l'avevamo fatto. -->
+                <img class="card-img-top p-3" src="/uploaded_files/{{ profile.foto }}" alt="Card image cap">
             {% else %}
                 <img class="card-img-top p-3" src="/uploaded_files/media/user_db/user_photo/None/none_picture.png" alt="Card image cap">
             {% endif %}
             <ul class="list-group list-group-flush">
-                <a class="list-group-btn" href="">
+                <a class="list-group-btn" href="{% url 'profile_picture_update' profile.id %}">
                     <li class="list-group-item card-edit-img-btn">Modifica immagine</li>
                 </a>
                 <li class="list-group-item">{{ user.first_name }} {{ user.last_name }}</li>

@@ -4,7 +4,7 @@ from django.db import models
 
 class Booking(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    data = models.DateField(verbose_name='Data ( gg/mm/aaaa):')
+    data = models.DateField(verbose_name='Data ( gg/mm/aaaa):', default='1970-01-01')
     ora = models.TimeField(default=dt.time(00, 00))
 
     def __str__(self):

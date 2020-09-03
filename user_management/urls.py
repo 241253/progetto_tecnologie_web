@@ -15,6 +15,8 @@ urlpatterns = [
     path('user/update/<int:pk>/', views.UserUpdate.as_view(), name='user_update'),
     path('user/lesson/', views.UserPurchasedLessonView.as_view(), name='user_lesson'),
     path('user/update/complete/', views.UserUpdateComplete, name='user_update_complete'),
+    path('user/update/image/<int:pk>/', views.ProfilePictureUpdate.as_view(), name='profile_picture_update'),
+    path('user/update/image/complete/', views.UserImgUpdateComplete, name='profile_picture_update_complete'),
     #STAFF URL
     path('redirect/', views.login_redirect, name='login_redirect_url'),
     path('staff/home/', views.StaffPage.as_view(), name='staff_page'),
