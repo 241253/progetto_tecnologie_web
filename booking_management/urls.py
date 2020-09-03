@@ -9,5 +9,6 @@ urlpatterns = [
     path('prenotazioni/staff/', views.BookingAdminView.as_view(), name='booking_admin'),
     path('prenotazioni/admin/', views.BookingStaffView.as_view(), name='booking_staff'),
     #BOOKING_STATUS
-    path('prenotazioni/detail/confirm/<int:booking_id>/', views.CreateBookingStatusView.as_view(), name='booking_status_confirm'),
+    path('prenotazioni/detail/confirm/<int:booking_id>', views.CreateBookingStatusView.as_view(), name='booking_status_confirm'),
+    path('prenotazioni/detail/undo/<int:booking_id>', views.UndoBookingStatusView.as_view(), name='booking_status_undo'),
 ]

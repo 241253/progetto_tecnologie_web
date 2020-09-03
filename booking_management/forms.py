@@ -1,6 +1,10 @@
 import datetime as dt
 from django import forms
+from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
+from django.core.mail import send_mail, BadHeaderError
+from django.forms import HiddenInput
+from django.http import HttpResponse
 
 from booking_management.models import Booking, BookingStatus
 
@@ -35,18 +39,83 @@ class BookingCreationForm(forms.ModelForm):
 #BOOKING_STATUS
 class BookingStatusConfirmForm(forms.ModelForm):
 
+    FORMATORI = [(f.id, f.username) for f in User.objects.filter(is_staff=True)]
+    formatore= forms.CharField(label='Formatore a cui asseganre la lezione live:', widget=forms.Select(choices=FORMATORI))
+
     class Meta:
         model = BookingStatus
         fields = ('formatore',)
 
     def __init__(self, *args, **kwargs):
-        self.booking_id = kwargs.pop('booking_id')##########risolvere questo problem o qui o nella save!!!!#############
+        self.booking_id = kwargs.pop('booking_id')
         super(BookingStatusConfirmForm, self).__init__(*args, **kwargs)
+
+    def clean_formatore(self):
+        formatore_id = self.data['formatore']
+        formatore = User.objects.get(id=formatore_id)
+        if formatore is None:
+            raise forms.ValidationError("Formatore non valido!")
+        else:
+            return formatore
 
     def save(self, commit=True):
         booking_status = super(BookingStatusConfirmForm, self).save(commit=False)
-        booking_status.booking_id = self.booking_id
+        data = self.cleaned_data
+
         booking_status.stato = '1'
+        booking_status.formatore = data['formatore']
+        booking_status.booking = Booking.objects.get(id=self.booking_id)
+
+        subject = 'Conferma prenotazione'
+        utente = User.objects.get(id=Booking.objects.get(id=self.booking_id).user.id)
+        message = 'Gentile ' + utente.username + ',\n\n la prenotazione da lei effettuata è stata Confermata'
+        try:
+            send_mail(subject, message, 'virgiliancodeonline@gmail.com', [utente.email], fail_silently=False,)
+        except BadHeaderError:
+            return HttpResponse('Invalid header found.')
+
+        if commit:
+            booking_status.save()
+        return booking_status
+
+class BookingStatusUndoForm(forms.ModelForm):
+
+    FORMATORI = [(f.id, f.username) for f in User.objects.filter(is_superuser=True)]
+    formatore= forms.CharField(label='Formatore a cui asseganre la lezione live:', widget=forms.Select(choices=FORMATORI))
+
+    class Meta:
+        model = BookingStatus
+        fields = ('formatore',)
+
+    def __init__(self, *args, **kwargs):
+        self.booking_id = kwargs.pop('booking_id')
+        self.user = kwargs.pop('user')
+        super(BookingStatusUndoForm, self).__init__(*args, **kwargs)
+
+    def clean_formatore(self):
+        formatore_id = self.data['formatore']
+        formatore = User.objects.get(id=formatore_id)
+        if formatore is None:
+            raise forms.ValidationError("Formatore non valido!")
+        else:
+            return formatore
+
+    def save(self, commit=True):
+        booking_status = super(BookingStatusUndoForm, self).save(commit=False)
+        data = self.cleaned_data
+
+        booking_status.stato = '0'
+        booking_status.formatore = data['formatore']
+        booking_status.booking = Booking.objects.get(id=self.booking_id)
+
+        subject = 'Annullamento prenotazione'
+        utente = User.objects.get(id=Booking.objects.get(id=self.booking_id).user.id)
+        message = 'Gentile ' + utente.username + ',\n\n la prenotazione da lei effettuata è stata annullata'
+        try:
+            send_mail(subject, message, 'virgiliancodeonline@gmail.com', [utente.email], fail_silently=False,)
+        except BadHeaderError:
+            return HttpResponse('Invalid header found.')
+
         if commit:
             booking_status.save()
         return booking_status

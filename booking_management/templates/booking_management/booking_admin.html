@@ -12,6 +12,7 @@
         <table class="table">
             <thead>
                 <tr>
+                    <th scope="col">Id prenotazione</th>
                     <th scope="col">utente</th>
                     <th scope="col">data</th>
                     <th scope="col">ora</th>
@@ -21,11 +22,12 @@
             <tbody>
                 {% for b in booking %}
                     <tr>
+                        <th scope="row">{{ b.id }}</th>
                         <th scope="row">{{ b.user.username }}</th>
                         <td>{{ b.data }}</td>
                         <td>{{ b.ora }}</td>
                         <td>
-                            <a class="btn btn-primary">Annulla prenotazione</a>
+                            <a class="btn btn-primary" href="{% url 'booking_status_undo' b.id %}">Annulla prenotazione</a>
                             <a class="btn btn-primary" href="{% url 'booking_status_confirm' b.id %}">Conferma prenotazione</a>
                         </td>
                     </tr>
@@ -46,7 +48,13 @@
                     <tr>
                         <th scope="row">{{ b.booking_id }}</th>
                         <td>{{ b.formatore.username }}</td>
-                        <td>{{ b.stato }}</td>
+                        <td>
+                            {% if b.stato == '1' %}
+                                Confermato
+                            {% else %}
+                                Annullato
+                            {% endif %}
+                        </td>
                     </tr>
                 {% endfor %}
             </tbody>

@@ -11,7 +11,7 @@ class Booking(models.Model):
         return f'prenotazione di {self.user.username} il giorno {self.data}, #{self.id}'
 
 class BookingStatus(models.Model):
-    booking_id = models.OneToOneField(Booking, on_delete=models.CASCADE)
+    booking = models.OneToOneField(Booking, on_delete=models.DO_NOTHING)
     formatore = models.ForeignKey(User, on_delete=models.DO_NOTHING)
     stato = models.CharField(max_length=20, choices=(('0','Annullato'), ('1','Confermato')))
 

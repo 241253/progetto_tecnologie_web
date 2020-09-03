@@ -12,8 +12,8 @@
         <form method="POST">
             {% csrf_token %}
             {{ form|crispy }}
-            <input type="submit" value="Conferma">
-            <a class="btn btn-primary" href="booking_admin.html">Annulla</a>
+            <a class="btn btn-primary" href="{% url 'booking_admin' %}">Annulla</a>
+            <input class="btn btn-primary" type="submit" value="Conferma"/>
         </form>
     </div>
 {% endblock %}
