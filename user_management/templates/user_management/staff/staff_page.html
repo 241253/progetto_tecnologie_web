@@ -12,7 +12,11 @@
 
         <!-- CARD UTENTE -->
         <div class="card" style="width: 18rem; margin: auto; margin-right: 10px">
-            <img class="card-img p-3" style="height: 280px; width:280px" src="/uploaded_files/{{ profile.foto }}" alt="Card image cap">
+            {% if profile.foto == 'uploaded_files/media/user_db/user_photo/None/none_picture.png' %}
+                <img class="card-img p-3" style="height: 280px; width:280px" src="{{ profile.foto }}" alt="Card image cap">
+            {% else %}
+                <img class="card-img p-3" style="height: 280px; width:280px" src="/uploaded_files/{{ profile.foto }}" alt="Card image cap">
+            {% endif %}
             <ul class="list-group list-group-flush">
                 {% if not user.is_superuser %}
                     <li class="list-group-item">{{ user.first_name }} {{ user.last_name }}</li>

@@ -1,3 +1,5 @@
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import Submit
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth.models import User
@@ -28,6 +30,11 @@ class UserForm(UserCreationForm):
         self.fields['password2'].label = "Ripeti password"
         self.error_messages['password_mismatch'] = "Le due password non combaciano."
         self.fields['password2'].help_text = "Ripeti la password, per motivi di sicurezza."
+
+    def clean_email(self):
+        if User.objects.filter(email=self.cleaned_data['email']).exists():
+            raise forms.ValidationError("Spiacente, l'email inserita è già presente su Virgilian Code Online.")
+        return self.cleaned_data['email']
 
 class UserUpdateForm(UserCreationForm):
     class Meta:
@@ -72,6 +79,9 @@ class ProfileCreationForm(forms.ModelForm):
             and do not supply a new avatar
             """
             pass
+
+        if(foto=='uploaded_files/media/user_db/user_photo/None/none_picture.png'):
+            foto='media/user_db/user_photo/None/none_picture.png'
 
         return foto
 

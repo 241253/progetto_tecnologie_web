@@ -4,6 +4,7 @@ from sqlite3 import OperationalError
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.forms import ModelForm, ImageField
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
@@ -13,6 +14,7 @@ from booking_management.models import Booking, BookingStatus
 from user_cart.models import PurchasedLessons
 from user_management.forms import ProfileCreationForm, UserForm, UserUpdateForm, StaffForm, StaffUpdateForm
 from user_management.models import Profile
+from django.forms.widgets import ClearableFileInput
 
 
 def login_redirect(request):

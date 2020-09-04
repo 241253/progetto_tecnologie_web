@@ -29,7 +29,11 @@
                             <td>{{ user.first_name }}</td>
                             <td>{{ user.last_name }}</td>
                             <td>{{ user.email }}</td>
-                            <td>{{ user.last_login }}</td>
+                            {% if user.last_login != None %}
+                                <td>{{ user.last_login }}</td>
+                            {% else %}
+                                <td class="text-center">-</td>
+                            {% endif %}
                             <td>
                                 {% if  not user.is_superuser and user.username != 'staff_virgiliancode' %}
                                     <a class="btn btn-secondary my-2" href="{% url 'update_staff' user.id %}">modifica</a>
