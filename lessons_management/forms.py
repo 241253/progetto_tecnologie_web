@@ -40,7 +40,6 @@ def getLessonsChoices():
     return choices
 
 class PacketCreationForm(forms.ModelForm):
-
     choices = getLessonsChoices()
     lessons = forms.MultipleChoiceField(choices=choices)
     
@@ -66,6 +65,12 @@ class PacketCreationForm(forms.ModelForm):
         else:
             difficulty = '6.0'
         return difficulty
+
+    def clean_lessons(self):
+        lessons = self.cleaned_data['lessons']
+        if len(lessons) < 5:
+            raise forms.ValidationError('Devi selezionare almeno 5 lezioni!')
+        return lessons
 
     def save(self, commit=True):
         packet = super(PacketCreationForm, self).save(commit=False)

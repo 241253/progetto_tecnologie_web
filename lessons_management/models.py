@@ -10,7 +10,7 @@ class Lesson(models.Model):
     user = models.ForeignKey(User, on_delete=models.SET(5), null=True)
 
     title = models.CharField(max_length=60)
-    description = models.TextField(max_length=300)
+    description = models.TextField(max_length=1000)
     difficulty = models.CharField(max_length=30, choices=DIFFICULTY_CHOICES, default='1.0')
     genre = models.CharField(max_length=30, choices=GENRE_CHOICES, default='A')
     price = models.FloatField(default=20.0)
@@ -25,7 +25,7 @@ class Packet(models.Model):
     user = models.ForeignKey(User, on_delete=models.SET(5), null=True)
 
     title = models.CharField(max_length=60)
-    description = models.TextField(max_length=300)
+    description = models.TextField(max_length=1000)
     difficulty = models.CharField(max_length=30, choices=DIFFICULTY_CHOICES, default='1.0')
     lessons = models.ManyToManyField(Lesson)
 

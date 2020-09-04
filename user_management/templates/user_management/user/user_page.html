@@ -8,7 +8,7 @@
 {% endblock %}
 
 {% block content %}
-    <div class="container my-5">
+    <div class="container-fluid my-5 text-center">
         <!-- CARD UTENTE -->
         <div class="card" style="width: 18rem;">
             {% if profile.foto != "uploaded_files/media/user_db/user_photo/None/none_picture.png" %}                    <!-- Ho aggiunto un if per distinguere la foto personalizzata scelta dagli utenti dalla foto di default (None per picture) per problemi legati al percorso per come l'avevamo fatto. -->
@@ -58,6 +58,35 @@
                 {% endif %}
             </div>
         </div>
+        <!-- PACCHETTI LIKEATI -->
+        <div class="card" style="width: 18rem;">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"><b>Pacchetti seguiti</b></li>
+                {% for purchasedItem in purchased_items %}
+                    <li class="list-group-item">{{ purchasedItem.lesson.title }}</li>
+                {% endfor %}
+                {% if purchased_items %}
+                    {% if empty_items|length == 1 %}
+                        <li class="list-group-item">...</li>
+                    {% else %}
+                        {% for _ in empty_items %}
+                            <li class="list-group-empty my-4"></li>
+                        {% endfor %}
+                    {% endif %}
+                {% endif %}
+            </ul>
+            <div class="card-body">
+                {% if purchased_items %}
+                    <a href="{% url 'user_lesson' %}" class="card-link">Visualizza tutto</a>
+                {% else %}
+                    <div class="d-flex flex-column text-center justify-content-center" style="width: 100%; height: 100%;">
+                        <img class="card-empty-img mx-auto" src="{% static 'img/packet_empty.png' %}"/>
+                        <p class="my-4">Non hai ancora seguito nessuno dei nostri pacchetti</p>
+                        <a class="btn btn-primary mx-auto" href="{% url 'list_packet' %}">Vedi tutti i pacchetti</a>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
         <!-- CARD PRENOTAZIONI -->
         <div class="card" style="width: 18rem;">
             <ul class="list-group list-group-flush">
@@ -80,10 +109,10 @@
                     <a href="{% url 'user_booking' %}" class="card-link">Visualizza tutto</a>
                 {% else %}
                     <div class="d-flex flex-column text-center justify-content-center" style="width: 100%; height: 100%;">
-                        <img class="card-empty-img mx-auto" src="{% static 'img/product_empty.png' %}"/>
+                        <img class="card-empty-img mx-auto" src="{% static 'img/booking_empty.png' %}"/>
                         <p class="my-4">Non hai effettuato prenotazioni per i giorni successivi</p>
                         <a class="btn btn-primary mx-auto" href="{% url 'booking' %}">effettua una prenotazione</a>
-                        <a href="{% url 'user_booking' %}" class="my-1 btn btn-primary">Visualizza tutte le prenotazioni</a>
+                        <a href="{% url 'user_booking' %}" class="mt-4 btn btn-primary">Visualizza lo storico <br/>delle prenotazioni</a>
                     </div>
                 {% endif %}
             </div>

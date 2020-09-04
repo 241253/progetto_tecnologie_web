@@ -13,8 +13,8 @@
         <form method="POST">
             {% csrf_token %}
             {{ form | crispy }}
-            <input type="submit" value="Modifica" class="btn btn-primary" style="float: right; margin-bottom: 30px">
+            <input type="submit" value="Modifica" class="btn btn-secondary" style="float: right; margin-bottom: 30px">
         </form>
-        <a class="btn btn-primary" href="{% url 'list_hub' %}">Annulla</a>
+        <a class="btn btn-secondary" href="{% url 'list_hub' %}">Annulla</a>
     </div>
 {% endblock %}

@@ -43,7 +43,7 @@ class BookingCreationForm(forms.ModelForm):
 #BOOKING_STATUS
 class BookingStatusConfirmForm(forms.ModelForm):
 
-    FORMATORI = [(f.id, f.username) for f in User.objects.filter(is_staff=True)]
+    FORMATORI = []#[(f.id, f.username) for f in User.objects.filter(is_staff=True)]
     formatore= forms.CharField(label='Formatore a cui asseganre la lezione live:', widget=forms.Select(choices=FORMATORI))
 
     class Meta:
@@ -87,7 +87,7 @@ class BookingStatusConfirmForm(forms.ModelForm):
 
 class BookingStatusUndoForm(forms.ModelForm):
 
-    FORMATORI = [(f.id, f.username) for f in User.objects.filter(is_superuser=True)]
+    FORMATORI = []#[(f.id, f.username) for f in User.objects.filter(is_superuser=True)]
     formatore= forms.CharField(label='Formatore a cui asseganre la lezione live:', widget=forms.Select(choices=FORMATORI))
 
     class Meta:

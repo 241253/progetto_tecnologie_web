@@ -90,3 +90,7 @@ class UpdatePacket(UpdateView):
 class PacketDetail(DeleteView):
     template_name = 'lessons_management/packets/detail_packet.html'
     model = Packet
+
+class PacketListView(ListView):
+    template_name = 'lessons_management/packets/list_packet.html'
+    model = Packet

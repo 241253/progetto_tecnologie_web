@@ -9,13 +9,18 @@
 
 {% block content %}
 <div class="container py-3">
+    {% if lesson_list_1.count != 0 or lesson_list_2.count != 0 or lesson_list_3.count != 0 or lesson_list_4.count != 0 or lesson_list_5.count != 0 or lesson_list_6.count != 0 %}
     <div class="jumbotron">
-        <h1 class="display-4"></h1>
-        <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+        <h1 class="display-4">I NOSTRI PACCHETTI</h1>
+        <p class="lead">Se non sai quali lezioni comprare oppure vuoi sfruttare il nostro sconto applicato ogni 5 lezioni acquistate in maniera intelligente sei nel posto giusto.</p>
         <hr class="my-4">
-        <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-        <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+        <p>
+            Abbiamo creato appositamente per te dei pacchetti di 5 videolezioni ciascuno che ti permettono di sfruttare lo sconto di 20 euro applicato ogni 5 lezioni e seguire un percorso volto al raggiungimento di un'obbiettivo specifico.
+            più altra roba che domanderò al mastro cioccolataio!
+        </p>
+        <a class="btn btn-primary btn-lg" href="{% url 'list_packet' %}" role="button">Visualizza i nostri pacchetti</a>
     </div>
+    {% endif %}
     <!-- LEZIONE FACILE -->
     {% if lesson_list_1.count != 0 or lesson_list_2.count != 0 %}
     <div class="card my-3">
