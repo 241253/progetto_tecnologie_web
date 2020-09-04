@@ -30,19 +30,11 @@ class BookingCreationForm(forms.ModelForm):
         data = self.cleaned_data['data']
         booking_date = (dt.date.today() + dt.timedelta(days=3))
         if data < booking_date:
-            print('bboking: ', booking_date)
-            print('current: ', data)
             raise ValidationError(f"puoi prenotare a partire dal {booking_date.strftime('%d/%m/%Y')}")
         return data
 
     def save(self, commit=True):
         booking = super(BookingCreationForm, self).save(commit=False)
-        profile = Profile.objects.get(user_id=self.current_user.id)
-        if profile.saldo >= 20:
-            profile.saldo -= 20
-            profile.save()
-        else:
-            return None
         booking.user = self.current_user
         if commit:
             booking.save()
