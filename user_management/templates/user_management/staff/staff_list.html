@@ -32,8 +32,8 @@
                             <td>{{ user.last_login }}</td>
                             <td>
                                 {% if  not user.is_superuser and user.username != 'staff_virgiliancode' %}
-                                    <a class="btn btn-primary my-2" href="{% url 'update_staff' user.id %}">modifica</a>
-                                    <a class="btn btn-primary" href="{% url 'delete_staff' user.id %}">elimina</a>
+                                    <a class="btn btn-secondary my-2" href="{% url 'update_staff' user.id %}">modifica</a>
+                                    <a class="btn btn-secondary" href="{% url 'delete_staff' user.id %}">elimina</a>
                                 {% endif %}
                             </td>
                         </tr>
@@ -41,7 +41,6 @@
                 {% endfor %}
             </tbody>
         </table>
-        <a class="btn btn-primary" href="{% url 'create_staff' %}">Inserisci nuovo membro dello staff</a>
-        <a class="btn btn-primary" href="{% url 'login_redirect_url' %}">Torna alla homepage dello staff</a>
+        <a class="btn btn-secondary" href="{% url 'create_staff' %}">Inserisci nuovo membro dello staff</a>
     </div>
 {% endblock %}

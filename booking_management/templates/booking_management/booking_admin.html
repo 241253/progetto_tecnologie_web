@@ -27,8 +27,8 @@
                         <td>{{ b.data }}</td>
                         <td>{{ b.ora }}</td>
                         <td>
-                            <a class="btn btn-primary" href="{% url 'booking_status_undo' b.id %}">Annulla prenotazione</a>
-                            <a class="btn btn-primary" href="{% url 'booking_status_confirm' b.id %}">Conferma prenotazione</a>
+                            <a class="btn btn-secondary" href="{% url 'booking_status_undo' b.id %}">Annulla prenotazione</a>
+                            <a class="btn btn-secondary" href="{% url 'booking_status_confirm' b.id %}">Conferma prenotazione</a>
                         </td>
                     </tr>
                 {% endfor %}

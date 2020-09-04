@@ -5,11 +5,20 @@ from booking_management.models import Booking, BookingStatus
 import datetime as dt
 
 #BOOKING
+from user_management.models import Profile
+
+
 class CreateBookingView(CreateView):
     model = Booking
     form_class = BookingCreationForm
     template_name = 'booking_management/create_booking.html'
     success_url = reverse_lazy('booking_success')
+
+    def get_success_url(self):
+        if Profile.objects.get(user_id=self.request.user.id).saldo < 20:
+            return reverse_lazy('booking_error')
+        else:
+            return super(CreateBookingView, self).get_success_url()
 
     def get_form_kwargs(self):
         kwargs = super(CreateBookingView, self).get_form_kwargs()
@@ -18,6 +27,9 @@ class CreateBookingView(CreateView):
 
 class BookingSuccessView(TemplateView):
     template_name = 'booking_management/success_booking.html'
+
+class BookingErrorView(TemplateView):
+    template_name = 'booking_management/error_booking.html'
 
 class BookingAdminView(TemplateView):
     template_name = 'booking_management/booking_admin.html'

@@ -1,4 +1,5 @@
 import datetime as dt
+
 from django import forms
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
@@ -10,6 +11,9 @@ from booking_management.models import Booking, BookingStatus
 
 
 #BOOKING
+from user_management.models import Profile
+
+
 class BookingCreationForm(forms.ModelForm):
 
     class Meta:
@@ -33,6 +37,12 @@ class BookingCreationForm(forms.ModelForm):
 
     def save(self, commit=True):
         booking = super(BookingCreationForm, self).save(commit=False)
+        profile = Profile.objects.get(user_id=self.current_user.id)
+        if profile.saldo >= 20:
+            profile.saldo -= 20
+            profile.save()
+        else:
+            return None
         booking.user = self.current_user
         if commit:
             booking.save()

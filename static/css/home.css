@@ -5,6 +5,12 @@
     border-radius: 10px;
 }
 
+.no-lesson-img
+{
+    width: 20%;
+    height: auto;
+}
+
 .add-to-cart-icon
 {
     width: 30px;

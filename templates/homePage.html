@@ -10,6 +10,7 @@
 {% block content %}
 <div class="container py-3">
     <!-- LEZIONE FACILE -->
+    {% if lesson_list_1.count != 0 or lesson_list_2.count != 0 %}
     <div class="card">
       <div class="card-header" style="background-color: #18d624">
         <h5>DIFFICOLTA' FACILE</h5>
@@ -89,7 +90,9 @@
         {% endfor %}
       </div>
     </div>
+    {% endif %}
     <!-- LEZIONE MEDIO -->
+    {% if lesson_list_3.count != 0 or lesson_list_4.count != 0 %}
     <div class="card">
         <h5 class="card-header" style="background-color: #F5A904;">
           DIFFICOLTA' MEDIA
@@ -169,7 +172,9 @@
             {% endfor %}
       </div>
     </div>
+    {% endif %}
     <!-- LEZIONE DIFFICILE -->
+    {% if lesson_list_5.count != 0 or lesson_list_6.count != 0 %}
     <div class="card">
         <h5 class="card-header" style="background-color: #ff3300;">
             DIFFICOLTA' DIFFICILE
@@ -249,6 +254,24 @@
             {% endfor %}
         </div>
     </div>
+    {% endif %}
+    {% if lesson_list_1.count == 0 and lesson_list_2.count == 0 and lesson_list_3.count == 0 and lesson_list_4.count == 0 and lesson_list_5.count == 0 and lesson_list_6.count == 0 %}
+        <div class="container my-5 text-center">
+            <p>
+                Non sono presenti lezioni sul sito.<br/>
+                Lo staff di Virgiliancode si scusa per l'inconveniente,<br/>
+                vi assicuriamo che presto aggiungeremo nuove lezioni.
+            </p>
+            <img class="no-lesson-img" src="{% static 'img/home/no_lessons.png' %}"/>
+            <p>
+                Nel mentre potete prenotare lezioni in streaming <br/>
+                con i nostri formatori nella sezione apposita del sito dopo esservi registrati.
+            </p>
+            {% if user.is_authenticated %}
+                <a class="btn btn-primary" href="{% url 'booking' %}">Prenota una videolezione live</a>
+            {% endif %}
+        </div>
+    {% endif %}
 </div>
 {% endblock %}
 

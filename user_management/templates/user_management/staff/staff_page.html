@@ -29,17 +29,17 @@
 
         <div class="card" style="width: 18rem; margin: auto; margin-right: 10px;">
             <img class="mx-auto" style="height: 250px; width:250px; margin-right: 10px" src="{% static 'img/training.png' %}">
-            <a style="margin-top:10px" class="btn btn-primary" href="{% url 'list_hub' %}">Gestione lezioni</a>
+            <a style="margin-top:10px" class="btn btn-secondary" href="{% url 'list_hub' %}">Gestione lezioni</a>
         </div>
         {%  if user.is_superuser %}
             <div class="card" style="width: 18rem; margin: auto; margin-right: 10px">
                 <img class="mx-auto"  style="height: 250px; width:250px" src="{% static 'img/month.png' %}">
-                <a  style="margin-top:10px" class="btn btn-primary" href="{% url 'booking_admin' %}">Conferma e visualizza prenotazioni</a>
+                <a  style="margin-top:10px" class="btn btn-secondary" href="{% url 'booking_admin' %}">Conferma e visualizza prenotazioni</a>
             </div>
         {% else %}
             <div class="card" style="width: 18rem; margin: auto; margin-right: 10px">
                 <img  class="mx-auto" style="height: 250px; width:250px" src="{% static 'img/month.png' %}">
-                <a  style="margin-top:10px" class="btn btn-primary" href="{% url 'booking_staff' %}">Visualizza prenotazioni</a>
+                <a  style="margin-top:10px" class="btn btn-secondary" href="{% url 'booking_staff' %}">Visualizza prenotazioni</a>
             </div>
         {% endif %}
 
@@ -47,7 +47,7 @@
         {% if user.is_superuser %}
             <div class="card" style="width: 18rem; margin: auto">
                 <img style="height: 250px; width:250px" class="mx-auto" src="{% static 'img/team.png' %}" style="width: 100px; heigth: 100px">
-                <a  style="margin-top:10px" class="btn btn-primary" href="{% url 'staff_list' %}">  Gestione staff</a>
+                <a  style="margin-top:10px" class="btn btn-secondary" href="{% url 'staff_list' %}">  Gestione staff</a>
             </div>
             {% endif %}
         </div>

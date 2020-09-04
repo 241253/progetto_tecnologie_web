@@ -45,6 +45,12 @@
     border: 0;
 }
 
+.btn-secondary, .btn-secondary:hover
+{
+    background-color: rgb(68, 142, 255);
+    border: 0;
+}
+
 /* FOOTER */
 .footer {
     display: inline-block;
