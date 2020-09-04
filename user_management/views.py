@@ -1,20 +1,16 @@
-import os
-from sqlite3 import OperationalError
-
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from django.forms import ModelForm, ImageField
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views.generic import DetailView, UpdateView, ListView, DeleteView, TemplateView
 
 from booking_management.models import Booking, BookingStatus
+from lessons_management.models import UserPackets, Packet
 from user_cart.models import PurchasedLessons
 from user_management.forms import ProfileCreationForm, UserForm, UserUpdateForm, StaffForm, StaffUpdateForm
 from user_management.models import Profile
-from django.forms.widgets import ClearableFileInput
 
 
 def login_redirect(request):
@@ -29,6 +25,8 @@ def login_redirect(request):
         context['empty_items'] = [x for x in range(7 - len(PurchasedLessons.objects.filter(user_id=request.user.id)[:7]) + 1)]
         context['booking_items'] = Booking.objects.filter(user_id=request.user.id).exclude(id__in=[x.booking.id for x in BookingStatus.objects.filter(booking__user_id=request.user.id)])[:7]
         context['empty_booking'] = [x for x in range(7 - len(Booking.objects.filter(user_id=request.user.id).exclude(id__in=[x.booking.id for x in BookingStatus.objects.filter(booking__user_id=request.user.id)])[:7]) + 1)]
+        context['packets'] = Packet.objects.filter(id__in=[x.packet.id for x in UserPackets.objects.filter(user__id=request.user.id)])[:7]
+        context['empty_packet'] = [x for x in range(7 - len(Packet.objects.filter(id__in=[x.packet.id for x in UserPackets.objects.filter(user__id=request.user.id)])[:7]) + 1)]
         return render(request, 'user_management/user/user_page.html', context)
 
 #USER VIEW
@@ -70,6 +68,8 @@ class UserPage(DetailView):
         context['empty_items'] = [x for x in range(7-len(PurchasedLessons.objects.filter(user_id=context['user'].id)[:7])+1)]
         context['booking_items'] = Booking.objects.filter(user_id=context['user'].id).exclude(id__in=[x.booking.id for x in BookingStatus.objects.filter(booking__user_id=context['user'].id)])[:7]
         context['empty_booking'] = [x for x in range(7 - len(Booking.objects.filter(user_id=context['user'].id).exclude(id__in=[x.booking.id for x in BookingStatus.objects.filter(booking__user_id=context['user'].id)])[:7]) + 1)]
+        context['packets'] = Packet.objects.filter(id__in=[x.packet.id for x in UserPackets.objects.filter(user__id=context['user'].id)])[:7]
+        context['empty_packet'] = [x for x in range(7 - len(Packet.objects.filter(id__in=[x.packet.id for x in UserPackets.objects.filter(user__id=context['user'].id)])[:7]) + 1)]
         return context
 
 @method_decorator(login_required, name='dispatch')
@@ -103,6 +103,14 @@ class UserPurchasedLessonView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super(UserPurchasedLessonView, self).get_context_data(**kwargs)
         context['lessons'] = PurchasedLessons.objects.filter(user_id=self.request.user.id)
+        return context
+
+class UserPacketsView(TemplateView):
+    template_name = 'user_management/user/user_packets.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(UserPacketsView, self).get_context_data(**kwargs)
+        context['packets'] = Packet.objects.filter(id__in=[x.packet.id for x in UserPackets.objects.filter(user_id=self.request.user.id)])
         return context
 
 #STAFF VIEW

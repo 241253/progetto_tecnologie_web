@@ -62,22 +62,22 @@
         <div class="card" style="width: 18rem;">
             <ul class="list-group list-group-flush">
                 <li class="list-group-item"><b>Pacchetti seguiti</b></li>
-                {% for purchasedItem in purchased_items %}
-                    <li class="list-group-item">{{ purchasedItem.lesson.title }}</li>
+                {% for packet in packets %}
+                    <li class="list-group-item">{{ packet.title }}</li>
                 {% endfor %}
-                {% if purchased_items %}
-                    {% if empty_items|length == 1 %}
+                {% if packets %}
+                    {% if empty_packet|length == 1 %}
                         <li class="list-group-item">...</li>
                     {% else %}
-                        {% for _ in empty_items %}
+                        {% for _ in empty_packet %}
                             <li class="list-group-empty my-4"></li>
                         {% endfor %}
                     {% endif %}
                 {% endif %}
             </ul>
             <div class="card-body">
-                {% if purchased_items %}
-                    <a href="{% url 'user_lesson' %}" class="card-link">Visualizza tutto</a>
+                {% if packets %}
+                    <a href="{% url 'user_packet' %}" class="card-link">Visualizza tutto</a>
                 {% else %}
                     <div class="d-flex flex-column text-center justify-content-center" style="width: 100%; height: 100%;">
                         <img class="card-empty-img mx-auto" src="{% static 'img/packet_empty.png' %}"/>

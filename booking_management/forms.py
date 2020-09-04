@@ -4,16 +4,12 @@ from django import forms
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django.core.mail import send_mail, BadHeaderError
-from django.forms import HiddenInput
 from django.http import HttpResponse
 
 from booking_management.models import Booking, BookingStatus
 
 
 #BOOKING
-from user_management.models import Profile
-
-
 class BookingCreationForm(forms.ModelForm):
 
     class Meta:
@@ -43,7 +39,7 @@ class BookingCreationForm(forms.ModelForm):
 #BOOKING_STATUS
 class BookingStatusConfirmForm(forms.ModelForm):
 
-    FORMATORI = []#[(f.id, f.username) for f in User.objects.filter(is_staff=True)]
+    FORMATORI = [(f.id, f.username) for f in User.objects.filter(is_staff=True)]
     formatore= forms.CharField(label='Formatore a cui asseganre la lezione live:', widget=forms.Select(choices=FORMATORI))
 
     class Meta:
@@ -87,32 +83,21 @@ class BookingStatusConfirmForm(forms.ModelForm):
 
 class BookingStatusUndoForm(forms.ModelForm):
 
-    FORMATORI = []#[(f.id, f.username) for f in User.objects.filter(is_superuser=True)]
-    formatore= forms.CharField(label='Formatore a cui asseganre la lezione live:', widget=forms.Select(choices=FORMATORI))
-
     class Meta:
         model = BookingStatus
-        fields = ('formatore',)
+        exclude = ['booking', 'stato', 'formatore']
 
     def __init__(self, *args, **kwargs):
         self.booking_id = kwargs.pop('booking_id')
         self.user = kwargs.pop('user')
         super(BookingStatusUndoForm, self).__init__(*args, **kwargs)
 
-    def clean_formatore(self):
-        formatore_id = self.data['formatore']
-        formatore = User.objects.get(id=formatore_id)
-        if formatore is None:
-            raise forms.ValidationError("Formatore non valido!")
-        else:
-            return formatore
-
     def save(self, commit=True):
         booking_status = super(BookingStatusUndoForm, self).save(commit=False)
         data = self.cleaned_data
 
         booking_status.stato = '0'
-        booking_status.formatore = data['formatore']
+        booking_status.formatore = User.objects.filter(is_superuser=True)[0]
         booking_status.booking = Booking.objects.get(id=self.booking_id)
 
         subject = 'Annullamento prenotazione'

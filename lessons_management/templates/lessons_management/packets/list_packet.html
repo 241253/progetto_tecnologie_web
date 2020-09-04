@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block browser_page_title %}Virgilian Code{% endblock %}
+
+{% block personal_css %}
+{#    <link rel="stylesheet" href="{% static 'css/home.css' %}"/>#}
+{% endblock %}
+
+{% block content %}
+<div class="container py-3">
+    {% for packet in packet_list %}
+        <div class="card">
+            {% if packet.difficulty == '1.0' or packet.difficulty == '2.0' %}
+                <h5 class="card-header" style="background-color: #18d624">{{ packet.title }}</h5>
+            {% elif packet.difficulty == '3.0' or packet.difficulty == '4.0' %}
+                <h5 class="card-header" style="background-color: #F5A904;">{{ packet.title }}</h5>
+            {% else %}
+                <h5 class="card-header" style="background-color: #ff3300;">{{ packet.title }}</h5>
+            {% endif %}
+            <div class="card-body">
+                <h5 class="card-title">Descrizione:</h5>
+                <p class="card-text">{{ packet.description}}</p>
+                <h5 class="card-title">Difficoltà:
+                    {% if packet.difficulty == '1.0' %}
+                        facile base
+                    {% elif packet.difficulty == '2.0'%}
+                        facile avanzato
+                    {% elif packet.difficulty == '3.0'%}
+                        media di base
+                    {% elif packet.difficulty == '4.0'%}
+                        media avanzata
+                    {% elif packet.difficulty == '5.0'%}
+                        difficile base
+                    {% elif packet.difficulty == '6.0'%}
+                        difficile avanzato
+                    {% endif %}
+                </h5>
+                <h5 class="card-title">Lezioni:</h5>
+                <ul class="list-unstyled">
+                {% for lesson in packet.lessons.all %}
+                    <li class="media my-4">
+                        {% if lesson.genre == 'PC' %}
+                            <img src="{% static 'img/lessons/click.png' %}" class="mr-3" style="width: 64px; height: 64px;"/>
+                        {% elif lesson.genre == 'A' %}
+                            <img src="{% static 'img/lessons/tourist.png' %}" class="mr-3" style="width: 64px; height: 64px;"/>
+                        {% elif lesson.genre == 'GM' %}
+                            <img src="{% static 'img/lessons/calculator.png' %}" class="mr-3" style="width: 64px; height: 64px;"/>
+                        {% elif lesson.genre == 'ST' %}
+                            <img src="{% static 'img/lessons/book.png' %}" class="mr-3" style="width: 64px; height: 64px;"/>
+                        {% elif lesson.genre == 'GV' %}
+                            <img src="{% static 'img/lessons/microphone.png' %}" class="mr-3" style="width: 64px; height: 64px;"/>
+                        {% elif lesson.genre == 'R' %}
+                            <img src="{% static 'img/lessons/start.png' %}" class="mr-3" style="width: 64px; height: 64px;"/>
+                        {% elif lesson.genre == 'AL' %}
+                            <img src="{% static 'img/lessons/icon.png' %}" class="mr-3" style="width: 64px; height: 64px;"/>
+                        {% endif %}
+                        <div class="media-body">
+                            <h5 class="mt-0 mb-1">
+                                <a href="{% url 'detail_lesson' lesson.id %}">
+                                    Titolo: {{ lesson.title }}
+                                    {% if lesson.difficulty == '1.0' or lesson.difficulty == '2.0' %}
+                                        (FACILE)
+                                    {% elif lesson.difficulty == '3.0' or lesson.difficulty == '4.0' %}
+                                        (MEDIO)
+                                    {% else %}
+                                        (DIFFICILE)
+                                    {% endif %}
+                                </a>
+                            </h5>
+                            {{ lesson.description|truncatechars:200 }}
+                        </div>
+                    </li>
+                {% endfor %}
+                </ul>
+                <a href="{% url 'user_packet_create' packet.id %}" class="btn btn-primary">Segui il pacchetto</a>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}

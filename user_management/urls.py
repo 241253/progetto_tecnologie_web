@@ -14,6 +14,7 @@ urlpatterns = [
     path('user/<int:pk>/', views.UserPage.as_view(), name='user_page'),
     path('user/update/<int:pk>/', views.UserUpdate.as_view(), name='user_update'),
     path('user/lesson/', views.UserPurchasedLessonView.as_view(), name='user_lesson'),
+    path('user/packet/', views.UserPacketsView.as_view(), name='user_packet'),
     path('user/update/complete/', views.UserUpdateComplete, name='user_update_complete'),
     path('user/update/image/<int:pk>/', views.ProfilePictureUpdate.as_view(), name='profile_picture_update'),
     path('user/update/image/complete/', views.UserImgUpdateComplete, name='profile_picture_update_complete'),

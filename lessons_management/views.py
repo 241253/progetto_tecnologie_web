@@ -1,9 +1,10 @@
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
-from django.views.generic import ListView, CreateView, DeleteView, UpdateView
-from lessons_management.forms import LessonsCreationForm, LessonsUpdateForm, PacketCreationForm, PacketUpdateForm
-from lessons_management.models import Lesson, Packet
+from django.views.generic import ListView, CreateView, DeleteView, UpdateView, FormView
+from lessons_management.forms import LessonsCreationForm, LessonsUpdateForm, PacketCreationForm, PacketUpdateForm, \
+    UserPacketsCreationForm
+from lessons_management.models import Lesson, Packet, UserPackets
 from user_cart.models import PurchasedLessons
 
 
@@ -78,8 +79,6 @@ class DeletePacket(DeleteView):
     template_name = 'lessons_management/packets/delete_packet.html'
     success_url = reverse_lazy('list_hub')
 
-
-
 @method_decorator(login_required, name='dispatch')
 class UpdatePacket(UpdateView):
     model = Packet
@@ -94,3 +93,22 @@ class PacketDetail(DeleteView):
 class PacketListView(ListView):
     template_name = 'lessons_management/packets/list_packet.html'
     model = Packet
+
+#USERPACKET
+@method_decorator(login_required, name='dispatch')
+class CreateUserPackets(FormView):
+
+    form_class = UserPacketsCreationForm
+    template_name = 'lessons_management/user_packets/create_userPackets.html'
+    success_url = reverse_lazy('list_packet')
+
+    def get_form_kwargs(self):
+        kwargs = super(CreateUserPackets, self).get_form_kwargs()
+        kwargs['packet_id'] = self.kwargs.get('packet_id')
+        kwargs['user'] = self.request.user
+        return kwargs
+
+    def form_valid(self, form):
+        if form.is_valid():
+            form.save()
+            return super(CreateUserPackets, self).form_valid(form)

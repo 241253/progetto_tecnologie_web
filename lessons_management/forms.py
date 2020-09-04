@@ -1,5 +1,5 @@
 from django import forms
-from lessons_management.models import Lesson, Packet
+from lessons_management.models import Lesson, Packet, UserPackets
 
 
 # LESSONS
@@ -21,9 +21,6 @@ class LessonsCreationForm(forms.ModelForm):
         if commit:
             lesson.save()
         return lesson
-
-    # def clean_video(self):
-    #     pass
 
 class LessonsUpdateForm(forms.ModelForm):
     class Meta:
@@ -78,7 +75,7 @@ class PacketCreationForm(forms.ModelForm):
 
         difficulty = 0.0
         for lesson_id in self.cleaned_data['lessons']:
-            lesson = Lesson.objects.filter(id=lesson_id)[0]
+            lesson = Lesson.objects.get(id=lesson_id)
             difficulty += float(lesson.difficulty)
         difficulty /= len(self.cleaned_data['lessons'])
 
@@ -130,3 +127,24 @@ class PacketUpdateForm(forms.ModelForm):
             packet.save()
             packet.lessons.set([int(lesson_id) for lesson_id in self.cleaned_data['lessons']])
         return packet
+
+#USER PACKETS
+class UserPacketsCreationForm(forms.ModelForm):
+    class Meta:
+        model = UserPackets
+        exclude = ['user', 'packet']
+
+    def __init__(self, *args, **kwargs):
+        self.packet_id = kwargs.pop('packet_id')
+        self.user = kwargs.pop('user')
+        super(UserPacketsCreationForm, self).__init__(*args, **kwargs)
+
+    def save(self, commit=True):
+        user_packets = super(UserPacketsCreationForm, self).save(commit=False)
+
+        user_packets.user = self.user
+        user_packets.packet = Packet.objects.get(id=self.packet_id)
+
+        if commit:
+            user_packets.save()
+        return user_packets
