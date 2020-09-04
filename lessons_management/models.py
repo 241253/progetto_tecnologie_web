@@ -35,3 +35,10 @@ class Packet(models.Model):
 
     def __str__(self):
         return f'#{self.id} - {self.title}'
+
+class UserPackets(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    packet = models.ForeignKey(Packet, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f'#{self.id} - {self.user.username} - pacchetto: {self.packet.title}'
