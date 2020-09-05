@@ -93,10 +93,6 @@ class PacketUpdateForm(forms.ModelForm):
     choices = getLessonsChoices()
     lessons = forms.MultipleChoiceField(choices=choices)
 
-    def __init__(self):
-        super(PacketUpdateForm, self).__init__()
-        self.fields['lessons'].choices = getLessonsChoices()
-
     class Meta:
         model = Lesson
         fields = ('title', 'description')
@@ -126,8 +122,6 @@ class PacketUpdateForm(forms.ModelForm):
         difficulty /= len(self.cleaned_data['lessons'])
 
         packet.difficulty = self.normalize_difficulty(difficulty)
-
-        # print(self.fields['lessons'])mi piglio il campo lessons (devo vedere se posso usarlo)
 
         if commit:
             packet.save()
