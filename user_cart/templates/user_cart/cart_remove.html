@@ -8,7 +8,7 @@
 {% endblock %}
 
 {% block content %}
-    <div class="container text-center">
+    <div class="container text-center" style="padding-bottom: 20px; padding-top: 20px">
         <img class="remove-cart-img my-5" src="{% static 'img/cart_remove.png' %}"/>
         <p class="remove-cart-text mx-auto">Sei sicuro di voler rimuovere la lezione </br>"{{ lesson_title }}" dal tuo carrello?</p>
         <form class="my-5 d-flex flex-row justify-content-around" method="post">{% csrf_token %}

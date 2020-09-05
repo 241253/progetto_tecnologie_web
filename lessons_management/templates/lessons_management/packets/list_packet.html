@@ -9,6 +9,23 @@
 
 {% block content %}
 <div class="container py-3">
+    {% if packet_list.count == 0 %}
+        <div class="container my-5 text-center">
+            <p style="font-size: larger">
+                Non sono presenti pacchetti sul sito.<br/>
+                Lo staff di Virgiliancode si scusa per l'inconveniente,<br/>
+                vi assicuriamo che presto aggiungeremo nuove lezioni.
+            </p>
+            <img class="no-lesson-img" src="{% static 'img/home/no_lessons.png' %}"/>
+            <p style="font-size: larger">
+                Nel mentre potete prenotare lezioni in streaming <br/>
+                con i nostri formatori nella sezione apposita del sito dopo esservi registrati.
+            </p>
+            {% if user.is_authenticated %}
+                <a class="btn btn-primary no-lesson-txt" href="{% url 'booking' %}">Prenota una videolezione live</a>
+            {% endif %}
+        </div>
+    {% endif %}
     {% for packet in packet_list %}
         <div class="card">
             {% if packet.difficulty == '1.0' or packet.difficulty == '2.0' %}

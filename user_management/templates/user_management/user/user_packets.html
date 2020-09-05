@@ -9,6 +9,9 @@
 
 {% block content %}
     <div class="container my-5">
+        {% if packets == 0 %}
+            <p> ciao</p>
+        {% endif %}
         <h1 class="text-center my-5">Pacchetti seguiti</h1>
         {% for packet in packets %}
             <div class="card">

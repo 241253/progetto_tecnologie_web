@@ -9,7 +9,9 @@
 {% endblock %}
 
 {% block content %}
-<div class="container py-3">
+<div class="container py-3 text-center" style="padding-top: 30px; padding-bottom: 30px">
+    <img style="width: 450px; height: 450px" src="{% static '/img/follow.png' %}">
+    <h3 style="padding-bottom: 10px">Vuoi davvero seguire questo pacchetto?</h3>
     <form method="POST">
         {% csrf_token %}
         {{ form|crispy }}

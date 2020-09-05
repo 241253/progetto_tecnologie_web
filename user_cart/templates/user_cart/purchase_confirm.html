@@ -9,7 +9,7 @@
 
 {% block content %}
     {% if saldoSufficiente == 'si' %}
-        <div class="container my-5">
+        <div class="container my-5" style="padding-top: 10px; padding-bottom: 10px">
             <div class="card">
                 <h5 class="card-header">Sei sicuro di voler procedere con l'acquisto? <br> <br> Stai per acquistare:</h5>
                 <div class="card-body">
@@ -53,9 +53,9 @@
             </div>
         </div>
     {% else %}
-        <div class="container" style="margin-top: 170px; margin-bottom: 170px">
+        <div class="container text-center" style="margin-top: 170px; margin-bottom: 170px">
             <img style="margin: auto; width: 200px; height: 200px" src="{% static 'img/sad.png' %}">
-            <h5 style="margin: auto">Spiacente, non hai credito sufficiente. Torna alla <a href="{% url 'homePage' %}"> home page</a> per visualizzare altre lezioni!</h5>
+            <h4 style="margin: auto; padding-top: 10px">Spiacente, non hai credito sufficiente. Torna alla <a href="{% url 'homePage' %}"> home page</a> per visualizzare altre lezioni!</h4>
         </div>
     {% endif %}
 {% endblock %}

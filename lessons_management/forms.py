@@ -38,11 +38,12 @@ def getLessonsChoices():
 
 class PacketCreationForm(forms.ModelForm):
     choices = getLessonsChoices()
-    lessons = forms.MultipleChoiceField(choices=choices)
+    lessons = forms.MultipleChoiceField(choices=choices, label='Lezioni')
     
     class Meta:
         model = Packet
         fields = ('title', 'description')
+        labels = {'title':'Titolo', 'description':'Descrizione'}
 
     def __init__(self, *args, **kwargs):
         self.current_user = kwargs.pop('user')
