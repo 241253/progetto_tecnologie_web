@@ -90,6 +90,6 @@ class UserBookingView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super(UserBookingView, self).get_context_data(**kwargs)
         context['booking'] = Booking.objects.filter(user_id=self.request.user.id).exclude(id__in=[x.booking.id for x in BookingStatus.objects.filter(booking__user_id=self.request.user.id)])
-        context['booking_status'] = BookingStatus.objects.filter(booking__user_id=self.request.user.id, booking__data__gte=dt.date.today()).order_by('booking__data', 'booking__ora', 'stato')
-        context['booking_past'] = BookingStatus.objects.filter(booking__user_id=self.request.user.id, booking__data__lt=dt.date.today()).order_by('booking__data', 'booking__ora', 'stato')
+        context['booking_status'] = BookingStatus.objects.filter(booking__user_id=self.request.user.id, booking__data__gte=dt.date.today()).order_by('stato', 'booking__data', 'booking__ora').reverse()
+        context['booking_past'] = BookingStatus.objects.filter(booking__user_id=self.request.user.id, booking__data__lt=dt.date.today()).order_by('stato', 'booking__data', 'booking__ora').reverse()
         return context
