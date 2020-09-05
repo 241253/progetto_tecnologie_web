@@ -16,8 +16,8 @@ class UserHubList(ListView):
     def get_context_data(self, **kwargs):
         context = super(UserHubList, self).get_context_data(**kwargs)
         context.update({
-            'lesson_list': Lesson.objects.order_by('title'),
-            'packet_list': Packet.objects.all(),
+            'lesson_list': Lesson.objects.all().order_by('difficulty'),
+            'packet_list': Packet.objects.all().order_by('difficulty'),
         })
         return context
 
