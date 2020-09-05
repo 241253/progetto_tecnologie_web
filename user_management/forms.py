@@ -15,7 +15,7 @@ class UserForm(UserCreationForm):
         super(UserCreationForm, self).__init__(*args, **kwargs)
         self.fields['username'].help_text = "Richiesti 150 caratteri o meno. Sono ammessi solo lettere, cifre e @/./+/-/_."
         self.fields['password1'].help_text = "<ul> <li> La tua password non può essere troppo simile alle tue informazioni personali.</li>" \
-                                             "<li> La tua password deve contenere almeno 8 aratteri. </li>" \
+                                             "<li> La tua password deve contenere almeno 8 caratteri. </li>" \
                                              "<li> La tua password non può essere una password usata troppo comunemente. </li>" \
                                              "<li> La tua password non può essere solamente numerica. </li>" \
                                              "</ul>"
