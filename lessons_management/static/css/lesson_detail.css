@@ -12,7 +12,14 @@
 
 .detail-lesson-img
 {
-    width: 150px;
-    height: 150px;
+    width: 300px;
+    height: 300px;
     border-radius: 10px;
+}
+
+.detail-description
+{
+    background-color: rgb(255,170,0);
+    color: white;
+    font-size: 17px;
 }

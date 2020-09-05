@@ -23,8 +23,8 @@
                     {% for b in booking %}
                         <tr>
                             <th scope="row">{{ b.booking.id }}</th>
-                            <th scope="row">{{ b.booking.data }}</th>
-                            <th scope="row">{{ b.booking.ora }}</th>
+                            <th scope="row">{{ b.booking.data.day }}/{{ b.booking.data.month }}/{{ b.booking.data.year }}</th>
+                            <th scope="row">{{ b.booking.ora.hour }}:{{ b.booking.ora.minute}}</th>
                             <th scope="row">
                                 Username: {{ b.booking.user.username }}<br/>
                                 Nome e cognome: {{ b.booking.user.first_name }} {{ b.booking.user.last_name }}<br/>
@@ -35,7 +35,10 @@
                 </tbody>
             </table>
         {% else %}
-            <p>Non ci sono videolezioni live da svolgere</p>
+            <div class="text-center my-5">
+                <p>Non ci sono videolezioni live che devi effettuare nei prossimi giorni</p>
+                <a class="btn btn-secondary" href="{% url 'login_redirect_url' %}">Torna alla pagina di amministrazione</a>
+            </div>
         {% endif %}
         {% if booking_past %}
             <h1>Lezioni live effettuate</h1>

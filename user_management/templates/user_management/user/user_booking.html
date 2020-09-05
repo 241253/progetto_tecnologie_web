@@ -32,9 +32,9 @@
                 <tbody>
                     {% for b in booking %}
                         <tr>
-                            <th scope="row">{{ b.id }}</th>
-                            <td>{{ b.data }}</td>
-                            <td>{{ b.ora }}</td>
+                            <td scope="row">{{ b.id }}</td>
+                            <td scope="row">{{ b.data.day }}/{{ b.data.month }}/{{ b.data.year }}</td>
+                            <td scope="row">{{ b.ora.hour }}:{{ b.ora.minute}}</td>
                             <td><div id="clock_{{ b.id }}"></div></td>
                         </tr>
                     {% endfor %}
@@ -58,9 +58,9 @@
                 <tbody>
                     {% for b in booking_status %}
                         <tr>
-                            <th scope="row">{{ b.booking.id }}</th>
-                            <th scope="row">{{ b.booking.data }}</th>
-                            <th scope="row">{{ b.booking.ora }}</th>
+                            <td scope="row">{{ b.booking.id }}</td>
+                            <td scope="row">{{ b.booking.data.day }}/{{ b.booking.data.month }}/{{ b.booking.data.year }}</td>
+                            <td scope="row">{{ b.booking.ora.hour }}:{{ b.booking.ora.minute}}</td>
                             <td>{{ b.formatore.username }}</td>
                             <td><div id="clock_bs_{{ b.id }}">-</div></td>
                             <td>

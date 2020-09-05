@@ -22,10 +22,10 @@
             <tbody>
                 {% for b in booking %}
                     <tr>
-                        <th scope="row">{{ b.id }}</th>
-                        <th scope="row">{{ b.user.username }}</th>
-                        <td>{{ b.data }}</td>
-                        <td>{{ b.ora }}</td>
+                        <td scope="row">{{ b.id }}</td>
+                        <td scope="row">{{ b.user.username }}</td>
+                        <td scope="row">{{ b.data.day }}/{{ b.data.month }}/{{ b.data.year }}</td>
+                        <td scope="row">{{ b.ora.hour }}:{{ b.ora.minute}}</td>
                         <td>
                             <a class="btn btn-secondary" href="{% url 'booking_status_undo' b.id %}">Annulla prenotazione</a>
                             <a class="btn btn-secondary" href="{% url 'booking_status_confirm' b.id %}">Conferma prenotazione</a>

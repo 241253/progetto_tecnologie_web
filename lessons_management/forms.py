@@ -48,6 +48,7 @@ class PacketCreationForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         self.current_user = kwargs.pop('user')
         super(PacketCreationForm, self).__init__(*args, **kwargs)
+        self.fields['lessons'].choices = getLessonsChoices()
 
     def normalize_difficulty(self, difficulty):
         if difficulty < 1.5:
@@ -91,6 +92,10 @@ class PacketUpdateForm(forms.ModelForm):
 
     choices = getLessonsChoices()
     lessons = forms.MultipleChoiceField(choices=choices)
+
+    def __init__(self):
+        super(PacketUpdateForm, self).__init__()
+        self.fields['lessons'].choices = getLessonsChoices()
 
     class Meta:
         model = Lesson
