@@ -4,6 +4,12 @@
     justify-content: space-evenly;
 }
 
+.container
+{
+    display: flex;
+    justify-content: center;
+}
+
 .card-img-top
 {
     width: 100%;

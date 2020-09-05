@@ -110,7 +110,7 @@
                 {% else %}
                     <div class="d-flex flex-column text-center justify-content-center" style="width: 100%; height: 100%;">
                         <img class="card-empty-img mx-auto" src="{% static 'img/booking_empty.png' %}"/>
-                        <p class="my-4">Non hai effettuato prenotazioni per i giorni successivi</p>
+                        <p class="my-4">Non hai prenotazioni in stato di attesa</p>
                         <a class="btn btn-primary mx-auto" href="{% url 'booking' %}">effettua una prenotazione</a>
                         <a href="{% url 'user_booking' %}" class="mt-4 btn btn-primary">Visualizza lo storico <br/>delle prenotazioni</a>
                     </div>

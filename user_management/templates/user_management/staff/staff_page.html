@@ -8,7 +8,11 @@
 {% endblock %}
 
 {% block content %}
-    <div class="container-fluid my-5 text-center">
+    {% if not user.is_superuser %}
+        <div class="container my-5 text-center">
+    {% else %}
+        <div class="container-fluid my-5 text-center">
+    {% endif %}
 
         <!-- CARD UTENTE -->
         <div class="card" style="width: 18rem; margin: auto; margin-right: 10px">
@@ -51,6 +55,6 @@
                 <img style="height: 250px; width:250px" class="mx-auto my-5" src="{% static 'img/team.png' %}" style="width: 100px; heigth: 100px;">
                 <a  style="margin-top:10px" class="btn btn-secondary" href="{% url 'staff_list' %}">  Gestione staff</a>
             </div>
-            {% endif %}
-        </div>
+        {% endif %}
+    </div>
 {% endblock %}

@@ -4,6 +4,11 @@ from booking_management.forms import BookingCreationForm, BookingStatusConfirmFo
 from booking_management.models import Booking, BookingStatus
 import datetime as dt
 
+# sendemail/views.py
+from django.core.mail import send_mail, BadHeaderError
+from django.http import HttpResponse, HttpResponseRedirect
+from django.shortcuts import render, redirect
+
 #BOOKING
 class CreateBookingView(CreateView):
     model = Booking

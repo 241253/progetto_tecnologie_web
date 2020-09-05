@@ -16,18 +16,23 @@
                 <img class="booking-img" src="{% static 'img/booking_management/prenotazioni.jpg' %}"/>
             </div>
             <div class="col-6">
-                <p>
-                    scrivere che si prenota dal giorno successivo in avanti e che
-                <p>
+                <h4>
+                    Le lezioni live streaming sono lezioni dal vivo dalla durata di un'ora in cui lo staff di Virgilian Code Online si impegna
+                    a seguirti durante la creazione dei tuoi giochi e ad aiutarti a capire al meglio le funzionalità
+                    di Scratch. <br><br>
+                    Prenota una lezione live con noi inserendo la data che desideri. Deve essere almeno fra 3 giorni,
+                    compreso tra il lunedì e il venerdì e nella fascia oraria che va dalle 08:00 alle 18:00. <br><br>
+                    Entro 24 ore riceverai un'email in cui ti diremo se la tua prenotazione è avvenuta con successo!
+                </h4>
             </div>
         </div>
         {% if not user.is_anonymous and not user.is_staff %}
             <form method="POST">
                 {% csrf_token %}
                 {{ form | crispy }}
-                <input type="submit" class="btn btn-primary" style="float: right" value="effettua prenotazione">
+                <input type="submit" class="btn btn-primary" style="float: right" value="Effettua prenotazione">
             </form>
-            <a class="btn btn-primary" href="{% url 'user_page' user.id %}">annulla</a>
+            <a class="btn btn-primary" href="{% url 'user_page' user.id %}">Annulla</a>
         {% endif %}
     </div>
 {% endblock %}
