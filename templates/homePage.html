@@ -10,11 +10,11 @@
 {% block content %}
 <div class="container py-3">
     {% if lesson_list_1.count != 0 or lesson_list_2.count != 0 or lesson_list_3.count != 0 or lesson_list_4.count != 0 or lesson_list_5.count != 0 or lesson_list_6.count != 0 %}
-    <div class="jumbotron">
-        <h1 class="display-4">I NOSTRI PACCHETTI</h1>
-        <p class="lead">Se non sai quali lezioni comprare oppure vuoi sfruttare il nostro sconto applicato ogni 5 lezioni acquistate in maniera intelligente sei nel posto giusto.</p>
+    <div class="jumbotron" style="background-color: rgba(68,142,255,1);">
+        <h1 style="color:white" class="display-4">I NOSTRI PACCHETTI</h1>
+        <p style="color:white" class="lead">Se non sai quali lezioni comprare oppure vuoi sfruttare il nostro sconto applicato ogni 5 lezioni acquistate in maniera intelligente sei nel posto giusto.</p>
         <hr class="my-4">
-        <p>
+        <p style="color:white">
             Abbiamo creato appositamente per te dei pacchetti di 5 videolezioni ciascuno che ti permettono di sfruttare lo sconto di 20 euro applicato ogni 5 lezioni e seguire un percorso volto al raggiungimento di un'obbiettivo specifico.
             più altra roba che domanderò al mastro cioccolataio!
         </p>
@@ -57,7 +57,7 @@
             </div>
             {% if not user.is_staff %}
                 {% if lesson.id in purchased_item %}
-                    <p>Lezione già acquistata</p>
+                    <h5 style="margin-top:10px">Lezione già acquistata</h5>
                 {% else %}
                     <a class="btn btn-primary add-to-cart-btn" style="margin-top: 10px; width: 180px;" href="{% url 'cart_add' lesson.id %}"><img class="add-to-cart-icon" src="{% static 'img/home/add-to-cart.png' %}"/><br>Aggiungi al carrello</a>
                 {% endif %}
@@ -93,7 +93,7 @@
             </div>
             {% if not user.is_staff %}
                 {% if lesson.id in purchased_item %}
-                    <p>Lezione già acquistata</p>
+                    <h5 style="margin-top:10px">Lezione già acquistata</h5>
                 {% else %}
                     <a class="btn btn-primary add-to-cart-btn" style="margin-top: 10px; width: 180px;" href="{% url 'cart_add' lesson.id %}"><img class="add-to-cart-icon" src="{% static 'img/home/add-to-cart.png' %}"/><br>Aggiungi al carrello</a>
                 {% endif %}
@@ -139,7 +139,7 @@
                 </div>
                 {% if not user.is_staff %}
                     {% if lesson.id in purchased_item %}
-                        <p>Lezione già acquistata</p>
+                        <h5 style="margin-top:10px">Lezione già acquistata</h5>
                     {% else %}
                         <a class="btn btn-primary add-to-cart-btn" style="margin-top: 10px; width: 180px;" href="{% url 'cart_add' lesson.id %}"><img class="add-to-cart-icon" src="{% static 'img/home/add-to-cart.png' %}"/><br>Aggiungi al carrello</a>
                     {% endif %}
@@ -175,7 +175,7 @@
                 </div>
                 {% if not user.is_staff %}
                     {% if lesson.id in purchased_item %}
-                        <p>Lezione già acquistata</p>
+                        <h5 style="margin-top:10px">Lezione già acquistata</h5>
                     {% else %}
                         <a class="btn btn-primary add-to-cart-btn" style="margin-top: 10px; width: 180px;" href="{% url 'cart_add' lesson.id %}"><img class="add-to-cart-icon" src="{% static 'img/home/add-to-cart.png' %}"/><br>Aggiungi al carrello</a>
                     {% endif %}
@@ -221,7 +221,7 @@
                 </div>
                 {% if not user.is_staff %}
                     {% if lesson.id in purchased_item %}
-                        <p>Lezione già acquistata</p>
+                        <h5 style="margin-top:10px">Lezione già acquistata</h5>
                     {% else %}
                         <a class="btn btn-primary add-to-cart-btn" style="margin-top: 10px; width: 180px;" href="{% url 'cart_add' lesson.id %}"><img class="add-to-cart-icon" src="{% static 'img/home/add-to-cart.png' %}"/><br>Aggiungi al carrello</a>
                     {% endif %}
@@ -257,7 +257,7 @@
                 </div>
                 {% if not user.is_staff %}
                     {% if lesson.id in purchased_item %}
-                        <p>Lezione già acquistata</p>
+                        <h5 style="margin-top:10px">Lezione già acquistata</h5>
                     {% else %}
                         <a class="btn btn-primary add-to-cart-btn" style="margin-top: 10px; width: 180px;" href="{% url 'cart_add' lesson.id %}"><img class="add-to-cart-icon" src="{% static 'img/home/add-to-cart.png' %}"/><br>Aggiungi al carrello</a>
                     {% endif %}

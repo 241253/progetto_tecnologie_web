@@ -94,6 +94,11 @@ class PacketListView(ListView):
     template_name = 'lessons_management/packets/list_packet.html'
     model = Packet
 
+    def get_context_data(self, **kwargs):
+        context = super(PacketListView, self).get_context_data(**kwargs)
+        context['packets'] = [x.packet.id for x in UserPackets.objects.filter(user_id=self.request.user.id)]
+        return context
+
 #USERPACKET
 @method_decorator(login_required, name='dispatch')
 class CreateUserPackets(FormView):

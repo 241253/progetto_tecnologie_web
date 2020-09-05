@@ -8,7 +8,7 @@ class Profile(models.Model):
     USERNAME_FIELD = None # Per evitare il problema per cui Profile non ha il campo USERNAME_FIELD
     # foto profilo dell'utente
     foto = models.ImageField(upload_to='user_photo/', default="uploaded_files/media/user_db/user_photo/None/none_picture.png")
-    saldo = models.FloatField(default=30.0)
+    saldo = models.FloatField(default=130.0)
 
     def __str__(self):
         return f'profile user di: {self.user.username} (id: {self.user.id})'

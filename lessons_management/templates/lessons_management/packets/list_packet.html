@@ -90,7 +90,9 @@
                     </li>
                 {% endfor %}
                 </ul>
-                <a href="{% url 'user_packet_create' packet.id %}" class="btn btn-primary">Segui il pacchetto</a>
+                {% if packet.id not in packets %}
+                    <a href="{% url 'user_packet_create' packet.id %}" class="btn btn-primary">Segui il pacchetto</a>
+                {% endif %}
             </div>
         </div>
     {% endfor %}
