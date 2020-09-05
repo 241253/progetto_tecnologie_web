@@ -49,6 +49,7 @@ class BookingStatusConfirmForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         self.booking_id = kwargs.pop('booking_id')
         super(BookingStatusConfirmForm, self).__init__(*args, **kwargs)
+        self.fields['formatore'].widget = forms.Select(choices=[(f.id, f.username) for f in User.objects.filter(is_staff=True)])
 
     def clean_formatore(self):
         formatore_id = self.data['formatore']
@@ -69,9 +70,7 @@ class BookingStatusConfirmForm(forms.ModelForm):
         subject = 'Conferma prenotazione'
         prenotazione = Booking.objects.get(id=self.booking_id)
         utente = User.objects.get(id=prenotazione.user.id)
-        message = 'Gentile ' + utente.username + \
-                  ',\n\nla prenotazione da lei effettuata in data ' + prenotazione.data.strftime('%d/%m/%Y') + ' alle ore ' + prenotazione.ora.strftime('%H:%M') + ' è stata Confermata.\n' \
-                  'Per qualsiasi informazione o necessità visita la sezione contatti del nostro sito www.virgiliancodeonline.it.'
+        message = 'Gentile ' + utente.username + ',\n\nla prenotazione da lei effettuata in data ' + prenotazione.data.strftime('%d/%m/%Y') + ' alle ore ' + prenotazione.ora.strftime('%H:%M') + ' è stata Confermata.\n' + 'Per qualsiasi informazione o necessità visita la sezione contatti del nostro sito www.virgiliancodeonline.it.'
         try:
             send_mail(subject, message, 'virgiliancodeonline@gmail.com', [utente.email], fail_silently=False,)
         except BadHeaderError:

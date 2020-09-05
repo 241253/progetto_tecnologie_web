@@ -153,11 +153,9 @@
                                 <td scope="row">Difficile avanzato</td>
                             {% endif %}
                             <td scope="row">
-                                <ul>
-                                    {% for lesson in packet.lessons.all %}
-                                        <li>{{ lesson.title }}</li>
-                                    {% endfor %}
-                                </ul>
+                                {% for lesson in packet.lessons.all %}
+                                    - {{ lesson.title }}<br/>
+                                {% endfor %}
                             </td>
                             <td>
                                 <a class="btn btn-secondary my-2" href="{% url 'update_packet' packet.id %}">modifica</a>
