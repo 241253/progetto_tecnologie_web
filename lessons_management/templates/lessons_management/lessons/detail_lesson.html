@@ -4,14 +4,35 @@
 {% block browser_page_title %}Lezione: {{ object.title }}{% endblock %}
 
 {% block personal_css %}
-    <link rel="stylesheet" href="{% static 'css/home.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/lesson_detail.css' %}"/>
 {% endblock %}
 
 {% block content %}
     <div class="container my-5" style="padding-top: 50px; padding-bottom: 50px">
     <div class="card">
         <h1 class="card-header" style="text-align: center; background-color: rgb(68, 142, 255); color: rgb(255,255,255)">{{ object.title }}</h1>
-        <p class="card-header" style="border: none; background-color: rgb(255,170,0); color: rgb(255,255,255)">Descrizione: {{ object.description }}</p>
+        <div class="d-flex flex-row">
+            <a href="{% url 'detail_lesson' lesson.id %}">
+                {% if lesson.genre == 'PC' %}
+                    <img style="margin-left: 10px;" class="detail-lesson-img" src="{% static 'img/lessons/click.png' %}"/>
+                {% elif lesson.genre == 'A' %}
+                    <img style="margin-left: 15px;" class="detail-lesson-img" src="{% static 'img/lessons/tourist.png' %}"/>
+                {% elif lesson.genre == 'GM' %}
+                    <img style="margin-left: 10px;"  class="detail-lesson-img" src="{% static 'img/lessons/calculator.png' %}"/>
+                {% elif lesson.genre == 'ST' %}
+                    <img style="margin-left: 10px;"  class="detail-lesson-img" src="{% static 'img/lessons/book.png' %}"/>
+                {% elif lesson.genre == 'GV' %}
+                    <img style="margin-left: 10px;"  class="detail-lesson-img" src="{% static 'img/lessons/microphone.png' %}"/>
+                {% elif lesson.genre == 'R' %}
+                    <img style="margin-left: 10px;"  class="detail-lesson-img" src="{% static 'img/lessons/start.png' %}"/>
+                {% elif lesson.genre == 'AL' %}
+                    <img style="margin-left: 10px;"  class="detail-lesson-img" src="{% static 'img/lessons/icon.png' %}"/>
+                {% endif %}
+            </a>
+            <div class="mx-5">
+                <p>Descrizione: {{ lesson.description|truncatechars:300 }}</p>
+            </div>
+        </div>
         <!-- DIFFICULTY_CHOICES = (('1.0','Facile - base'), ('2.0', 'Facile - avanzato'), ('3.0', 'Media - base'), ('4.0', 'Media - avanzata'), ('5.0', 'Difficile - base'), ('6.0', 'Difficile - avanzata')) -->
         {% if object.difficulty == '1.0' %}
             <p class="card-header" style="border: none; background-color: rgb(255,170,0); color: rgb(255,255,255)">Difficoltà: facile base</p>
@@ -41,8 +62,9 @@
         {% elif object.genre == 'R'%}
             <p class="card-header" style="border: none; background-color: rgb(255,170,0); color: rgb(255,255,255)">Genere: racing</p>
         {% endif %}
+
+    {% if not user.is_staff %}
         <div class="card-body">
-            {% if not user.is_staff %}
                 {% if lesson.id in purchased_item %}
                     <div class="embed-responsive embed-responsive-16by9"> <!-- Con questa classe il video è impaginato meglio ed è più grande -->
                         <video oncontextmenu="return false;" width='800' height='600' controls disablepictureinpicture controlsList="nodownload">
@@ -52,15 +74,24 @@
                     </div>
                 {% else %}
                     {% if not user.is_anonymous %}
-                        <a class="btn btn-primary add-to-cart-btn" href="{% url 'cart_add' lesson.id %}"><img class="add-to-cart-icon" src="{% static 'img/home/add-to-cart.png' %}"/>   Aggiungi al carrello</a>
+                        <div class="text-center">
+                            <p class="text-center">
+                                Prima di poter visualizzare questa lezione deve acuistarla
+                            </p>
+                            <a class="btn btn-primary add-to-cart-btn" href="{% url 'cart_add' lesson.id %}"><img class="add-to-cart-icon" src="{% static 'img/home/add-to-cart.png' %}"/>   Aggiungi al carrello</a>
+                        </div>
                     {% else %}
-                        <p>Per acquistare questa lezione, <a href="{% url 'registration' %}"> registrati </a> su Virgilian Code Online!</p>
+                        <p>Per acquistare questa lezione <a href="{% url 'registration' %}"> registrati </a> su Virgilian Code Online!</p>
                     {% endif %}
                 {% endif %}
-            {% endif %}
-    </div>
+        </div>
+    {% endif %}
     <div class="card-footer text-muted d-flex flex-row justify-content-between align-items-center" style="background-color: rgb(68, 142, 255)">
-        <a class="btn btn-primary" href="{% url 'user_lesson' %}">Vai alle tue lezioni</a>
+        {%  if user.is_authenticated %}
+            {% if not user.is_staff %}
+                <a class="btn btn-primary" href="{% url 'user_lesson' %}">Vai alle tue lezioni</a>
+            {% endif %}
+        {% endif %}
         <a class="btn btn-primary" href="{% url 'homePage' %}">Vai alle lezioni del negozio</a>
     </div>
 </div>

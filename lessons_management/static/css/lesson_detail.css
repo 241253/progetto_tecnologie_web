@@ -1,0 +1,18 @@
+.card-header
+{
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.add-to-cart-icon
+{
+    width: 30px;
+    height: auto;
+}
+
+.detail-lesson-img
+{
+    width: 150px;
+    height: 150px;
+    border-radius: 10px;
+}

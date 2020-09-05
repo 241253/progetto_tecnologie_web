@@ -33,7 +33,7 @@
                             <div class="mx-5">
                                 <h3>{{ lesson.title }}</h3>
                                 <p>Descrizione: {{ lesson.description|truncatechars:347 }}...</p>
-                                <p>Prezzo: {{ lesson.price }}</p>
+                                <p>Prezzo: {{ lesson.price }} €</p>
                             </div>
                         </div>
                         <hr></hr>
@@ -41,9 +41,9 @@
                 </div>
                 <div class="card-footer text-muted flex-row align-items-center">
                     {% if sconto == 'si' %}
-                        <p>Prezzo totale (scontato): <del>{{ totale }}€</del> {{ totale_scontato }}€</p>
+                        <p>Prezzo totale (scontato): <del>{{ totale }} €</del> {{ totale_scontato }} €</p>
                     {% else %}
-                        <p>Prezzo totale: {{ totale }}</p>
+                        <p>Prezzo totale: {{ totale }} €</p>
                     {% endif %}
                     <div style="float: right">
                         <a class="btn btn-primary" href="{% url "cart" %}"> Torna al carrello </a>

@@ -90,8 +90,12 @@
                     </li>
                 {% endfor %}
                 </ul>
-                {% if packet.id not in packets %}
-                    <a href="{% url 'user_packet_create' packet.id %}" class="btn btn-primary">Segui il pacchetto</a>
+                {% if user.is_authenticated %}
+                    {% if packet.id not in packets %}
+                        <a href="{% url 'user_packet_create' packet.id %}" class="btn btn-primary">Segui il pacchetto</a>
+                    {% endif %}
+                {% else %}
+                    <p>Per seguire questo pacchetto, <a href="{% url 'registration' %}"> registrati </a> su Virgilian Code Online!</p>
                 {% endif %}
             </div>
         </div>
