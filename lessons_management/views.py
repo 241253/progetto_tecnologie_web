@@ -7,7 +7,6 @@ from lessons_management.forms import LessonsCreationForm, LessonsUpdateForm, Pac
 from lessons_management.models import Lesson, Packet, UserPackets
 from user_cart.models import PurchasedLessons
 
-
 @method_decorator(login_required, name='dispatch')
 class UserHubList(ListView):
     model = Lesson
@@ -71,7 +70,6 @@ class CreatePacket(CreateView):
         kwargs = super(CreatePacket, self).get_form_kwargs()
         kwargs.update({'user': self.request.user})
         return kwargs
-
 
 @method_decorator(login_required, name='dispatch')
 class DeletePacket(DeleteView):

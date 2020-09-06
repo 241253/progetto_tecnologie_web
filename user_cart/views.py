@@ -1,17 +1,14 @@
-from django.contrib.auth.models import User
-from django.db.models import QuerySet
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
+from django.utils.decorators import method_decorator
 from django.views.generic.base import View, TemplateView
-
 from lessons_management.models import Lesson
 from user_cart.models import Cart, CartDetail, PurchasedLessons
-
 from django.urls import reverse_lazy
-from django.views.generic.edit import DeleteView, CreateView
-
+from django.views.generic.edit import DeleteView
 from user_management.models import Profile
 
-
+@method_decorator(login_required, name='dispatch')
 class AddToCart(View):
 
     def get(self, request, *args, **kwargs):
@@ -31,7 +28,7 @@ class AddToCart(View):
         else:
             return render(request, 'user_cart/cart_error.html')
 
-
+@method_decorator(login_required, name='dispatch')
 class RemoveToCart(DeleteView):
         model = CartDetail
         template_name = 'user_cart/cart_remove.html'
@@ -44,7 +41,7 @@ class RemoveToCart(DeleteView):
             print(lesson.title)
             return context
 
-
+@method_decorator(login_required, name='dispatch')
 class CartView(TemplateView):
     template_name = 'user_cart/cart.html'
 
@@ -79,6 +76,7 @@ class CartView(TemplateView):
                 context.update({'sconto': 'no',})
             return context
 
+@method_decorator(login_required, name='dispatch')
 class PurchaseConfirmView(TemplateView):
     template_name = "user_cart/purchase_confirm.html"
 
@@ -123,6 +121,7 @@ class PurchaseConfirmView(TemplateView):
 
         return context
 
+@method_decorator(login_required, name='dispatch')
 class PurchaseSuccessView(View):
     def get(self, request, *args, **kwargs):
         cart = Cart.objects.get(user=request.user.id)

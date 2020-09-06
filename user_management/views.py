@@ -5,13 +5,11 @@ from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views.generic import DetailView, UpdateView, ListView, DeleteView, TemplateView
-
 from booking_management.models import Booking, BookingStatus
 from lessons_management.models import UserPackets, Packet
 from user_cart.models import PurchasedLessons
 from user_management.forms import ProfileCreationForm, UserForm, UserUpdateForm, StaffForm, StaffUpdateForm
 from user_management.models import Profile
-
 
 def login_redirect(request):
     if request.user.is_staff:
@@ -91,12 +89,15 @@ class ProfilePictureUpdate(UpdateView):
             form.instance.user = self.request.user
             return super().form_valid(form)
 
+@method_decorator(login_required, name='dispatch')
 def UserUpdateComplete(request):
     return render(request, 'user_management/user/user_update_complete.html')
 
+@method_decorator(login_required, name='dispatch')
 def UserImgUpdateComplete(request):
     return render(request, 'user_management/user/user_img_update_complete.html')
 
+@method_decorator(login_required, name='dispatch')
 class UserPurchasedLessonView(TemplateView):
     template_name = 'user_management/user/user_purchased_lesson.html'
 
@@ -105,6 +106,7 @@ class UserPurchasedLessonView(TemplateView):
         context['lessons'] = PurchasedLessons.objects.filter(user_id=self.request.user.id)
         return context
 
+@method_decorator(login_required, name='dispatch')
 class UserPacketsView(TemplateView):
     template_name = 'user_management/user/user_packets.html'
 
@@ -181,5 +183,6 @@ class StaffDetailUpdate(UpdateView):
     template_name = 'user_management/staff/staff_detail_update.html'
     success_url = reverse_lazy('login_redirect_url')
 
+@method_decorator(login_required, name='dispatch')
 def StaffDetailUpdateComplete(request):
     return render(request, 'user_management/staff/staff_detail_update_complete.html')

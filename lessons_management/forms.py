@@ -1,7 +1,6 @@
 from django import forms
 from lessons_management.models import Lesson, Packet, UserPackets
 
-
 # LESSONS
 class LessonsCreationForm(forms.ModelForm):
     class Meta:
@@ -27,7 +26,6 @@ class LessonsUpdateForm(forms.ModelForm):
         model = Lesson
         fields = ('title', 'description', 'difficulty', 'genre', 'price', 'video')
         labels = {'title': 'Titolo', 'description':'Descrizione','difficulty':'Difficoltà','genre':'Genere','price':'Prezzo','video':'Video'}
-
 
 # PACKETS
 def getLessonsChoices():

@@ -27,7 +27,7 @@
         </div>
     {% endif %}
     {% for packet in packet_list %}
-        <div class="card">
+        <div class="card my-5">
             {% if packet.difficulty == '1.0' or packet.difficulty == '2.0' %}
                 <h5 class="card-header" style="background-color: #18d624">{{ packet.title }}</h5>
             {% elif packet.difficulty == '3.0' or packet.difficulty == '4.0' %}
@@ -91,8 +91,10 @@
                 {% endfor %}
                 </ul>
                 {% if user.is_authenticated %}
-                    {% if packet.id not in packets %}
-                        <a href="{% url 'user_packet_create' packet.id %}" class="btn btn-primary">Segui il pacchetto</a>
+                    {% if not user.is_staff %}
+                        {% if packet.id not in packets %}
+                            <a href="{% url 'user_packet_create' packet.id %}" class="btn btn-primary">Segui il pacchetto</a>
+                        {% endif %}
                     {% endif %}
                 {% else %}
                     <p>Per seguire questo pacchetto, <a href="{% url 'registration' %}"> registrati </a> su Virgilian Code Online!</p>

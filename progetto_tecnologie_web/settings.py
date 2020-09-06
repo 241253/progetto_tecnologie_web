@@ -78,16 +78,6 @@ DATABASES = {
     }
 }
 
-
-# Password validation
-# PASSWORD_HASHERS = [
-#     'django.contrib.auth.hashers.BCryptSHA256PasswordHasher',
-#     'django.contrib.auth.hashers.PBKDF2PasswordHasher',
-#     'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
-#     'django.contrib.auth.hashers.Argon2PasswordHasher',
-# ]
-# https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
-
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -129,7 +119,7 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 #LOGIN
 LOGIN_REDIRECT_URL = reverse_lazy('login_redirect_url')
 
-LOGIN_URL = "login"
+LOGIN_URL = "user_login"
 
 #PROBLEMA CSRF
 CSRF_COOKIE_DOMAIN = None

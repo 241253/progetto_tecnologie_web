@@ -24,9 +24,12 @@ class BookingCreationForm(forms.ModelForm):
 
     def clean_data(self):
         data = self.cleaned_data['data']
-        booking_date = (dt.date.today() + dt.timedelta(days=3))
+        booking_date = (dt.date.today() + dt.timedelta(days=7))
         if data < booking_date:
             raise ValidationError(f"puoi prenotare a partire dal {booking_date.strftime('%d/%m/%Y')}")
+        if data.weekday() == 6 or data.weekday() == 5:
+            raise ValidationError('Le prenotazioni non sono disponibili il sabato e la domenica')
+
         return data
 
     def save(self, commit=True):
