@@ -1,6 +1,7 @@
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.http import HttpResponseForbidden
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
@@ -59,6 +60,11 @@ class UserPage(DetailView):
     template_name = 'user_management/user/user_page.html'
     queryset = User.objects.all()
 
+    def get(self, request, *args, **kwargs):
+        if kwargs['pk'] != request.user.id:
+            return  HttpResponseForbidden('You cannot view what is not yours')
+        return super(UserPage, self).get(request, *args, **kwargs)
+
     def get_context_data(self, **kwargs):
         context = super(UserPage, self).get_context_data(**kwargs)
         context['profile'] = Profile.objects.all().filter(user=context['user'])[0]
@@ -77,12 +83,22 @@ class UserUpdate(UpdateView):
     template_name = 'user_management/user/user_update.html'
     success_url = reverse_lazy('user_update_complete')
 
+    def get(self, request, *args, **kwargs):
+        if kwargs['pk'] != request.user.id:
+            return  HttpResponseForbidden('You cannot view what is not yours')
+        return super(UserPage, self).get(request, *args, **kwargs)
+
 @method_decorator(login_required, name='dispatch')
 class ProfilePictureUpdate(UpdateView):
     fields = ['foto']
     model = Profile
     template_name = 'user_management/user/user_img_update.html'
     success_url = reverse_lazy('profile_picture_update_complete')
+
+    def get(self, request, *args, **kwargs):
+        if kwargs['pk'] != request.user.id:
+            return  HttpResponseForbidden('You cannot view what is not yours')
+        return super(UserPage, self).get(request, *args, **kwargs)
     
     def form_valid(self, form):
         if form.is_valid():
@@ -120,6 +136,11 @@ class StaffPage(DetailView):
         model = User
 
     template_name = 'user_management/staff/staff_page.html'
+
+    def get(self, request, *args, **kwargs):
+        if kwargs['pk'] != request.user.id:
+            return  HttpResponseForbidden('You cannot view what is not yours')
+        return super(UserPage, self).get(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
         context = super(StaffPage, self).get_context_data(**kwargs)
@@ -171,7 +192,6 @@ class UpdateStaff(UpdateView):
 class DetailStaff(DetailView):
     context_object_name = 'user'
     queryset = User.objects.all()
-    # extra_context = {'profile': queryset[0].profile}
     template_name = 'user_management/staff/staff_detail.html'
 
 @method_decorator(login_required, name='dispatch')

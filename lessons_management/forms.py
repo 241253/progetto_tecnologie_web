@@ -91,6 +91,10 @@ class PacketUpdateForm(forms.ModelForm):
     choices = getLessonsChoices()
     lessons = forms.MultipleChoiceField(choices=choices)
 
+    def __init__(self, *args, **kwargs):
+        super(PacketUpdateForm, self).__init__(*args, **kwargs)
+        self.fields['lessons'].choices = getLessonsChoices()
+
     class Meta:
         model = Lesson
         fields = ('title', 'description')

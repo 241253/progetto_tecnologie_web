@@ -7,14 +7,14 @@ class Lesson(models.Model):
     GENRE_CHOICES = (('PC', 'Punta e clicca'), ('A', 'Avventura'), ('GM', 'Gioco matematico'), ('ST', 'Story-telling'), ('GV', 'Giochi vocali'), ('R', 'Racing'), ('AL', 'Altro...'))
     DIFFICULTY_CHOICES = (('1.0','Facile - base'), ('2.0', 'Facile - avanzato'), ('3.0', 'Media - base'), ('4.0', 'Media - avanzata'), ('5.0', 'Difficile - base'), ('6.0', 'Difficile - avanzata'))
 
-    user = models.ForeignKey(User, on_delete=models.SET(5), null=True)
+    user = models.ForeignKey(User, on_delete=models.SET(1), null=True)
 
     title = models.CharField(max_length=60)
     description = models.TextField(max_length=1000)
     difficulty = models.CharField(max_length=30, choices=DIFFICULTY_CHOICES, default='1.0')
     genre = models.CharField(max_length=30, choices=GENRE_CHOICES, default='A')
     price = models.FloatField(default=20.0)
-    video = models.FileField(upload_to='video_lessons', validators=[validate_file_extension]) #videolezione
+    video = models.FileField(upload_to='video_lessons', validators=[validate_file_extension])
 
     def __str__(self):
         return f'#{self.id} - {self.title}'
@@ -22,7 +22,7 @@ class Lesson(models.Model):
 class Packet(models.Model):
     DIFFICULTY_CHOICES = (('1.0','Facile - base'), ('2.0', 'Facile - avanzato'), ('3.0', 'Media - base'), ('4.0', 'Media - avanzata'), ('5.0', 'Difficile - base'), ('6.0', 'Difficile - avanzata'))
 
-    user = models.ForeignKey(User, on_delete=models.SET(5), null=True)
+    user = models.ForeignKey(User, on_delete=models.SET(1), null=True)
 
     title = models.CharField(max_length=60)
     description = models.TextField(max_length=1000)
