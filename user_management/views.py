@@ -86,7 +86,7 @@ class UserUpdate(UpdateView):
     def get(self, request, *args, **kwargs):
         if kwargs['pk'] != request.user.id:
             return  HttpResponseForbidden('You cannot view what is not yours')
-        return super(UserPage, self).get(request, *args, **kwargs)
+        return super(UserUpdate, self).get(request, *args, **kwargs)
 
 @method_decorator(login_required, name='dispatch')
 class ProfilePictureUpdate(UpdateView):
@@ -98,7 +98,7 @@ class ProfilePictureUpdate(UpdateView):
     def get(self, request, *args, **kwargs):
         if kwargs['pk'] != request.user.id:
             return  HttpResponseForbidden('You cannot view what is not yours')
-        return super(UserPage, self).get(request, *args, **kwargs)
+        return super(ProfilePictureUpdate, self).get(request, *args, **kwargs)
     
     def form_valid(self, form):
         if form.is_valid():
@@ -140,7 +140,7 @@ class StaffPage(DetailView):
     def get(self, request, *args, **kwargs):
         if kwargs['pk'] != request.user.id:
             return  HttpResponseForbidden('You cannot view what is not yours')
-        return super(UserPage, self).get(request, *args, **kwargs)
+        return super(StaffPage, self).get(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
         context = super(StaffPage, self).get_context_data(**kwargs)
