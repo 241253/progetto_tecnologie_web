@@ -89,11 +89,9 @@ class ProfilePictureUpdate(UpdateView):
             form.instance.user = self.request.user
             return super().form_valid(form)
 
-@method_decorator(login_required, name='dispatch')
 def UserUpdateComplete(request):
     return render(request, 'user_management/user/user_update_complete.html')
 
-@method_decorator(login_required, name='dispatch')
 def UserImgUpdateComplete(request):
     return render(request, 'user_management/user/user_img_update_complete.html')
 
