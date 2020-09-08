@@ -48,21 +48,6 @@ class PacketCreationForm(forms.ModelForm):
         super(PacketCreationForm, self).__init__(*args, **kwargs)
         self.fields['lessons'].choices = getLessonsChoices()
 
-    def normalize_difficulty(self, difficulty):
-        if difficulty < 1.5:
-            difficulty = '1.0'
-        elif 1.5 <= difficulty < 2.5:
-            difficulty = '2.0'
-        elif 2.5 <= difficulty < 3.5:
-            difficulty = '3.0'
-        elif 3.5 <= difficulty < 4.5:
-            difficulty = '4.0'
-        elif 4.5 <= difficulty < 5.5:
-            difficulty = '5.0'
-        else:
-            difficulty = '6.0'
-        return difficulty
-
     def clean_lessons(self):
         lessons = self.cleaned_data['lessons']
         if len(lessons) < 5:
@@ -72,18 +57,17 @@ class PacketCreationForm(forms.ModelForm):
     def save(self, commit=True):
         packet = super(PacketCreationForm, self).save(commit=False)
         packet.user_id = self.current_user.id
-
-        difficulty = 0.0
-        for lesson_id in self.cleaned_data['lessons']:
-            lesson = Lesson.objects.get(id=lesson_id)
-            difficulty += float(lesson.difficulty)
-        difficulty /= len(self.cleaned_data['lessons'])
-
-        packet.difficulty = self.normalize_difficulty(difficulty)
+        #
+        # difficulty = 0.0
+        # for lesson_id in self.cleaned_data['lessons']:
+        #     lesson = Lesson.objects.get(id=lesson_id)
+        #     difficulty += float(lesson.difficulty)
+        # difficulty /= len(self.cleaned_data['lessons'])
 
         if commit:
             packet.save()
             packet.lessons.set([int(lesson_id) for lesson_id in self.cleaned_data['lessons']])
+            packet.set_normalize_difficulty()
         return packet
 
 class PacketUpdateForm(forms.ModelForm):
@@ -99,21 +83,6 @@ class PacketUpdateForm(forms.ModelForm):
         model = Lesson
         fields = ('title', 'description')
 
-    def normalize_difficulty(self, difficulty):
-        if difficulty < 1.5:
-            difficulty = '1.0'
-        elif 1.5 <= difficulty < 2.5:
-            difficulty = '2.0'
-        elif 2.5 <= difficulty < 3.5:
-            difficulty = '3.0'
-        elif 3.5 <= difficulty < 4.5:
-            difficulty = '4.0'
-        elif 4.5 <= difficulty < 5.5:
-            difficulty = '5.0'
-        else:
-            difficulty = '6.0'
-        return difficulty
-
     def save(self, commit=True):
         packet = super(PacketUpdateForm, self).save(commit=False)
 
@@ -123,7 +92,7 @@ class PacketUpdateForm(forms.ModelForm):
             difficulty += float(lesson.difficulty)
         difficulty /= len(self.cleaned_data['lessons'])
 
-        packet.difficulty = self.normalize_difficulty(difficulty)
+        packet.set_normalize_difficulty(difficulty)
 
         if commit:
             packet.save()

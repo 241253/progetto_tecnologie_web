@@ -60,8 +60,7 @@ class ProfileCreationForm(forms.ModelForm):
             #validate dimensions
             max_width = max_height = 1500
             if w > max_width or h > max_height:
-                raise forms.ValidationError(
-                    u'Please use an image that is %s x %s pixels or smaller.' % (max_width, max_height))
+                raise forms.ValidationError(u'Please use an image that is %s x %s pixels or smaller.' % (max_width, max_height))
 
             #validate content type
             main, sub = foto.content_type.split('/')
@@ -70,8 +69,7 @@ class ProfileCreationForm(forms.ModelForm):
 
             #validate file size
             if len(foto) > (4000 * 1024):
-                raise forms.ValidationError(
-                    u'Avatar file size may not exceed 4MB.')
+                raise forms.ValidationError(u'Avatar file size may not exceed 4MB.')
 
         except AttributeError:
             """
@@ -80,8 +78,8 @@ class ProfileCreationForm(forms.ModelForm):
             """
             pass
 
-        if(foto=='uploaded_files/media/user_db/user_photo/None/none_picture.png'):
-            foto='media/user_db/user_photo/None/none_picture.png'
+        if foto == 'uploaded_files/media/user_db/user_photo/None/none_picture.png':
+            foto = 'media/user_db/user_photo/None/none_picture.png'
 
         return foto
 

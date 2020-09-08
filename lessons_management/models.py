@@ -29,6 +29,22 @@ class Packet(models.Model):
     difficulty = models.CharField(max_length=30, choices=DIFFICULTY_CHOICES, default='1.0')
     lessons = models.ManyToManyField(Lesson)
 
+    def set_normalize_difficulty(self):
+        difficulty = sum([float(lesson.difficulty) for lesson in self.lessons.all()])/len(self.lessons.all())
+        if difficulty < 1.5:
+            self.difficulty = '1.0'
+        elif 1.5 <= difficulty < 2.5:
+            self.difficulty = '2.0'
+        elif 2.5 <= difficulty < 3.5:
+            self.difficulty = '3.0'
+        elif 3.5 <= difficulty < 4.5:
+            self.difficulty = '4.0'
+        elif 4.5 <= difficulty < 5.5:
+            self.difficulty = '5.0'
+        else:
+            self.difficulty = '6.0'
+        self.save()
+
     @property
     def lessons_count(self):
         return self.lessons.all().count()
