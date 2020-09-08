@@ -16,5 +16,6 @@ urlpatterns = [
     path('packets/list/', views.PacketListView.as_view(), name='list_packet'),
     #USERPACKETS
     path('user_packets/create/<int:packet_id>', views.CreateUserPackets.as_view(), name='user_packet_create'),
+    path('user_packets/delete/<int:packet_id>', views.DeleteUserPackets.as_view(), name='delete_user_packet'),
 
 ]

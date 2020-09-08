@@ -75,6 +75,7 @@
                     {% endfor %}
                     </ul>
                 </div>
+                <a class="btn btn-primary" href="{% url 'delete_user_packet' packet.id %}">Non seguire più il pacchetto</a>
             </div>
             <hr/>
         {% endfor %}

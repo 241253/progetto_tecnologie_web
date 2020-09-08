@@ -1,4 +1,6 @@
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseForbidden
+from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, TemplateView, FormView
@@ -24,9 +26,19 @@ class CreateBookingView(CreateView):
 class BookingSuccessView(TemplateView):
     template_name = 'booking_management/success_booking.html'
 
+    def get(self, request, *args, **kwargs):
+        if self.request.user.is_staff:
+            return redirect('staff_error')
+        return super(BookingSuccessView, self).get(request, *args, **kwargs)
+
 @method_decorator(login_required, name='dispatch')
 class BookingErrorView(TemplateView):
     template_name = 'booking_management/error_booking.html'
+
+    def get(self, request, *args, **kwargs):
+        if self.request.user.is_staff:
+            return redirect('staff_error')
+        return super(BookingErrorView, self).get(request, *args, **kwargs)
 
 @method_decorator(login_required, name='dispatch')
 class BookingAdminView(TemplateView):
@@ -40,6 +52,13 @@ class BookingAdminView(TemplateView):
         context['booking_detail'] = booking_detail
         return context
 
+    def get(self, request, *args, **kwargs):
+        if not self.request.user.is_staff:
+            return redirect('user_error')
+        elif not self.request.user.is_superuser:
+            return redirect('staff_error')
+        return super(BookingAdminView, self).get(request, *args, **kwargs)
+
 @method_decorator(login_required, name='dispatch')
 class BookingStaffView(TemplateView):
     template_name = 'booking_management/booking_staff.html'
@@ -50,6 +69,13 @@ class BookingStaffView(TemplateView):
         context['booking_past'] = BookingStatus.objects.filter(formatore=self.request.user, stato='1', booking__data__lt=dt.date.today()).order_by('booking__data', 'booking__ora')
         return context
 
+    def get(self, request, *args, **kwargs):
+        if not self.request.user.is_staff:
+            return redirect('user_error')
+        elif self.request.user.is_superuser:
+            return redirect('staff_error')
+        return super(BookingAdminView, self).get(request, *args, **kwargs)
+
 #BOOKING_STATUS
 @method_decorator(login_required, name='dispatch')
 class CreateBookingStatusView(FormView):
@@ -57,6 +83,11 @@ class CreateBookingStatusView(FormView):
     form_class = BookingStatusConfirmForm
     template_name = 'booking_management/confirm_booking.html'
     success_url = reverse_lazy('booking_admin')
+
+    def get(self, request, *args, **kwargs):
+        if not self.request.user.is_staff:
+            return redirect('user_error')
+        return super(CreateBookingStatusView, self).get(request, *args, **kwargs)
 
     def get_form_kwargs(self):
         kwargs = super(CreateBookingStatusView, self).get_form_kwargs()
@@ -74,6 +105,11 @@ class UndoBookingStatusView(FormView):
     form_class = BookingStatusUndoForm
     template_name = 'booking_management/undo_booking.html'
     success_url = reverse_lazy('booking_admin')
+
+    def get(self, request, *args, **kwargs):
+        if not self.request.user.is_staff:
+            return redirect('user_error')
+        return super(UndoBookingStatusView, self).get(request, *args, **kwargs)
 
     def get_form_kwargs(self):
         kwargs = super(UndoBookingStatusView, self).get_form_kwargs()
@@ -99,3 +135,9 @@ class UserBookingView(TemplateView):
         context['booking_status'] = BookingStatus.objects.filter(booking__user_id=self.request.user.id, booking__data__gte=dt.date.today()).order_by('-stato', 'booking__data', 'booking__ora')
         context['booking_past'] = BookingStatus.objects.filter(booking__user_id=self.request.user.id, booking__data__lt=dt.date.today()).order_by('-stato', 'booking__data', 'booking__ora')
         return context
+
+    def get(self, request, *args, **kwargs):
+        if self.request.user.is_staff:
+            return redirect('staff_error')
+        else:
+            return super(UserBookingView, self).get(request, *args, **kwargs)

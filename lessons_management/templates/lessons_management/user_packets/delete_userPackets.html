@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block browser_page_title %}Non seguire il pacchetto{% endblock %}
+
+{% block personal_css %}
+{#    <link rel="stylesheet" href="{% static 'css/home.css' %}"/>#}
+{% endblock %}
+
+{% block content %}
+<div class="container py-3 text-center" style="padding-top: 30px; padding-bottom: 30px">
+    <img style="width: 450px; height: 450px" src="{% static '/img/follow.png' %}">
+    <h3 style="padding-bottom: 10px">Vuoi davvero smettere di seguire questo pacchetto?</h3>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <a class="btn btn-primary" href="{% url 'list_packet' %}">Annulla</a>
+        <input type="submit" class="btn btn-primary" value="Conferma">
+    </form>
+</div>
+{% endblock %}

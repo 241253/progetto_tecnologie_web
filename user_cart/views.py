@@ -1,5 +1,6 @@
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render
+from django.http import HttpResponseForbidden
+from django.shortcuts import render, redirect
 from django.utils.decorators import method_decorator
 from django.views.generic.base import View, TemplateView
 from lessons_management.models import Lesson
@@ -12,6 +13,9 @@ from user_management.models import Profile
 class AddToCart(View):
 
     def get(self, request, *args, **kwargs):
+        if self.request.user.is_staff:
+            return redirect('staff_error')
+
         product_id = self.kwargs['id']
 
         cart = None
@@ -30,20 +34,30 @@ class AddToCart(View):
 
 @method_decorator(login_required, name='dispatch')
 class RemoveToCart(DeleteView):
-        model = CartDetail
-        template_name = 'user_cart/cart_remove.html'
-        success_url = reverse_lazy('cart')
+    model = CartDetail
+    template_name = 'user_cart/cart_remove.html'
+    success_url = reverse_lazy('cart')
 
-        def get_context_data(self, **kwargs):
-            context = super(RemoveToCart, self).get_context_data(**kwargs)
-            lesson = Lesson.objects.get(id=context['cartdetail'].product_id)
-            context.update({'lesson_title':lesson.title})
-            print(lesson.title)
-            return context
+    def get(self, request, *args, **kwargs):
+        if self.request.user.is_staff:
+            return redirect('staff_error')
+        return super(RemoveToCart, self).get(request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super(RemoveToCart, self).get_context_data(**kwargs)
+        lesson = Lesson.objects.get(id=context['cartdetail'].product_id)
+        context.update({'lesson_title':lesson.title})
+        print(lesson.title)
+        return context
 
 @method_decorator(login_required, name='dispatch')
 class CartView(TemplateView):
     template_name = 'user_cart/cart.html'
+
+    def get(self, request, *args, **kwargs):
+        if self.request.user.is_staff:
+            return redirect('staff_error')
+        return super(CartView, self).get(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
         context = super(CartView, self).get_context_data(**kwargs)
@@ -79,6 +93,11 @@ class CartView(TemplateView):
 @method_decorator(login_required, name='dispatch')
 class PurchaseConfirmView(TemplateView):
     template_name = "user_cart/purchase_confirm.html"
+
+    def get(self, request, *args, **kwargs):
+        if self.request.user.is_staff:
+            return redirect('staff_error')
+        return super(PurchaseConfirmView, self).get(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
         context = super(PurchaseConfirmView, self).get_context_data(**kwargs)
@@ -124,6 +143,10 @@ class PurchaseConfirmView(TemplateView):
 @method_decorator(login_required, name='dispatch')
 class PurchaseSuccessView(View):
     def get(self, request, *args, **kwargs):
+
+        if self.request.user.is_staff:
+            return redirect('staff_error')
+
         cart = Cart.objects.get(user=request.user.id)
         cart_details = CartDetail.objects.all().filter(cart=cart.id)
 

@@ -150,3 +150,11 @@ class UserPacketsCreationForm(forms.ModelForm):
         if commit:
             user_packets.save()
         return user_packets
+
+class UserPacketsDeleteForm(forms.ModelForm):
+    class Meta:
+        model = UserPackets
+        exclude = ['user', 'packet']
+
+    def is_valid(self):
+        return True

@@ -1,9 +1,10 @@
 from django.contrib.auth.decorators import login_required
+from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views.generic import ListView, CreateView, DeleteView, UpdateView, FormView
 from lessons_management.forms import LessonsCreationForm, LessonsUpdateForm, PacketCreationForm, PacketUpdateForm, \
-    UserPacketsCreationForm
+    UserPacketsCreationForm, UserPacketsDeleteForm
 from lessons_management.models import Lesson, Packet, UserPackets
 from user_cart.models import PurchasedLessons
 
@@ -20,6 +21,11 @@ class UserHubList(ListView):
         })
         return context
 
+    def get(self, request, *args, **kwargs):
+        if not self.request.user.is_staff:
+            return redirect('user_error')
+        return super(UserHubList, self).get(request, *args, **kwargs)
+
 # LESSONS
 @method_decorator(login_required, name='dispatch')
 class CreateLesson(CreateView):
@@ -33,11 +39,21 @@ class CreateLesson(CreateView):
         kwargs.update({'user': self.request.user})
         return kwargs
 
+    def get(self, request, *args, **kwargs):
+        if not self.request.user.is_staff:
+            return redirect('user_error')
+        return super(CreateLesson, self).get(request, *args, **kwargs)
+
 @method_decorator(login_required, name='dispatch')
 class DeleteLesson(DeleteView):
     model = Lesson
     template_name = 'lessons_management/lessons/delete_lesson.html'
     success_url = reverse_lazy('list_hub')
+
+    def get(self, request, *args, **kwargs):
+        if not self.request.user.is_staff:
+            return redirect('user_error')
+        return super(DeleteLesson, self).get(request, *args, **kwargs)
 
 @method_decorator(login_required, name='dispatch')
 class UpdateLesson(UpdateView):
@@ -45,6 +61,11 @@ class UpdateLesson(UpdateView):
     form_class = LessonsUpdateForm
     template_name = 'lessons_management/lessons/update_lesson.html'
     success_url = reverse_lazy('list_hub')
+
+    def get(self, request, *args, **kwargs):
+        if not self.request.user.is_staff:
+            return redirect('user_error')
+        return super(UpdateLesson, self).get(request, *args, **kwargs)
 
 class LessonDetail(DeleteView):
     template_name = 'lessons_management/lessons/detail_lesson.html'
@@ -71,11 +92,21 @@ class CreatePacket(CreateView):
         kwargs.update({'user': self.request.user})
         return kwargs
 
+    def get(self, request, *args, **kwargs):
+        if not self.request.user.is_staff:
+            return redirect('user_error')
+        return super(CreatePacket, self).get(request, *args, **kwargs)
+
 @method_decorator(login_required, name='dispatch')
 class DeletePacket(DeleteView):
     model = Packet
     template_name = 'lessons_management/packets/delete_packet.html'
     success_url = reverse_lazy('list_hub')
+
+    def get(self, request, *args, **kwargs):
+        if not self.request.user.is_staff:
+            return redirect('user_error')
+        return super(DeletePacket, self).get(request, *args, **kwargs)
 
 @method_decorator(login_required, name='dispatch')
 class UpdatePacket(UpdateView):
@@ -83,6 +114,11 @@ class UpdatePacket(UpdateView):
     form_class = PacketUpdateForm
     template_name = 'lessons_management/packets/update_packet.html'
     success_url = reverse_lazy('list_hub')
+
+    def get(self, request, *args, **kwargs):
+        if not self.request.user.is_staff:
+            return redirect('user_error')
+        return super(UpdatePacket, self).get(request, *args, **kwargs)
 
 class PacketDetail(DeleteView):
     template_name = 'lessons_management/packets/detail_packet.html'
@@ -115,3 +151,13 @@ class CreateUserPackets(FormView):
         if form.is_valid():
             form.save()
             return super(CreateUserPackets, self).form_valid(form)
+
+class DeleteUserPackets(FormView):
+    form_class = UserPacketsDeleteForm
+    template_name = 'lessons_management/user_packets/delete_userPackets.html'
+    success_url = reverse_lazy('user_packet')
+
+    def form_valid(self, form):
+        if form.is_valid():
+            UserPackets.objects.get(user_id=self.request.user.id, id=Packet.objects.get(id=self.kwargs['packet_id']).id).delete()
+            return super(DeleteUserPackets, self).form_valid(form)

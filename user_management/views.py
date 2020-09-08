@@ -61,6 +61,8 @@ class UserPage(DetailView):
     queryset = User.objects.all()
 
     def get(self, request, *args, **kwargs):
+        if self.request.user.is_staff:
+            return redirect('staff_error')
         if kwargs['pk'] != request.user.id:
             return  HttpResponseForbidden('You cannot view what is not yours')
         return super(UserPage, self).get(request, *args, **kwargs)
@@ -84,6 +86,8 @@ class UserUpdate(UpdateView):
     success_url = reverse_lazy('user_update_complete')
 
     def get(self, request, *args, **kwargs):
+        if self.request.user.is_staff:
+            return redirect('staff_error')
         if kwargs['pk'] != request.user.id:
             return  HttpResponseForbidden('You cannot view what is not yours')
         return super(UserUpdate, self).get(request, *args, **kwargs)
@@ -96,6 +100,8 @@ class ProfilePictureUpdate(UpdateView):
     success_url = reverse_lazy('profile_picture_update_complete')
 
     def get(self, request, *args, **kwargs):
+        if self.request.user.is_staff:
+            return redirect('staff_error')
         if kwargs['pk'] != request.user.id:
             return  HttpResponseForbidden('You cannot view what is not yours')
         return super(ProfilePictureUpdate, self).get(request, *args, **kwargs)
@@ -106,14 +112,23 @@ class ProfilePictureUpdate(UpdateView):
             return super().form_valid(form)
 
 def UserUpdateComplete(request):
+    if request.user.is_staff:
+        return redirect('staff_error')
     return render(request, 'user_management/user/user_update_complete.html')
 
 def UserImgUpdateComplete(request):
+    if request.user.is_staff:
+        return redirect('staff_error')
     return render(request, 'user_management/user/user_img_update_complete.html')
 
 @method_decorator(login_required, name='dispatch')
 class UserPurchasedLessonView(TemplateView):
     template_name = 'user_management/user/user_purchased_lesson.html'
+
+    def get(self, request, *args, **kwargs):
+        if self.request.user.is_staff:
+            return redirect('staff_error')
+        return super(UserPurchasedLessonView, self).get(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
         context = super(UserPurchasedLessonView, self).get_context_data(**kwargs)
@@ -124,10 +139,19 @@ class UserPurchasedLessonView(TemplateView):
 class UserPacketsView(TemplateView):
     template_name = 'user_management/user/user_packets.html'
 
+    def get(self, request, *args, **kwargs):
+        if self.request.user.is_staff:
+            return redirect('staff_error')
+        return super(UserPacketsView, self).get(request, *args, **kwargs)
+
     def get_context_data(self, **kwargs):
         context = super(UserPacketsView, self).get_context_data(**kwargs)
         context['packets'] = Packet.objects.filter(id__in=[x.packet.id for x in UserPackets.objects.filter(user_id=self.request.user.id)])
         return context
+
+@method_decorator(login_required, name='dispatch')
+class UserErrorView(TemplateView):
+    template_name = 'user_management/user/user_error.html'
 
 #STAFF VIEW
 @method_decorator(login_required, name='dispatch')
@@ -138,7 +162,9 @@ class StaffPage(DetailView):
     template_name = 'user_management/staff/staff_page.html'
 
     def get(self, request, *args, **kwargs):
-        if kwargs['pk'] != request.user.id:
+        if not self.request.user.is_staff:
+            return redirect('user_error')
+        elif kwargs['pk'] != request.user.id:
             return  HttpResponseForbidden('You cannot view what is not yours')
         return super(StaffPage, self).get(request, *args, **kwargs)
 
@@ -152,6 +178,7 @@ class StaffList(ListView):
     model = User
     template_name = 'user_management/staff/staff_list.html'
 
+@login_required
 def create_staff(request):
     if request.method == 'POST':
         user_form = StaffForm(request.POST)
@@ -173,13 +200,21 @@ def create_staff(request):
         profile_form = ProfileCreationForm(data=request.GET, files=request.FILES or None)
 
     context = {'user_form': user_form, 'profile_form': profile_form}
-    return render(request, 'user_management/staff/staff_create.html', context)
+    if request.user.is_staff:
+        return render(request, 'user_management/staff/staff_create.html', context)
+    else:
+        return redirect('user_error')
 
 @method_decorator(login_required, name='dispatch')
 class DeleteStaff(DeleteView):
     model = User
     template_name = 'user_management/staff/staff_delete.html'
     success_url = reverse_lazy('staff_list')
+
+    def get(self, request, *args, **kwargs):
+        if not self.request.user.is_staff:
+            return redirect('user_error')
+        return super(DeleteStaff, self).get(request, *args, **kwargs)
 
 @method_decorator(login_required, name='dispatch')
 class UpdateStaff(UpdateView):
@@ -188,11 +223,23 @@ class UpdateStaff(UpdateView):
     template_name = 'user_management/staff/staff_update.html'
     success_url = reverse_lazy('staff_list')
 
+    def get(self, request, *args, **kwargs):
+        if not self.request.user.is_staff:
+            return redirect('user_error')
+        elif kwargs['pk'] != request.user.id:
+            return  HttpResponseForbidden('You cannot view what is not yours')
+        return super(UpdateStaff, self).get(request, *args, **kwargs)
+
 @method_decorator(login_required, name='dispatch')
 class DetailStaff(DetailView):
     context_object_name = 'user'
     queryset = User.objects.all()
     template_name = 'user_management/staff/staff_detail.html'
+
+    def get(self, request, *args, **kwargs):
+        if not self.request.user.is_staff:
+            return redirect('user_error')
+        return super(DetailStaff, self).get(request, *args, **kwargs)
 
 @method_decorator(login_required, name='dispatch')
 class StaffDetailUpdate(UpdateView):
@@ -201,6 +248,17 @@ class StaffDetailUpdate(UpdateView):
     template_name = 'user_management/staff/staff_detail_update.html'
     success_url = reverse_lazy('login_redirect_url')
 
+    def get(self, request, *args, **kwargs):
+        if not self.request.user.is_staff:
+            return redirect('user_error')
+        return super(StaffDetailUpdate, self).get(request, *args, **kwargs)
+
 @method_decorator(login_required, name='dispatch')
 def StaffDetailUpdateComplete(request):
+    if not request.user.is_staff:
+        return redirect('user_error')
     return render(request, 'user_management/staff/staff_detail_update_complete.html')
+
+@method_decorator(login_required, name='dispatch')
+class StaffErrorView(TemplateView):
+    template_name = 'user_management/staff/staff_error.html'
