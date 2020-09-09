@@ -159,5 +159,5 @@ class DeleteUserPackets(FormView):
 
     def form_valid(self, form):
         if form.is_valid():
-            UserPackets.objects.get(user_id=self.request.user.id, id=Packet.objects.get(id=self.kwargs['packet_id']).id).delete()
+            UserPackets.objects.get(user_id=self.request.user.id, packet_id=Packet.objects.get(id=self.kwargs['packet_id']).id).delete()
             return super(DeleteUserPackets, self).form_valid(form)

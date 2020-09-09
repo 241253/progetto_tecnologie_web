@@ -23,7 +23,7 @@ class ValidateFileExtentionTest(TestCase):
              se il file inserito è un video in formato.mp4
              controllo che la funzione ritorni il valore True
         '''
-        video = open('./uploaded_files/video_lessons/indovina.mp4', "w")
+        video = open('./uploaded_files/video_lessons/indovina.mp4', "r")
         self.assertTrue(validate_file_extension(video))
 
 # controllo che la funzione set_normalized_difficulty imposti
