@@ -84,7 +84,7 @@ class BookingStatusConfirmForm(forms.ModelForm):
         subject = 'Conferma prenotazione'
         prenotazione = Booking.objects.get(id=self.booking_id)
         utente = User.objects.get(id=prenotazione.user.id)
-        message = 'Gentile ' + utente.username + ',\n\nla prenotazione da lei effettuata in data ' + prenotazione.data.strftime('%d/%m/%Y') + ' alle ore ' + prenotazione.ora.strftime('%H:%M') + ' è stata Confermata.\n' + 'Per qualsiasi informazione o necessità visita la sezione contatti del nostro sito www.virgiliancodeonline.it.'
+        message = 'Gentile ' + utente.first_name + ',\n\nla prenotazione da lei effettuata in data ' + prenotazione.data.strftime('%d/%m/%Y') + ' alle ore ' + prenotazione.ora.strftime('%H:%M') + ' è stata confermata.\n' + 'Per qualsiasi informazione o necessità visiti la sezione contatti del nostro sito www.virgiliancodeonline.it.'
         try:
             send_mail(subject, message, 'virgiliancodeonline@gmail.com', [utente.email], fail_silently=False,)
         except BadHeaderError:
@@ -116,11 +116,11 @@ class BookingStatusUndoForm(forms.ModelForm):
         subject = 'Annullamento prenotazione'
         prenotazione = Booking.objects.get(id=self.booking_id)
         utente = User.objects.get(id=prenotazione.user.id)
-        message = 'Gentile ' + utente.username + ',\n\nla prenotazione da lei effettuata in data ' + prenotazione.data.strftime('%d/%m/%Y') + \
+        message = 'Gentile ' + utente.first_name + ',\n\nla prenotazione da lei effettuata in data ' + prenotazione.data.strftime('%d/%m/%Y') + \
                   ' alle ore ' + prenotazione.ora.strftime('%H:%M') + \
-                  'è stata annullata in quanto non abbiamo formatori disponibile per quel giorno.\n' \
-                  'Lo staff di virgiliancode si scusa per l\'inconveniente e la invitiamo ad effettuare una nuova prenotazione ad un orario differente.\n\n' \
-                  'Per qualsiasi informazione o necessità visita la sezione contatti del nostro sito www.virgiliancodeonline.it.'
+                  ' è stata annullata in quanto non abbiamo formatori disponibili per quel giorno.\n' \
+                  'Lo staff di virgiliancode si scusa per l\'inconveniente e la invitiamo ad effettuare una nuova prenotazione ad un giorno o ad un orario differente.\n\n' \
+                  'Per qualsiasi informazione o necessità visiti la sezione contatti del nostro sito www.virgiliancodeonline.it.'
         try:
             send_mail(subject, message, 'virgiliancodeonline@gmail.com', [utente.email], fail_silently=False,)
         except BadHeaderError:
