@@ -226,8 +226,6 @@ class UpdateStaff(UpdateView):
     def get(self, request, *args, **kwargs):
         if not self.request.user.is_staff:
             return redirect('user_error')
-        elif kwargs['pk'] != request.user.id:
-            return  HttpResponseForbidden('You cannot view what is not yours')
         return super(UpdateStaff, self).get(request, *args, **kwargs)
 
 @method_decorator(login_required, name='dispatch')
