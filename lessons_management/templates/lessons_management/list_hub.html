@@ -10,7 +10,9 @@
 {% block content %}
     <div class="container-fluid my-5" style="padding-right: 150px; padding-left: 150px;">
         <a class="btn btn-secondary" href="{% url 'create_lesson' %}">Inserisci lezione</a>
-        <a class="btn btn-secondary" href="{% url 'create_packet' %}">Inserisci pacchetto</a>
+        {% if user.is_superuser %}
+            <a class="btn btn-secondary" href="{% url 'create_packet' %}">Inserisci pacchetto</a>
+        {% endif %}
         <!-- LEZIONI -->
         <h1 class="mt-5 mb-3">Lezioni</h1>
         <table class="table tabella mx-auto">
@@ -121,51 +123,21 @@
         </table>
 
         <!-- PACCHETTI -->
-        <h1 class="mt-5 mb-3"> Pacchetti </h1>
-        <table class="table tabella mx-auto">
-            <thead>
-                <tr>
-                <th scope="col">Titolo</th>
-                <th scope="col">Descrizione</th>
-                <th scope="col">Difficoltà</th>
-                <th scope="col">Lezioni</th>
-                <th scope="col">Azioni</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% if user.is_superuser %}
-                    {% for packet in packet_list %}
-                        <tr>
-                            <td scope="row">{{ packet.title }}</td>
-                            <td scope="row">{{ packet.description|truncatechars:55 }}</td>
-                            <!-- DIFFICULTY_CHOICES = (('1.0','Facile - base'), ('2.0', 'Facile - avanzato'), ('3.0', 'Media - base'), ('4.0', 'Media - avanzata'), ('5.0', 'Difficile - base'), ('6.0', 'Difficile - avanzata')) -->
-                            {% if packet.difficulty == '1.0' %}
-                                <td scope="row">Facile base</td>
-                            {% elif packet.difficulty == '2.0'%}
-                                <td scope="row">Facile avanzato</td>
-                            {% elif packet.difficulty == '3.0'%}
-                                <td scope="row">Media di base</td>
-                            {% elif packet.difficulty == '4.0'%}
-                                <td scope="row">Media avanzata</td>
-                            {% elif packet.difficulty == '5.0'%}
-                                <td scope="row">Difficile base</td>
-                            {% elif packet.difficulty == '6.0'%}
-                                <td scope="row">Difficile avanzato</td>
-                            {% endif %}
-                            <td scope="row">
-                                {% for lesson in packet.lessons.all %}
-                                    - {{ lesson.title }}<br/>
-                                {% endfor %}
-                            </td>
-                            <td>
-                                <a class="btn btn-secondary my-2" href="{% url 'update_packet' packet.id %}">modifica</a>
-                                <a class="btn btn-secondary" href="{% url 'delete_packet' packet.id %}">elimina</a>
-                            </td>
-                        </tr>
-                    {% endfor %}
-                {% else %}
-                    {% for packet in packet_list %}
-                        {% if packet.user.username == user.username %}
+        {% if user.is_superuser %}
+            <h1 class="mt-5 mb-3"> Pacchetti </h1>
+            <table class="table tabella mx-auto">
+                <thead>
+                    <tr>
+                    <th scope="col">Titolo</th>
+                    <th scope="col">Descrizione</th>
+                    <th scope="col">Difficoltà</th>
+                    <th scope="col">Lezioni</th>
+                    <th scope="col">Azioni</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if user.is_superuser %}
+                        {% for packet in packet_list %}
                             <tr>
                                 <td scope="row">{{ packet.title }}</td>
                                 <td scope="row">{{ packet.description|truncatechars:55 }}</td>
@@ -188,11 +160,43 @@
                                         - {{ lesson.title }}<br/>
                                     {% endfor %}
                                 </td>
+                                <td>
+                                    <a class="btn btn-secondary my-2" href="{% url 'update_packet' packet.id %}">modifica</a>
+                                    <a class="btn btn-secondary" href="{% url 'delete_packet' packet.id %}">elimina</a>
+                                </td>
                             </tr>
-                        {% endif %}
-                    {% endfor %}
-                {% endif %}
-            </tbody>
-        </table>
+                        {% endfor %}
+                    {% else %}
+                        {% for packet in packet_list %}
+                            {% if packet.user.username == user.username %}
+                                <tr>
+                                    <td scope="row">{{ packet.title }}</td>
+                                    <td scope="row">{{ packet.description|truncatechars:55 }}</td>
+                                    <!-- DIFFICULTY_CHOICES = (('1.0','Facile - base'), ('2.0', 'Facile - avanzato'), ('3.0', 'Media - base'), ('4.0', 'Media - avanzata'), ('5.0', 'Difficile - base'), ('6.0', 'Difficile - avanzata')) -->
+                                    {% if packet.difficulty == '1.0' %}
+                                        <td scope="row">Facile base</td>
+                                    {% elif packet.difficulty == '2.0'%}
+                                        <td scope="row">Facile avanzato</td>
+                                    {% elif packet.difficulty == '3.0'%}
+                                        <td scope="row">Media di base</td>
+                                    {% elif packet.difficulty == '4.0'%}
+                                        <td scope="row">Media avanzata</td>
+                                    {% elif packet.difficulty == '5.0'%}
+                                        <td scope="row">Difficile base</td>
+                                    {% elif packet.difficulty == '6.0'%}
+                                        <td scope="row">Difficile avanzato</td>
+                                    {% endif %}
+                                    <td scope="row">
+                                        {% for lesson in packet.lessons.all %}
+                                            - {{ lesson.title }}<br/>
+                                        {% endfor %}
+                                    </td>
+                                </tr>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                </tbody>
+            </table>
+        {% endif %}
     </div>
 {% endblock %}
