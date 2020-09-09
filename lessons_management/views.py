@@ -155,7 +155,7 @@ class CreateUserPackets(FormView):
 class DeleteUserPackets(FormView):
     form_class = UserPacketsDeleteForm
     template_name = 'lessons_management/user_packets/delete_userPackets.html'
-    success_url = reverse_lazy('user_packet')
+    success_url = reverse_lazy('login_redirect_url')
 
     def form_valid(self, form):
         if form.is_valid():
