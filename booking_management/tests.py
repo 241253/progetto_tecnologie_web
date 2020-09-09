@@ -57,7 +57,7 @@ class UserBookingView_UserLogin_Test(TestCase):
         response = self.client.get(reverse('user_booking'))
         self.assertEqual(response.status_code, 200)
 
-        #controllo su prenotazioni non ancoraa confermate/annullate
+        #controllo su prenotazioni non ancora confermate/annullate
         self.assertNotContains(response, "Prenotazioni in attesa di conferma")
         #controllo su prenotazioni future già confermate/annullate
         self.assertNotContains(response, "Videolezioni live prenotate")
