@@ -35,6 +35,17 @@ class BookingCreationForm(forms.ModelForm):
     def save(self, commit=True):
         booking = super(BookingCreationForm, self).save(commit=False)
         booking.user = self.current_user
+
+        subject = 'Prenotazione lezione live'
+        message = 'Mail inviata da: ' + booking.user.username + ' ('+ booking.user.email + ')' + "\n\nL'utente " + booking.user.username + \
+                   ' vorrebbe effettuare una prenotazione in data: ' + booking.data.strftime('%d/%m/%Y') + ' alle ore ' + booking.ora.strftime('%H:%M') + '.\n\n' + \
+                   'Confermare o annullare la prenotazione'
+
+        try:
+            send_mail(subject, message, 'virgiliancodeonline@gmail.com', ['virgiliancodeonline@gmail.com'], fail_silently=False, )
+        except BadHeaderError:
+            return HttpResponse('Invalid header found.')
+
         if commit:
             booking.save()
         return booking
