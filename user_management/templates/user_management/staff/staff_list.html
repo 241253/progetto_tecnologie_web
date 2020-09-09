@@ -30,7 +30,7 @@
                             <td>{{ user.last_name }}</td>
                             <td>{{ user.email }}</td>
                             {% if user.last_login != None %}
-                                <td>{{ user.last_login }}</td>
+                                <td>{{ user.last_login.day }}/{{ user.last_login.month }}/{{ user.last_login.year }}<br/>{{ user.last_login.hour }}:{{ user.last_login.minute }}</td>
                             {% else %}
                                 <td class="text-center">-</td>
                             {% endif %}
