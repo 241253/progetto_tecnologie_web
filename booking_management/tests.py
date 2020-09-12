@@ -319,7 +319,6 @@ class UserBookingView_StaffLogin_Test(TestCase):
         self.formatore.is_active = True
         self.formatore.save()
         self.client.login(username='formatore1', password='formatore1password')
-        self.assertTrue(self.client.login(username='formatore1', password='formatore1password'))
 
     def test_template(self):
         '''
@@ -354,7 +353,6 @@ class UserBookingView_AdminLogin_Test(TestCase):
         self.formatore.is_active = True
         self.formatore.save()
         self.client.login(username='formatore1', password='formatore1password')
-        self.assertTrue(self.client.login(username='formatore1', password='formatore1password'))
 
     def test_template(self):
         '''

@@ -78,8 +78,8 @@ class NormalizedDifficultyRangeTest(TestCase):
         #chiamo il metodo set_normalize_difficulty passando la difficoltà media delle 5 lezioni
         packet.set_normalize_difficulty()
 
-        #testo che la difficoltà calcolata rientri nel caso 1.0 (Facile Base)
-        # visto che la difficolta media (1.6) è compresa tra 1.5 incluso e 2.5
+        #testo che la difficoltà calcolata rientri nel caso 2.0 (Facile Avanzato)
+        # visto che la difficolta media (1.6) è compresa tra 1.5 incluso e 2
         self.assertEqual(packet.difficulty, '2.0')
 
     def test_difficulty_medio_base(self):
@@ -101,8 +101,8 @@ class NormalizedDifficultyRangeTest(TestCase):
         #chiamo il metodo set_normalize_difficulty passando la difficoltà media delle 5 lezioni
         packet.set_normalize_difficulty()
 
-        #testo che la difficoltà calcolata rientri nel caso 1.0 (Facile Base)
-        # visto che la difficolta media (2.8) è compresa tra 2.5 incluso e 3.5
+        #testo che la difficoltà calcolata rientri nel caso 3.0 (Media Base)
+        # visto che la difficolta media (2.8) è compresa tra 2.5 incluso e 3
         self.assertEqual(packet.difficulty, '3.0')
 
     def test_difficulty_medio_avanzato(self):
@@ -124,8 +124,8 @@ class NormalizedDifficultyRangeTest(TestCase):
         #chiamo il metodo set_normalize_difficulty passando la difficoltà media delle 5 lezioni
         packet.set_normalize_difficulty()
 
-        #testo che la difficoltà calcolata rientri nel caso 1.0 (Facile Base)
-        # visto che la difficolta media (3.6) è compresa tra 3.5 incluso e 4.5
+        #testo che la difficoltà calcolata rientri nel caso 4.0 (Media Avanzata)
+        # visto che la difficolta media (3.6) è compresa tra 3.5 incluso e 4
         self.assertEqual(packet.difficulty, '4.0')
 
     def test_difficulty_difficile_base(self):
@@ -146,8 +146,8 @@ class NormalizedDifficultyRangeTest(TestCase):
         #chiamo il metodo set_normalize_difficulty passando la difficoltà media delle 5 lezioni
         packet.set_normalize_difficulty()
 
-        #testo che la difficoltà calcolata rientri nel caso 1.0 (Facile Base)
-        # visto che la difficolta media (4.8) è compresa tra 4.5 incluso e 5.5
+        #testo che la difficoltà calcolata rientri nel caso 5.0 (Difficile Base)
+        # visto che la difficolta media (4.8) è compresa tra 4.5 incluso e 5
         self.assertEqual(packet.difficulty, '5.0')
 
     def test_difficulty_difficile_avanzato(self):
@@ -169,6 +169,6 @@ class NormalizedDifficultyRangeTest(TestCase):
         #chiamo il metodo set_normalize_difficulty passando la difficoltà media delle 5 lezioni
         packet.set_normalize_difficulty()
 
-        #testo che la difficoltà calcolata rientri nel caso 1.0 (Facile Base)
+        #testo che la difficoltà calcolata rientri nel caso 6.0 (Difficile Avanzata)
         # visto che la difficolta media (5.6) è maggiore o uguale a 5.5
         self.assertEqual(packet.difficulty, '6.0')
