@@ -74,7 +74,7 @@ class BookingStaffView(TemplateView):
             return redirect('user_error')
         elif self.request.user.is_superuser:
             return redirect('staff_error')
-        return super(BookingAdminView, self).get(request, *args, **kwargs)
+        return super(BookingStaffView, self).get(request, *args, **kwargs)
 
 #BOOKING_STATUS
 @method_decorator(login_required, name='dispatch')

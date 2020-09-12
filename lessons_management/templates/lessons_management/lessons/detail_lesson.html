@@ -61,6 +61,8 @@
             <p class="card-header" style="border: none; background-color: rgb(255,170,0); color: rgb(255,255,255)">Genere: giochi vocali</p>
         {% elif object.genre == 'R'%}
             <p class="card-header" style="border: none; background-color: rgb(255,170,0); color: rgb(255,255,255)">Genere: racing</p>
+        {% elif object.genre == 'AL'%}
+            <p class="card-header" style="border: none; background-color: rgb(255,170,0); color: rgb(255,255,255)">Genere: Altro</p>
         {% endif %}
 
     {% if not user.is_staff %}
